@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"Item"},{"p":"<Unnamed>","l":"Weapon"},{"l":"すべてのクラス","u":"allclasses-index.html"}];updateSearchResults();

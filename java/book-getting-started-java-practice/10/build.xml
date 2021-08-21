@@ -1,0 +1,14 @@
+<project name="Java入門 第10章" basedir=".">
+    <target name="full_build">
+        <echo message="ビルドを開始します…"/>
+        <javac srcdir="src" destdir="dist"/>
+        <!--        <junit/>-->
+        <javadoc destdir="docs">
+            <fileset dir="src">
+                <include name="**/*.java"/>
+                <exclude name="**/*Test.java"/>
+            </fileset>
+        </javadoc>
+        <!--        <javadoc destdir="docs" sourcepath="src;"/>-->
+    </target>
+</project>

@@ -1,0 +1,56 @@
+@options
+@argfile
+-classpath
+'C:/Users/mujet/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar'
+-encoding
+'utf8'
+-protected
+-source
+'15'
+-sourcepath
+'C:/Home/program/study/java/book-getting-started-java-practice/10/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2021. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Home/program/study/java/book-getting-started-java-practice/10/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'10 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/15/docs/api' 'C:/Home/program/study/java/book-getting-started-java-practice/10/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'10 1.0-SNAPSHOT API'
+'C:/Home/program/study/java/book-getting-started-java-practice/10/src/main/java/Item.java'
+'C:/Home/program/study/java/book-getting-started-java-practice/10/src/main/java/Weapon.java'
+C:\Users\mujet\.m2\repository\org\projectlombok\lombok\1.18.20\lombok-1.18.20.jar = 1626654155601
+C:\Home\program\study\java\book-getting-started-java-practice\10\src\main\java\Item.java = 1629009693732
+C:\Home\program\study\java\book-getting-started-java-practice\10\src\main\java\Items.jar = 1629000927744
+C:\Home\program\study\java\book-getting-started-java-practice\10\src\main\java\Weapon.java = 1628998255737
+C:\Home\program\study\java\book-getting-started-java-practice\10\src\main\java = 1629009693732
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\allclasses-index.html = 1629013285297
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\allpackages-index.html = 1629013285305
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\element-list = 1629013285223
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\help-doc.html = 1629013285364
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\index-all.html = 1629013285349
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\index.html = 1629013285356
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\Item.html = 1629013285191
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\jquery-ui.overrides.css = 1629013285503
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\member-search-index.js = 1629013285330
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\module-search-index.js = 1629013285312
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\overview-tree.html = 1629013285281
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\package-search-index.js = 1629013285318
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\package-summary.html = 1629013285232
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\package-tree.html = 1629013285243
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\package-use.html = 1629013285273
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\script.js = 1629013285379
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\search.js = 1629013285385
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\stylesheet.css = 1629013285372
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\tag-search-index.js = 1629013285335
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\type-search-index.js = 1629013285324
+C:\Home\program\study\java\book-getting-started-java-practice\10\target\site\apidocs\Weapon.html = 1629013285215
