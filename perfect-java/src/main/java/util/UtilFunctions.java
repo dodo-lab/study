@@ -1,6 +1,9 @@
 package util;
 
-public class UtilFunctions {
+public final class UtilFunctions {
+    private UtilFunctions() {
+    }
+
     public static void printObjects(Object... objects) {
         int no = 0;
         for (var object : objects) {
