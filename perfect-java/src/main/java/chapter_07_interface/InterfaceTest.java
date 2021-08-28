@@ -19,7 +19,7 @@ public class InterfaceTest {
         }
     }
 
-    static class MyImple implements MyInterface {
+    static class MyImpl implements MyInterface {
         @Override
         public void method() {
             System.out.println("MyImple#method");
@@ -33,7 +33,7 @@ public class InterfaceTest {
     }
 
     public static void main(String[] args) {
-        MyInterface m = new MyImple();
+        MyInterface m = new MyImpl();
         m.method();
         m.defaultMethod();
         m.defaultMethod2();
