@@ -1,0 +1,39 @@
+package chapter_08_ramda_stream;
+
+import java.util.Arrays;
+import java.util.Map;
+
+public class StreamBasic {
+    private static void listStream() {
+        var list = Arrays.asList("abc", "xyz", "defghi", "a");
+
+        list.stream()
+                // ストリームの中間フィルター処理（"a"を含む文字列だけを抽出）
+                .filter(s -> s.contains("a"))
+                // ストリームの中間マップ処理（大文字に変換）
+                .map(String::toUpperCase)
+                // ストリームの終端処理（文字列を出力）
+                .forEach(System.out::println);
+    }
+
+    private static void mapStream() {
+        var map = Map.of(
+                "one", 1,
+                "tow", 2,
+                "three", 3
+        );
+
+        // キーと値を表示
+        map.entrySet().stream().forEach(e -> System.out.println(e.getKey() + ", " + e.getValue()));
+        map.entrySet().forEach(e -> System.out.println(e.getKey() + ", " + e.getValue()));
+
+        // 値だけを表示
+        map.entrySet().stream().map(Map.Entry::getValue).forEach(System.out::println);
+        map.values().stream().forEach(System.out::println);
+    }
+
+    public static void main(String[] args) {
+        listStream();
+        mapStream();
+    }
+}
