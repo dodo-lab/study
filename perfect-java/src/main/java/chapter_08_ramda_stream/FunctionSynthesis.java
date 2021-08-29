@@ -2,10 +2,13 @@ package chapter_08_ramda_stream;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class FunctionSynthesis {
     // Functionの関数合成
     private static void functionSynthesis() {
+        System.out.println("- functionSynthesis -");
+
         // 関数単体の定義
         Function<String, Integer> strLength = String::length;   // 文字列長を返す関数
         Function<Integer, String> itoHex = i -> Integer.toString(i, 16);    // 数値を16進数文字列にする関数
@@ -22,6 +25,8 @@ public class FunctionSynthesis {
 
     // Consumerの関数合成
     private static void consumerSynthesis() {
+        System.out.println("- consumerSynthesis -");
+
         // 処理単体の定義
         Consumer<String> proc1 = msg -> System.out.println("showing1: " + msg);
         Consumer<String> proc2 = msg -> System.out.println("showing2: " + msg);
@@ -31,8 +36,26 @@ public class FunctionSynthesis {
         proc1then2.accept("foobar");
     }
 
+    // Predicateの関数合成
+    private static void predicateSynthesis() {
+        System.out.println("- predicateSynthesis -");
+
+        // 関数単体の定義
+        Predicate<Integer> isPositive = n -> n > 0;
+        Predicate<Integer> isEven = n -> n % 2 == 0;
+
+        // negateで論理反転
+        Predicate<Integer> isNegative = isPositive.negate();
+        System.out.println(isNegative.test(-1));
+
+        // 整数且つ偶数を判定
+        Predicate<Integer> isPositiveEven = isPositive.and(isEven);
+        System.out.println(isPositiveEven.test(10));
+    }
+
     public static void main(String[] args) {
         FunctionSynthesis.functionSynthesis();
         FunctionSynthesis.consumerSynthesis();
+        FunctionSynthesis.predicateSynthesis();
     }
 }
