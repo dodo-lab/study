@@ -53,9 +53,22 @@ public class StreamBasic {
         stream3.limit(5).forEach(System.out::println);
     }
 
+    private static void builder() {
+        // Stream.Builderオブジェクトを生成
+        Stream.Builder<String> builder = Stream.builder();
+
+        // ストリーム処理の対象要素を追加
+        builder.add("foo");
+        builder.add("bar").add("baz");  // メソッドチェインも可能
+
+        var stream = builder.build();
+        stream.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         listStream();
         mapStream();
         factory();
+        builder();
     }
 }
