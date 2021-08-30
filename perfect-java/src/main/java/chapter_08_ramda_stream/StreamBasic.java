@@ -2,6 +2,7 @@ package chapter_08_ramda_stream;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class StreamBasic {
     private static void listStream() {
@@ -32,8 +33,29 @@ public class StreamBasic {
         map.values().stream().forEach(System.out::println);
     }
 
+    private static void factory() {
+        // 可変長引数のofメソッド
+        var stream1 = Stream.of("abc", "xyz", "defghi", "a");
+
+        // 無限に文字列を生成するストリーム
+        var stream2 = Stream.generate(() -> "foo");
+
+        // "0"から始まり、数値をインクリメントした文字列を要素とする無限ストリーム
+        var stream3 = Stream.iterate("0", s -> {
+            int n = Integer.parseInt(s);
+            ++n;
+            return String.valueOf(n);
+        });
+
+        stream1.forEach(System.out::println);
+        // 無限ストリームはlimitのように、途中で打ち切る中間処理が必須
+        stream2.limit(3).forEach(System.out::println);
+        stream3.limit(5).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         listStream();
         mapStream();
+        factory();
     }
 }
