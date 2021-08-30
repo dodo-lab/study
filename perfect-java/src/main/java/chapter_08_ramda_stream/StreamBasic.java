@@ -1,7 +1,10 @@
 package chapter_08_ramda_stream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamBasic {
@@ -65,10 +68,35 @@ public class StreamBasic {
         stream.forEach(System.out::println);
     }
 
+    private static void streamToCollection() {
+        var stream = Stream.of("abc", "xyz", "defghi", "a");
+
+        // StreamからListオブジェクトを生成
+        var list1 = stream.collect(Collectors.toList());
+        var list2 = list1.stream().collect(Collectors.toCollection(ArrayList::new));
+        list1.forEach(System.out::println);
+        list2.forEach(System.out::println);
+
+        // StreamからSetオブジェクトを生成
+        var set = list1.stream().collect(Collectors.toSet());
+        set.forEach(System.out::println);
+
+        // StreamからMapオブジェクトを生成
+        var map = list1.stream().collect(Collectors.toMap(Function.identity(), Function.identity()));
+        map.forEach((k, v) -> System.out.println(k + " : " + v));
+
+        // Streamから配列を生成
+        var array = list1.stream().toArray(String[]::new);
+        for (var s : array) {
+            System.out.println(s);
+        }
+    }
+
     public static void main(String[] args) {
         listStream();
         mapStream();
         factory();
         builder();
+        streamToCollection();
     }
 }
