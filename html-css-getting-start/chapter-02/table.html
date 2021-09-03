@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Table</title>
-  <style>
-    table {
-      border: solid 1px black;
-    }
-    th, td {
-      padding: 8px 16px;
-      border: solid 1px black;
-    }
-  </style>
-</head>
-<body>
-  <h1>Table</h1>
-  <h2>通常</h2>
-  <table>
-    <tr>
-      <th>ヘッダ1</th>
-      <th>ヘッダ2</th>
-    </tr>
-    <tr>
-      <td>データ1</td>
-      <td>データ2</td>
-    </tr>
-    <tr>
-      <td>データ3</td>
-      <td>データ4</td>
-    </tr>
-  </table>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <style>
+      table {
+        border: solid 1px black;
+      }
+      th,
+      td {
+        padding: 8px 16px;
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table</h1>
+    <h2>通常</h2>
+    <table>
+      <tr>
+        <th>ヘッダ1</th>
+        <th>ヘッダ2</th>
+      </tr>
+      <tr>
+        <td>データ1</td>
+        <td>データ2</td>
+      </tr>
+      <tr>
+        <td>データ3</td>
+        <td>データ4</td>
+      </tr>
+    </table>
 
-  <h2>横方向に繋げる</h2>
-  <table>
-    <tr>
-      <th colspan="2">ヘッダ1+2</th>
-    </tr>
-    <tr>
-      <td>データ1</td>
-      <td>データ2</td>
-    </tr>
-    <tr>
-      <td>データ3</td>
-      <td>データ4</td>
-    </tr>
-  </table>
+    <h2>横方向に繋げる</h2>
+    <table>
+      <tr>
+        <th colspan="2">ヘッダ1+2</th>
+      </tr>
+      <tr>
+        <td>データ1</td>
+        <td>データ2</td>
+      </tr>
+      <tr>
+        <td>データ3</td>
+        <td>データ4</td>
+      </tr>
+    </table>
 
-  <h2>縦方向に繋げる</h2>
-  <table>
-    <tr>
-      <th>ヘッダ1</th>
-      <th>ヘッダ2</th>
-    </tr>
-    <tr>
-      <td rowspan="2">データ1+3</td>
-      <td>データ2</td>
-    </tr>
-    <tr>
-      <td>データ4</td>
-    </tr>
-  </table>
-</body>
+    <h2>縦方向に繋げる</h2>
+    <table>
+      <tr>
+        <th>ヘッダ1</th>
+        <th>ヘッダ2</th>
+      </tr>
+      <tr>
+        <td rowspan="2">データ1+3</td>
+        <td>データ2</td>
+      </tr>
+      <tr>
+        <td>データ4</td>
+      </tr>
+    </table>
+  </body>
 </html>
