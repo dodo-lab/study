@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rem</title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <style>
+      h2 {
+        margin-top: 3rem;
+      }
+      .box {
+        margin: 0 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>rem</h2>
+    <hr />
+    <div class="box">
+      <p style="font-size: 3rem">H1(3rem)</p>
+      <p style="font-size: 2rem">H2(2rem)</p>
+      <p style="font-size: 1rem">H3(1rem)</p>
+      <p>1rm = ルート要素(html)のフォントサイズ</p>
+    </div>
+
+    <h2>line-height</h2>
+    <hr />
+    <div class="box">
+      <h3>line-height: 1</h3>
+      <p style="width: 200px; line-height: 1">
+        あいうえおかきくけこさしすせそたちつてとabcなにぬねのaaaabああああああ
+      </p>
+      <h3>line-height: 1.7</h3>
+      <p style="width: 200px; line-height: 1.7">
+        あいうえおかきくけこさしすせそたちつてとabcなにぬねのaaaabああああああ
+      </p>
+    </div>
+
+    <h2>text-align</h2>
+    <hr />
+    <div class="box">
+      <h3>text-align: left</h3>
+      <p style="width: 200px; text-align: left">
+        あいうえおかきくけこさしすせそたちつてとabcなにぬねのaaaabああああああいいいaaaaaaんんんんんん
+      </p>
+      <h3>text-align: justify</h3>
+      <p style="width: 200px; text-align: justify">
+        あいうえおかきくけこさしすせそたちつてとabcなにぬねのaaaabああああああいいいaaaaaaんんんんんん
+      </p>
+    </div>
+  </body>
+</html>
