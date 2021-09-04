@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox</title>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <style>
+      .container {
+        width: 360px;
+        height: 500px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: row; /* 子要素の並ぶ向き */
+        flex-wrap: wrap; /* 子要素の折り返し */
+        justify-content: flex-start; /* 水平方向の揃え */
+        align-items: stretch; /* 垂直方向の揃え */
+        align-content: stretch; /* 複数行時の揃え */
+      }
+      .item {
+        background-color: #0bd;
+        color: #fff;
+        margin: 10px;
+        padding: 10px;
+      }
+      .big {
+        min-height: 100px;
+      }
+      .small {
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      $(function () {
+        $('select').change(function () {
+          $('.container').css($(this).attr('name'), $(this).val());
+        });
+      });
+    </script>
+    <div>
+      <select name="flex-direction">
+        <option value="row" selected>row : 左から右へ配置</option>
+        <option value="row-reverse">row-reverse : 右から左へ配置</option>
+        <option value="column">column : column</option>
+        <option value="reverse-reverse">column-reverse : 下から上へ配置</option>
+      </select>
+      <select name="flex-wrap">
+        <option value="nowrap">nowrap : 折り返しなし</option>
+        <option value="wrap" selected>wrap : 上から下へ折り返し</option>
+        <option value="wrap-reverse">wrap-reverse : 下から上へ折り返し</option>
+      </select>
+      <select name="justify-content">
+        <option value="flex-start">flex-start : 左揃え</option>
+        <option value="flex-end">flex-end : 右揃え</option>
+        <option value="center">center : 中央揃え</option>
+        <option value="space-between">
+          space-between : 最初と最後の要素は両端配置で、残りは均等配置
+        </option>
+        <option value="space-around">space-around : すべて均等配置</option>
+      </select>
+      <select name="align-items">
+        <option value="stretch">
+          stretch : 親要素の高さ、または一番大きい子要素の高さに合わせて配置
+        </option>
+        <option value="flex-start">flex-start : 親要素の開始位置から配置。上揃え</option>
+        <option value="flex-end">flex-end : 親要素の終点から配置。下揃え</option>
+        <option value="center">center : 中央揃え</option>
+        <option value="baseline">baseline : ベースラインで揃える</option>
+      </select>
+      <select name="align-content">
+        <option value="stretch">stretch : 親要素の高さに合わせて広げて配置</option>
+        <option value="flex-start">flex-start : 親要素の開始位置から配置。上揃え</option>
+        <option value="flex-end">flex-end : 親要素の終点から配置。下揃え</option>
+        <option value="center">center : 中央揃え</option>
+        <option value="space-between">
+          space-between : 最初と最後の要素は上下両端配置で、残りは均等配置
+        </option>
+        <option value="space-around">space-around : すべて均等配置</option>
+      </select>
+    </div>
+    <div class="container">
+      <div class="item">Item 1</div>
+      <div class="item big">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+      <div class="item">Item 5</div>
+      <div class="item">Item 6</div>
+      <div class="item small">Item 7</div>
+      <div class="item">Item 8</div>
+      <div class="item">Item 9</div>
+      <div class="item">Item a</div>
+      <div class="item">Item b</div>
+      <div class="item">Item c</div>
+      <div class="item">Item d</div>
+      <div class="item">Item e</div>
+    </div>
+  </body>
+</html>
