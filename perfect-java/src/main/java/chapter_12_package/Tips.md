@@ -72,7 +72,7 @@ import my.*;
 public class You {
     public static void main(String[] args) {
         // MyImplクラスはパッケージ可視のため、直接オブジェクトを生成することはできないが、
-        // パッケージ可視のMyインターフェースを戻り値とした MyFactory.createMy()メソッドを
+        // パブリック可視のMyインターフェースを戻り値とした MyFactory.createMy()メソッドを
         // 軽油することでMyImplオブジェクトを参照することができる。
         My my = MyFactory.createMy();
         my.exec();
