@@ -1,4 +1,4 @@
-package util;
+package chapter_14_exception;
 
 public class TryWithResources {
     // リソースクラスはAutoCloseableインターフェースを継承する
