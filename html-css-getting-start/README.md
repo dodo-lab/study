@@ -1,3 +1,3 @@
-# 1 冊ですべて身につく HTML ＆ CSS と Web デザイン入門講座の学習
+# 学習【1 冊ですべて身につく HTML ＆ CSS と Web デザイン入門講座】
 
-[Tips](tips.md)
+## [Tips](tips.md)
