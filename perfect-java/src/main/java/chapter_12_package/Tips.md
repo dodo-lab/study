@@ -1,4 +1,15 @@
-# package
+# パッケージ
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [パッケージ](#パッケージ)
+    - [暗黙のインポート](#暗黙のインポート)
+    - [インポートと名前の衝突](#インポートと名前の衝突)
+    - [パッケージ可視とアクセス制御](#パッケージ可視とアクセス制御)
+
+<!-- /code_chunk_output -->
 
 ## 暗黙のインポート
 
