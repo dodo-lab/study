@@ -305,6 +305,21 @@ input[type='submit'] {
 iframe {
   width: 100%;
 }
+/* SNS */
+#sns {
+  background: #faf7f0;
+  padding: 4% 0;
+}
+#sns .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+#sns .sub-title {
+  margin-bottom: 30px;
+}
+.sns-box {
+  width: 30%;
+}
 
 /* モバイル版
 ---------------------------------------- */
@@ -384,5 +399,14 @@ iframe {
   input[type='email'],
   textarea {
     max-width: 100%;
+  }
+  #location .wrapper,
+  #sns .wrapper {
+    flex-direction: column;
+  }
+  .location-info,
+  .location-map,
+  .sns-box {
+    width: 100%;
   }
 }
