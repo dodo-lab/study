@@ -1,8 +1,9 @@
 # 学習【極める Excel】
 
-## Tips
+## Info / Tips
 
 - [Chpter-01](chapter-01/tips.md)
+- [Chpter-02](chapter-02/tips.md)
 
 ## 便利ショートカットキー
 
