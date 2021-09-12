@@ -3,7 +3,7 @@ package chapter_16_file_network;
 import java.io.*;
 
 public class FileChar {
-    private static void write(String filePath, String text) {
+    static void write(String filePath, String text) {
         try (var writer = new FileWriter(filePath)) {
             writer.write(text);
         } catch (IOException e) {
@@ -11,7 +11,7 @@ public class FileChar {
         }
     }
 
-    private static void read(String filePath) {
+    static void read(String filePath) {
         try (var reader = new FileReader(filePath);
              var writer = new OutputStreamWriter(System.out)) {
 
@@ -26,7 +26,7 @@ public class FileChar {
     }
 
     public static void main(String[] args) {
-        write("tmp/dummy.txt", "This is dummy data.");
-        read("tmp/dummy.txt");
+        write(Common.FILE_DUMMY_TEXT, "Char I/O Test.");
+        read(Common.FILE_DUMMY_TEXT);
     }
 }

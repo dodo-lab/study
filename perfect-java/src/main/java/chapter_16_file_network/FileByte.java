@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileByte {
-    private static void write(String filePath, String text) {
+    static void write(String filePath, String text) {
         try (var outputStream = new FileOutputStream(filePath)) {
             outputStream.write(text.getBytes());
         } catch (IOException e) {
@@ -14,7 +14,7 @@ public class FileByte {
         }
     }
 
-    private static void read(String filePath) {
+    static void read(String filePath) {
         try (var inputStream = new FileInputStream(filePath)) {
 
             var buf = new byte[4096];   // ファイル読み書きは4KB以上の単位で行うのが定石
@@ -30,7 +30,7 @@ public class FileByte {
     }
 
     public static void main(String[] args) {
-        write("tmp/dummy.txt", "this is dummy file.");
-        read("tmp/dummy.txt");
+        write(Common.FILE_DUMMY_TEXT, "Byte I/O Test.");
+        read(Common.FILE_DUMMY_TEXT);
     }
 }
