@@ -9,8 +9,9 @@ public class SystemInOut {
             var buf = new byte[4096];
 
             System.out.print("入力受付：");
-            if (System.in.read(buf) != -1) {
-                System.out.write(buf);
+            var length = System.in.read(buf);
+            if (length != -1) {
+                System.out.write(buf, 0, length);
             }
         } catch (IOException e) {
             e.printStackTrace();
