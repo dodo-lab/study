@@ -4,7 +4,9 @@ final class Common {
     private Common() {
     }
 
-    static void numberOutput(String name, int loopCnt, int sleepMSec) {
+    static int numberOutput(String name, int loopCnt, int sleepMSec) {
+        int sum = 0;
+
         for (var i = 0; i < loopCnt; ++i) {
             System.out.println(name + " " + i);
             try {
@@ -12,8 +14,11 @@ final class Common {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            sum += i;
         }
 
         System.out.println(name + " complete");
+        return sum;
     }
 }
