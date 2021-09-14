@@ -11,33 +11,18 @@ public class ThreadCreate extends Thread {
 
     @Override
     public void run() {
-        for (var i = 0; i < 10; ++i) {
-            System.out.println(name + " " + i);
-            try {
-                sleep(10L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        System.out.println(name + " 完了");
+        Common.numberOutput(name, 10, 10);
     }
 
     public static void main(String[] args) {
-        var threads = List.of(new ThreadCreate("one"), new ThreadCreate("two"));
+        var threads = List.of(
+                new ThreadCreate("one"),
+                new ThreadCreate("two"));
 
         // サブスレッドの開始
         threads.forEach(Thread::start);
 
-        for (var i = 0; i < 10; ++i) {
-            System.out.println("main " + i);
-            try {
-                sleep(5L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("main 完了");
+        Common.numberOutput("main", 10, 5);
 
         // サブスレッドの終了待ち
         threads.forEach(thread -> {
