@@ -36,11 +36,11 @@ public class CompletableFutureThen {
 
     public static void main(String[] args) {
         var worker = new Worker();
-        var future = CompletableFuture.supplyAsync(worker::exec)
-                .thenComposeAsync(s -> CompletableFuture.supplyAsync(worker::exec))
-                .thenApplyAsync(worker::aggregate)
-                .whenCompleteAsync(worker::showResult);
+        var future1 = CompletableFuture.supplyAsync(worker::exec);
+        var future2 = future1.thenComposeAsync(s -> CompletableFuture.supplyAsync(worker::exec));
+        var future3 = future2.thenApplyAsync(worker::aggregate);
+        var future4 = future3.whenCompleteAsync(worker::showResult);
 
-        future.join();
+        future4.join();
     }
 }
