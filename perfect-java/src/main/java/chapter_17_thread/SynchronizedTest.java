@@ -20,7 +20,7 @@ public class SynchronizedTest {
         }
 
         public void safeIncrement2() {
-            synchronized (this) {
+            synchronized (this) { // MyCounter.class でもOKだが、モニタロックの共有範囲が広がるため注意
                 safeCount2++;
             }
         }
