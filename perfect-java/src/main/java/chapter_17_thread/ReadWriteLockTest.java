@@ -1,6 +1,8 @@
 package chapter_17_thread;
 
 import util.Exec;
+import util.ExecWorker;
+import util.UtilFunctions;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -54,63 +56,31 @@ public class ReadWriteLockTest {
             System.out.printf("%s : readCount[%d] writeCount[%d]\n", text, readCount, writeCount);
         }
     }
-
-    private static class Worker implements Runnable {
-        private final Exec exec;
-
-        private Worker(Exec exec) {
-            this.exec = exec;
-
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void run() {
-            exec.exec();
-        }
-    }
-
+    
     public static void main(String[] args) {
         var executor = Executors.newFixedThreadPool(8);
         var counter = new MyCounter();
 
         System.out.println("read / read / write");
-        executor.submit(new Worker(counter::read));
-        executor.submit(new Worker(counter::read));
-        executor.submit(new Worker(counter::write));
+        executor.submit(new ExecWorker(counter::read, 1, 10));
+        executor.submit(new ExecWorker(counter::read, 1, 10));
+        executor.submit(new ExecWorker(counter::write, 1, 10));
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        UtilFunctions.sleep(1000);
 
         System.out.println("\nread / write / read");
-        executor.submit(new Worker(counter::read));
-        executor.submit(new Worker(counter::write));
-        executor.submit(new Worker(counter::read));
+        executor.submit(new ExecWorker(counter::read, 1, 10));
+        executor.submit(new ExecWorker(counter::write, 1, 10));
+        executor.submit(new ExecWorker(counter::read, 1, 10));
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        UtilFunctions.sleep(1000);
 
         System.out.println("\nwrite / read / write");
-        executor.submit(new Worker(counter::write));
-        executor.submit(new Worker(counter::read));
-        executor.submit(new Worker(counter::write));
+        executor.submit(new ExecWorker(counter::write, 1, 10));
+        executor.submit(new ExecWorker(counter::read, 1, 10));
+        executor.submit(new ExecWorker(counter::write, 1, 10));
 
-        executor.shutdown();
-        try {
-            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        UtilFunctions.executorFinishAwait(executor);
 
         counter.show("finish");
     }

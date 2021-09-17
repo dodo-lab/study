@@ -1,5 +1,7 @@
 package chapter_17_thread;
 
+import util.UtilFunctions;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -16,11 +18,7 @@ public class CompletableFutureTest {
 
         @Override
         public void run() {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            UtilFunctions.sleep(1000);
 
             // スレッドから結果を返す
             future.complete("RETVAL");
@@ -37,10 +35,6 @@ public class CompletableFutureTest {
         executor.execute(new Worker(future));
         executor.shutdown();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        UtilFunctions.sleep(2000);
     }
 }

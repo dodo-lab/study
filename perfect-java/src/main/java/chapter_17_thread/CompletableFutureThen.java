@@ -1,5 +1,7 @@
 package chapter_17_thread;
 
+import util.UtilFunctions;
+
 import java.util.concurrent.CompletableFuture;
 
 public class CompletableFutureThen {
@@ -26,11 +28,7 @@ public class CompletableFutureThen {
 
         private void emulateLongTask() {
             // ネットワークアクセス等の重い処理を想定
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            UtilFunctions.sleep(1000);
         }
     }
 
