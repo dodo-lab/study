@@ -3,6 +3,7 @@ package chapter_18_reflection;
 import util.UtilFunctions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReflectionTest {
     // オブジェクトのリフレクション
@@ -68,9 +69,32 @@ public class ReflectionTest {
         }
     }
 
+    // ジェネリック型のリフレクション
+    private static void refGeneric() {
+        System.out.println("refGeneric");
+
+        List list = new ArrayList();
+        List<String> stringList = new ArrayList<>();
+        List<Integer> integerList = new ArrayList<>();
+
+        try {
+            // ジェネリック型はイレイジャにより要素型が消えるため、要素型が異なっても同一オブジェクトを参照する
+            Class<ArrayList> clazz1 = ArrayList.class;
+            Class<?> clazz2 = list.getClass();
+            Class<? extends List> clazz3 = stringList.getClass();
+            Class<? extends List> clazz4 = integerList.getClass();
+            Class<?> clazz5 = Class.forName("java.util.ArrayList");
+
+            UtilFunctions.printObjects(clazz1.hashCode(), clazz2.hashCode(), clazz3.hashCode(), clazz4.hashCode(), clazz5.hashCode());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         refObject();
         refBasic();
         refArray();
+        refGeneric();
     }
 }
