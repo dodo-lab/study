@@ -84,8 +84,26 @@ public class ReflectionTest {
             Class<? extends List> clazz3 = stringList.getClass();
             Class<? extends List> clazz4 = integerList.getClass();
             Class<?> clazz5 = Class.forName("java.util.ArrayList");
-
             UtilFunctions.printObjects(clazz1.hashCode(), clazz2.hashCode(), clazz3.hashCode(), clazz4.hashCode(), clazz5.hashCode());
+
+            // ListとArrayListは別のオブジェクトを参照する
+            Class<List> clazz6 = List.class;
+            UtilFunctions.printObjects(clazz1.hashCode(), clazz6.hashCode());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // アノテーションのリフレクション
+    private static void refAnnotation() {
+        System.out.println("refAnnotation");
+
+        try {
+            Class<Override> clazz1 = Override.class;
+            Class<?> clazz2 = Class.forName("java.lang.Override");
+            Class<?> clazz3 = FunctionalInterface.class;
+
+            UtilFunctions.printObjects(clazz1.hashCode(), clazz2.hashCode(), clazz3.hashCode());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -96,5 +114,6 @@ public class ReflectionTest {
         refBasic();
         refArray();
         refGeneric();
+        refAnnotation();
     }
 }
