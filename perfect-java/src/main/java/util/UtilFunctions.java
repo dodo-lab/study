@@ -1,6 +1,5 @@
 package util;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -14,6 +13,12 @@ public final class UtilFunctions {
         for (var object : objects) {
             System.out.println(no + " : " + object);
             ++no;
+        }
+    }
+
+    public static <T> void printArray(T[] array) {
+        for (var value : array) {
+            System.out.println(value);
         }
     }
 
