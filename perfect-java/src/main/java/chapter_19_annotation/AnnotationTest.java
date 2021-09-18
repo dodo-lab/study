@@ -17,10 +17,26 @@ public class AnnotationTest {
     @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.RUNTIME)
     @interface MyFilter {
+        enum Position {
+            BEFORE,
+            AFTER,
+        }
+
+        Position value();
     }
 
     private static class CapitalizeFilter {
-        @MyFilter
+        @MyFilter(MyFilter.Position.AFTER)
+        public String afterJob(String input) {
+            return input + "_after";
+        }
+
+        @MyFilter(MyFilter.Position.BEFORE)
+        public String beforeJob(String input) {
+            return "before_" + input;
+        }
+
+        @MyFilter(MyFilter.Position.BEFORE)
         public String doJob(String input) {
             return input.toUpperCase();
         }
@@ -44,9 +60,14 @@ public class AnnotationTest {
             // クラス名で探索
             var clazz = Class.forName(className);
             for (var method : clazz.getMethods()) {
-                // 指定のアノテーションを含むメソッドか判断
-                if (method.isAnnotationPresent(MyFilter.class)) {
-                    filters.add(new Filter(clazz.newInstance(), method));
+                var myFilter = method.getAnnotation(MyFilter.class);
+                if (myFilter != null) {
+                    System.out.println(method.getName());
+
+                    switch (myFilter.value()) {
+                        case BEFORE -> filters.add(0, new Filter(clazz.newInstance(), method));
+                        case AFTER -> filters.add(new Filter(clazz.newInstance(), method));
+                    }
                 }
             }
         }
