@@ -20,10 +20,10 @@
 |docker image rm [イメージ名]|イメージの削除|
 |docker image prune|未使用のイメージを削除|
 |docker image push [`docker image tag`で設定したタグ]|Docker Hubにイメージをアップロード|
-|docker container run [起動するイメージ名]|イメージを起動|
+|docker container run [イメージ名]|イメージを起動|
 |docker container ps|コンテナの状態を確認|
-|docker container stats ([確認するコンテナ名])|１つまたは複数のコンテナのリソース使用状況をライブで表示|
-|docker stop [停止するコンテナ名]|コンテナを停止|
-|docker rm [削除するコンテナ名]|コンテナを削除|
+|docker container stats ([コンテナ名])|１つまたは複数のコンテナのリソース使用状況をライブで表示|
+|docker stop [コンテナ名]|コンテナを停止|
+|docker rm [コンテナ名]|コンテナを削除|
 |docker login|Docker Hubへのログイン|
 |docker logout|Docker Hubへのログアウト|
