@@ -5,7 +5,7 @@
 docker container run --name os1 -d --cpu-shares=512 --memory=1g centos
 
 # -v : ホストOSとコンテナのディレクトリの共有
-docker container run --name webserver1 -d -v [ホストOSのディレクトリ]:/usr/share/nginx/html nginx
+docker container run --name webserver1 -d -v /run/desktop/mnt/host/c/Home/program/study/html-css-getting-start/chapter-07:/usr/share/nginx/html -p 3000:80 nginx
 
 Pause
 
