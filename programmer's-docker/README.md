@@ -4,6 +4,28 @@
 
 - [Chapter 04](chapter_04_docker_command/tips.md)
 
+## 動作環境
+
+### Chocolatey
+
+1. PowerShellを管理者権限で起動（以降の手順はすべてPowerShellで行う）
+2. `Get-ExecutionPolicy`を実行
+3. `Restricted`が返ってきた場合は、`Set-ExecutionPolicy AllSigned`を実行
+4. 下記コマンドを実行
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+詳細は[公式サイト](https://chocolatey.org/install)を確認
+
+### jq
+
+1. PowerShellを管理者権限で起動（以降の手順はすべてPowerShellで行う）
+2. `chocolatey install jq`を実行
+
+詳細は[公式サイト](https://stedolan.github.io/jq/download/)を確認
+
 ## Dockerコマンド
 
 詳細は[公式サイト](https://matsuand.github.io/docs.docker.jp.onthefly/engine/reference/commandline/cli/)を参照
