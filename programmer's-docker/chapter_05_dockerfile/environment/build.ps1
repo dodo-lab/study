@@ -9,3 +9,4 @@ docker exec -it my-os /usr/tmp/exec.sh
 
 # 後片付け
 docker stop my-os
+docker image rm my-os-image
