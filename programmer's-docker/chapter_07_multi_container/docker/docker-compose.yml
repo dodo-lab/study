@@ -17,8 +17,6 @@ services:
       - centos
 
   centos:
-    # コンテナ名
-    container_name: centos
     # ビルド
     build:
       # Dockerfileの場所を指定
