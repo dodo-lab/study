@@ -1,0 +1,40 @@
+# Compose ファイルフォーマットのバージョン指定
+version: "3.8"
+
+# サービス群を定義
+services:
+  webserver:
+    # コンテナ名
+    container_name: webserver
+    # コンテナの元になるイメージを指定
+    image: nginx
+    # ポート指定([ホストのポート番号]:[コンテナのポート番号])
+    ports:
+      - "3000:80"
+    # 依存関係の定義
+    # 以下の場合、webserverコンテナを開始する前に、centosコンテナを開始する
+    depends_on:
+      - centos
+
+  centos:
+    # コンテナ名
+    container_name: centos
+    # ビルド
+    build:
+      # Dockerfileの場所を指定
+      context: .
+      # Dockerfileに渡す引数
+      args:
+        ADD_USER: hoge
+    # イメージ名（buildを指定した場合はイメージ名になる）
+    image: my-centos
+    # コンテナ起動時に実行するコマンド
+    command: ping 127.0.0.1 -c 1000
+    # 環境変数（設定する環境変数が多い場合は'env_file'でファイルを指定可能）
+    environment:
+      HOGE: fuga
+      FOO: bar
+    # ボリュームのマウント（末尾の':ro'は読み取り専用を指定）
+    volumes:
+      - ./volume_readwrite:/tmp/volume_readwrite
+      - ./volume_readonly:/tmp/volume_readonly:ro
