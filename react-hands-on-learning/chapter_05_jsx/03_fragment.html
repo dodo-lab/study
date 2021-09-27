@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Samples</title>
+  </head>
+  <body>
+    <div>
+      <p>
+        Reactは複数の要素をコンポーネントの戻り値として返すことができず、複数指定するとエラーになる。
+      </p>
+      <p>
+        &lt;div&gt;のようなラッパー要素を追加することでエラーを回避可能だが、本来不要な要素が作成されるためDOMツリーが複雑化する。
+      </p>
+      <p>
+        Reactフラグメント(React.Fragment)を使うことで、実際に要素を追加することなくラッパーを記述可能。
+      </p>
+    </div>
+    <!-- 描画のルート -->
+    <div id="root"></div>
+
+    <!-- ReactとReactDOM -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      function Cat({ name }) {
+        return (
+          <React.Fragment>
+            <h1>The cat's name is {name}</h1>
+            <p>He's good.</p>
+          </React.Fragment>
+        );
+      }
+
+      function Cats() {
+        // 以下のような簡略記法も可能
+        return (
+          <>
+            <Cat name="mike" />
+            <Cat name="tama" />
+          </>
+        );
+      }
+
+      ReactDOM.render(<Cats />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
