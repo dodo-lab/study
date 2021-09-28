@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import colorData from './color-data.json';
-import AddColorFormRef from './components/AddColorFormRef';
+import AddColorForm from './components/AddColorForm';
 import ColorList from './components/ColorList';
 import { v4 } from 'uuid';
 
@@ -8,7 +8,7 @@ function App() {
   const [colors, setColors] = useState(colorData);
   return (
     <>
-      <AddColorFormRef
+      <AddColorForm
         onNewColor={(title, color) => {
           const newColors = [
             ...colors,

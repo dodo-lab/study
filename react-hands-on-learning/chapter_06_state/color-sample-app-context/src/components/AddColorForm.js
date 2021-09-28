@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useInput } from './../hooks';
 
 export default function AddColorForm({ onNewColor = (f) => f }) {
