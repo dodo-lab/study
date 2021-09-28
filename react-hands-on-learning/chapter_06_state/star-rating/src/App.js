@@ -5,7 +5,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <StarRating />
+        <StarRating
+          style={{ backgroundColor: 'lightblue' }}
+          onDoubleClick={(e) => alert('double click')}
+        />
       </header>
     </div>
   );
