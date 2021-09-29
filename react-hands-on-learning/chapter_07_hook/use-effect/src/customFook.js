@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 export const useJazzyNews = () => {
-  const [posts, setPosts] = useState([]);
+  const [_posts, setPosts] = useState([]);
   const addPost = (post) => setPosts((allPosts) => [post, ...allPosts]);
+
+  const posts = useMemo(() => _posts, [_posts]);
+
+  useEffect(() => {
+    newPostChime.play();
+  }, [posts]);
 
   useEffect(() => {
     newsFeed.subscribe(addPost);
