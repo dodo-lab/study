@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Checkbox from './components/Checkbox';
 import FavoritePhrase from './components/FavoritePhrase';
+import UseLayoutEffect from './components/UseLayoutEffect';
 import WordCount from './components/WordCount';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
         <FavoritePhrase key={i} no={i} />
       ))}
       <WordCount>You are not going to believe this but ...</WordCount>
+
+      <UseLayoutEffect />
     </div>
   );
 }
