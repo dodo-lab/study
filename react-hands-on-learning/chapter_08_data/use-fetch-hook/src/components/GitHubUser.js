@@ -1,5 +1,4 @@
 import React from 'react';
-import { useFetch } from '../hooks';
 import Fetch from './Fetch';
 
 function UserDetails({ data }) {

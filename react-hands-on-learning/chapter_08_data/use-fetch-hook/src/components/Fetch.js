@@ -11,7 +11,7 @@ export default function Fetch({
 
   if (error) return renderError(error);
   if (loading) return loadingFallback;
-  if (data) return renderSuccess(data);
+  if (data) return renderSuccess({ data });
 
   return null;
 }
