@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 export function useFetch(uri) {
   const [data, setData] = useState();
@@ -19,4 +19,28 @@ export function useFetch(uri) {
   }, [uri]);
 
   return { loading, data, error };
+}
+
+export function useIterator(items = [], initialValue = 0) {
+  const [index, setIndex] = useState(initialValue);
+
+  const prev = useCallback(() => {
+    if (index === 0) {
+      setIndex(items.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  }, [index, items.length]);
+
+  const next = useCallback(() => {
+    if (index === items.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  }, [index, items.length]);
+
+  const item = useMemo(() => items[index], [index]);
+
+  return [item || items[0], prev, next];
 }
