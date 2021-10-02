@@ -8,9 +8,16 @@ function App() {
   const [login, setLogin] = useState('dodo-lab');
   const [repo, setRepo] = useState();
 
+  const handleSerach = (login) => {
+    if (login) return setLogin(login);
+
+    setLogin('');
+    setRepo('');
+  };
+
   return (
     <div className="App">
-      <SearchForm value={login} onSearch={setLogin} />
+      <SearchForm value={login} onSearch={handleSerach} />
       {login && <GitHubUser login={login} />}
       {login && (
         <UserRepositories login={login} repo={repo} onSelect={setRepo} />

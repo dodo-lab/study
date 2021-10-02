@@ -9,7 +9,7 @@ export default function RepoMenu({
   const [{ name }, prev, next] = useIterator(
     repositories,
     selected
-      ? repositories.findIndex((repo) => repo.name == selected)
+      ? repositories.findIndex((repo) => repo.name === selected)
       : undefined
   );
 
