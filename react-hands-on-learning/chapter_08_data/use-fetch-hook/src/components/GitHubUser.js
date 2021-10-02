@@ -13,10 +13,6 @@ function UserDetails({ data }) {
           {data.location && <p>{data.location}</p>}
         </div>
       </div>
-      <UserRepositories
-        login={data.login}
-        onSelect={(repoName) => console.log(`${repoName} selected`)}
-      />
       <div
         style={{
           maxHeight: '200px',
@@ -26,6 +22,10 @@ function UserDetails({ data }) {
       >
         <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
+      <UserRepositories
+        login={data.login}
+        onSelect={(repoName) => console.log(`${repoName} selected`)}
+      />
     </>
   );
 }
