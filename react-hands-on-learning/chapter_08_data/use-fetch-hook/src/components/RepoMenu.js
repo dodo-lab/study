@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
 import { useIterator } from '../hooks';
-import RepositoryReadme from './RepositoryReadme';
 
-export default function RepoMenu({ repositories, login, onSelect = (f) => f }) {
-  const [{ name }, prev, next] = useIterator(repositories);
+export default function RepoMenu({
+  repositories,
+  selected,
+  onSelect = (f) => f,
+}) {
+  const [{ name }, prev, next] = useIterator(
+    repositories,
+    selected
+      ? repositories.findIndex((repo) => repo.name == selected)
+      : undefined
+  );
 
   useEffect(() => {
     if (!name) return;
@@ -17,7 +25,6 @@ export default function RepoMenu({ repositories, login, onSelect = (f) => f }) {
         <p>{name}</p>
         <button onClick={next}>&gt;</button>
       </div>
-      <RepositoryReadme login={login} repo={name} />
     </>
   );
 }

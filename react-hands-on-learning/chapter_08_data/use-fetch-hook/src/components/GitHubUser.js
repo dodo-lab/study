@@ -1,6 +1,5 @@
 import React from 'react';
 import Fetch from './Fetch';
-import UserRepositories from './UserRepositories';
 
 function UserDetails({ data }) {
   return (
@@ -22,10 +21,6 @@ function UserDetails({ data }) {
       >
         <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
-      <UserRepositories
-        login={data.login}
-        onSelect={(repoName) => console.log(`${repoName} selected`)}
-      />
     </>
   );
 }
