@@ -1,27 +1,13 @@
-import ErrorBoundary, { BreakThings } from './components/ErrorBoundary';
-import SiteLayout from './components/SiteLayout';
-
-const Callout = ({ children }) => <div className="callout">{children}</div>;
+import React, { useState } from 'react';
+import Agreement from './components/Agreement';
+import Main from './Main';
 
 function App() {
-  return (
-    <SiteLayout
-      menu={
-        <ErrorBoundary>
-          <p>Menu</p>
-        </ErrorBoundary>
-      }
-    >
-      <ErrorBoundary>
-        <Callout>Callout</Callout>
-      </ErrorBoundary>
-      <ErrorBoundary>
-        <h1>Contents</h1>
-        <p>This is the main part of the example layout</p>
-        <BreakThings />
-      </ErrorBoundary>
-    </SiteLayout>
-  );
+  const [agree, setAgree] = useState(false);
+
+  if (!agree) return <Agreement onAgree={() => setAgree(true)} />;
+
+  return <Main />;
 }
 
 export default App;
