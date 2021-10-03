@@ -1,24 +1,24 @@
 import React from 'react';
 
-const loadStatus = function () {
-  console.log('loadStatus');
+function createResource(pending) {
   let error, response;
-  const promise = new Promise((resolve) => setTimeout(resolve, 3000))
-    .then(() => {
-      console.log('success');
-      response = 'success';
-    })
-    .catch((e) => (error = e));
-  return function () {
-    console.log('function', error, response);
-    if (error) throw error;
-    if (response) return response;
-    throw promise;
+  pending.then((r) => (response = r)).catch((e) => (error = e));
+  return {
+    read() {
+      if (error) throw error;
+      if (response) return response;
+      throw pending;
+    },
   };
-};
+}
 
-const status = loadStatus();
+const threeSecondsToGnar = new Promise((resolve) =>
+  setTimeout(() => resolve({ gnar: 'gnarly!' }), 3000)
+);
+
+const resource = createResource(threeSecondsToGnar);
 
 export default function Status() {
-  return <h1>status: {status()}</h1>;
+  const result = resource.read();
+  return <h1>Gnar: {result.gnar}</h1>;
 }
