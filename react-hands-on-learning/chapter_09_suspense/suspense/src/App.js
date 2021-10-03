@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import Agreement from './components/Agreement';
-import Main from './Main';
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+
+// Mainコンポーネント初回描画時にimportする
+const Main = lazy(() => import('./Main'));
 
 function App() {
   const [agree, setAgree] = useState(false);
 
   if (!agree) return <Agreement onAgree={() => setAgree(true)} />;
 
-  return <Main />;
+  return (
+    <Suspense fallback={ClimbingBoxLoader}>
+      <Main />
+    </Suspense>
+  );
 }
 
 export default App;
