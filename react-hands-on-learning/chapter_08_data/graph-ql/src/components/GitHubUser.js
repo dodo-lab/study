@@ -1,7 +1,7 @@
 import React from 'react';
 import Fetch from './Fetch';
 
-function UserDetails({ data }) {
+export function UserDetails({ data }) {
   return (
     <>
       <div className="githubUser" style={{ display: 'flex' }}>
