@@ -37,5 +37,9 @@ Would you like to install them now with npm?
 ## 実行
 
 ```sh
+# ファイル単位
 npx eslint XXXXX.js
+
+# 実行ディレクトリ配下すべて
+npx eslint .
 ```
