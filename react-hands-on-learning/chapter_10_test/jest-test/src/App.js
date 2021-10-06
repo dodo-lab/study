@@ -1,6 +1,9 @@
+import Star from './components/Star';
+
 function App() {
   return (
     <div className="App">
+      <Star />
     </div>
   );
 }
