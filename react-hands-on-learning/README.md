@@ -17,3 +17,4 @@
 |[React Icons](https://react-icons.github.io/react-icons/)|数百種類のよく使われるアイコンが網羅されている|
 |[GitHub GraphQL API Explorer](https://docs.github.com/en/graphql/overview/explorer)|GitHubのGraphQL APIを実行できる|
 |[React+Typescript Cheatsheets](https://github.com/typescript-cheatsheets/react)|React+Typescript チートシート|
+|[jest-dom](https://github.com/testing-library/jest-dom)|jest-domのドキュメント|
