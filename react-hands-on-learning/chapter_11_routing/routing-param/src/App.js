@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AddColorForm from './components/AddColorForm';
 import ColorDetails from './components/ColorDetails';
