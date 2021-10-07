@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import {
   About,
   Contact,
@@ -17,6 +17,10 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route
+          path="/services"
+          element={<Navigate to="/about/services" />}
+        ></Route>
         <Route path="/about" element={<About />}>
           <Route path="services" element={<Services />} />
           <Route path="history" element={<History />} />
