@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ColorProvider from './components/ColorProvider';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
-  <ColorProvider>
+  <Router>
     <App />
-  </ColorProvider>,
+  </Router>,
   document.getElementById('root')
 );
 
