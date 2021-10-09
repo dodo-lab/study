@@ -6,14 +6,19 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "webpack": "^4.44.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev:build-server": "SET NODE_ENV=development&&webpack --config webpack.server.js",
+    "dev:start": "nodemon ./build-server/index.js",
+    "dev": "npm run build && npm run dev:build-server && npm run dev:start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,5 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.2",
+    "nodemon": "^2.0.13",
+    "webpack-cli": "^4.9.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }

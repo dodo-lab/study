@@ -1,5 +1,8 @@
+import Menu from './components/Menu';
+import data from './data.json';
+
 function App() {
-  return <div className="App"></div>;
+  return <Menu recipes={data} title="Delicious Recipes" />;
 }
 
 export default App;
