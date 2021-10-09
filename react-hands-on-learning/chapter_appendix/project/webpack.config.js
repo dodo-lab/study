@@ -9,7 +9,10 @@ module.exports = {
   module: {
     rules: [{
       test: /\.txt$/,
-      use: 'raw-loader'
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+      }
     }]
   }
 }
