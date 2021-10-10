@@ -3,6 +3,7 @@ import ObjectTest from './ObjectTest';
 import TypeAlias from './TypeAlias';
 import MergeCross from './MergeCross';
 import Tuple from './Tuple';
+import Enum from './Enum';
 
 type Function = () => void;
 const functions: Function[] = [
@@ -11,6 +12,7 @@ const functions: Function[] = [
   TypeAlias,
   MergeCross,
   Tuple,
+  Enum,
 ];
 
 for (const func of functions) {
