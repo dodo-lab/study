@@ -5,6 +5,7 @@ import Iterator from './Iterator';
 import Overload from './Overload';
 import Generics from './Generics';
 import LimitationPolymorphism from './LimitationPolymorphism';
+import Training from './Training';
 
 const functions = [
   OptionAndDefaultParam,
@@ -14,6 +15,7 @@ const functions = [
   Overload,
   Generics,
   LimitationPolymorphism,
+  Training,
 ];
 
 for (const func of functions) {
