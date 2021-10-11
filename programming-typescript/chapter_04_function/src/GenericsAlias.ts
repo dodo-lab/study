@@ -1,3 +1,4 @@
+type HTMLElement = string;
 type HTMLButtonElement = string;
 
 type MyEvent<T> = {
@@ -14,3 +15,11 @@ type TimedEvent<T> = {
 };
 
 function triggerEvent<T>(event: MyEvent<T>): void {}
+
+// ジェネリック型のデフォルトの型
+type MyEvent2<Type extends string, Target extends HTMLElement = HTMLElement> = {
+  target: Target;
+  type: Type;
+};
+
+const myEvent2Func = (myEvent: MyEvent2<string>) => {};
