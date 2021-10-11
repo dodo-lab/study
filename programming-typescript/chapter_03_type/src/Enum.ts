@@ -10,6 +10,14 @@ export default function Enum() {
   const socondLanguage = Language['Spanish'];
   console.log(firstLanguage, socondLanguage);
 
+  function language(lang: Language) {
+    console.log('language : ', lang);
+  }
+
+  language(Language.English);
+  language(Language.Russian);
+  language(12); // ★enumの中に１つでも数値があれば定義外のパラメータが指定可能になり、安全ではなくなる
+
   const enum Color {
     Red = '#c10000',
     Blue = '#007ac1',
