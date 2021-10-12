@@ -13,4 +13,30 @@ export default function Interface() {
     age: 30,
   };
   console.log(user);
+
+  // 実装
+  interface Animal {
+    readonly name: string;
+    eat(food: string): void;
+    sleep(hours: number): void;
+  }
+  interface Feline {
+    meow(): void;
+  }
+  class Cat implements Animal, Feline {
+    name = 'Whiskers';
+    eat(food: string) {
+      console.log('Ate some', food, '. Mmm!');
+    }
+    sleep(hours: number) {
+      console.log('Slept for', hours, 'hours');
+    }
+    meow() {
+      console.log('Meow');
+    }
+  }
+  const cat = new Cat();
+  cat.eat('fish');
+  cat.sleep(10);
+  cat.meow();
 }
