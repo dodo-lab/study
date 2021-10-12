@@ -1,6 +1,6 @@
-import ClassExtends from './ClassExtends';
+import ReturnThis from './ReturnThis';
 
-const funcs = [ClassExtends];
+const funcs = [ReturnThis];
 
 for (const func of funcs) {
   func();
