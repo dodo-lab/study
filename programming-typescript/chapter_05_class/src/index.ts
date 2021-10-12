@@ -1,6 +1,7 @@
 import ReturnThis from './ReturnThis';
+import Interface from './Interface';
 
-const funcs = [ReturnThis];
+const funcs = [ReturnThis, Interface];
 
 for (const func of funcs) {
   func();
