@@ -5,7 +5,8 @@
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
-    "target": "es2021"
+    "target": "es2021",
+    "experimentalDecorators": true
   },
   // コンパイル対象のディレクトリを指定
   "include": ["src"]
