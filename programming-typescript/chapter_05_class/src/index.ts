@@ -6,6 +6,7 @@ import Decorator from './Decorator';
 import FinalClass from './FinalClass';
 import FactoryPattern from './FactoryPattern';
 import BuilderPattern from './BuilderPattern';
+import Training from './Training';
 
 const funcs = [
   ReturnThis,
@@ -16,6 +17,7 @@ const funcs = [
   FinalClass,
   FactoryPattern,
   BuilderPattern,
+  Training,
 ];
 
 for (const func of funcs) {
