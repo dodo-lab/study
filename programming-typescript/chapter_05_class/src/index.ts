@@ -4,6 +4,7 @@ import Polymorphism from './Polymorphism';
 import Mixin from './Mixin';
 import Decorator from './Decorator';
 import FinalClass from './FinalClass';
+import FactoryPattern from './FactoryPattern';
 
 const funcs = [
   ReturnThis,
@@ -12,6 +13,7 @@ const funcs = [
   Mixin,
   Decorator,
   FinalClass,
+  FactoryPattern,
 ];
 
 for (const func of funcs) {
