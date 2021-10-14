@@ -26,4 +26,15 @@ export default function TypeWidening() {
     }
     x(); // string
   }
+
+  // constアサーション
+  {
+    let a = { x: 3 }; // {x: number}
+    const b = { x: 3 }; // {x: number}
+    let c: { x: 3 }; // {x: 3}
+    let d = { x: 3 } as const; // {readonly x: 3}
+
+    // ネストされた構造も再帰的にreadonly指定になる
+    let e = [1, { x: 2 }] as const; // readonly [1, {readonly x: 2}]
+  }
 }
