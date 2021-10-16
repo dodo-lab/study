@@ -1,8 +1,9 @@
 import NullReturn from './NullReturn';
 import ExceptionThrow from './ExceptionThrow';
 import ExceptionReturn from './ExceptionReturn';
+import ArrayAndMap from './ArrayAndMap';
 
-const funcs = [ExceptionReturn];
+const funcs = [ArrayAndMap];
 
 for (const func of funcs) {
   func();
