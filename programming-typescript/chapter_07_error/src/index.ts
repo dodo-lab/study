@@ -1,6 +1,7 @@
 import NullReturn from './NullReturn';
+import ExceptionThrow from './ExceptionThrow';
 
-const funcs = [NullReturn];
+const funcs = [ExceptionThrow];
 
 for (const func of funcs) {
   func();
