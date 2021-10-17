@@ -1,0 +1,21 @@
+{
+  "name": "chapter_08_async_web_worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npm run copy-static",
+    "start": "ts-node src/index.ts",
+    "copy-static": "cpx static/** dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "prettier": "^2.4.1",
+    "ts-node": "^10.2.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.3"
+  }
+}
