@@ -1,5 +1,11 @@
 import { EventEmitter } from 'events';
-import { Commands, Events, SafeEmitter } from './common';
+import {
+  Commands,
+  Events,
+  SafeEmitter,
+  MatrixProtocol,
+  createProtocol,
+} from './common';
 
 const commandEmitter: SafeEmitter<Commands> = new EventEmitter();
 const eventEmitter: SafeEmitter<Events> = new EventEmitter();
@@ -36,3 +42,15 @@ commandEmitter.emit('createThread', [123, 456]);
 commandEmitter.emit('addUserToThread', 100, 123);
 commandEmitter.emit('removeUserFromThread', 100, 123);
 commandEmitter.emit('sendMessageToThread', 100, 'to worker-thread');
+
+// 型安全なプロトコル
+setTimeout(() => {
+  const runWithMatrixProtocol = createProtocol<MatrixProtocol>(
+    'matrix-worker.bundle.js'
+  );
+  const parallelDeterminant = runWithMatrixProtocol('determinant');
+  parallelDeterminant([
+    [1, 2],
+    [3, 4],
+  ]).then((determinant) => console.log('[Main]', determinant));
+}, 500);

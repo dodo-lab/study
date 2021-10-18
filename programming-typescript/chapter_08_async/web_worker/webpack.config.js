@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     'dist/client': './src/MainThread.ts',
     'dist/worker': './src/WorkerScript.ts',
+    'dist/matrix-worker': './src/MatrixWorkerScript.ts',
   },
   output: {
     path: __dirname,
