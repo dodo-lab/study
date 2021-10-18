@@ -1,5 +1,6 @@
 import Promise from './Promise';
+import Training from './Training';
 
-const func = Promise;
+const func = Training;
 
 func();
