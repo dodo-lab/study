@@ -3,8 +3,8 @@ import {
   Commands,
   Events,
   SafeEmitter,
+  Protocol,
   MatrixProtocol,
-  createProtocol,
 } from './common';
 
 const commandEmitter: SafeEmitter<Commands> = new EventEmitter();
@@ -44,6 +44,16 @@ commandEmitter.emit('removeUserFromThread', 100, 123);
 commandEmitter.emit('sendMessageToThread', 100, 'to worker-thread');
 
 // 型安全なプロトコル
+function createProtocol<P extends Protocol>(script: string) {
+  return <K extends keyof P>(command: K) =>
+    (...args: P[K]['in']) =>
+      new Promise<P[K]['out']>((resolve, reject) => {
+        const worker = new Worker(script);
+        worker.onerror = reject;
+        worker.onmessage = (event) => resolve(event.data);
+        worker.postMessage({ command, args });
+      });
+}
 setTimeout(() => {
   const runWithMatrixProtocol = createProtocol<MatrixProtocol>(
     'matrix-worker.bundle.js'

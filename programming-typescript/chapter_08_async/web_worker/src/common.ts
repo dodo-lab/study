@@ -26,7 +26,7 @@ export interface SafeEmitter<Events extends Record<PropertyKey, unknown[]>> {
   on(channel: never, listener: (...data: unknown[]) => void): this;
 }
 
-type Matrix = number[][];
+export type Matrix = number[][];
 export type MatrixProtocol = {
   determinant: {
     in: [Matrix];
@@ -42,20 +42,9 @@ export type MatrixProtocol = {
   };
 };
 
-type Protocol = {
+export type Protocol = {
   [command: string]: {
     in: unknown[];
     out: unknown;
   };
 };
-
-export function createProtocol<P extends Protocol>(script: string) {
-  return <K extends keyof P>(command: K) =>
-    (...args: P[K]['in']) =>
-      new Promise<P[K]['out']>((resolve, reject) => {
-        const worker = new Worker(script);
-        worker.onerror = reject;
-        worker.onmessage = (event) => resolve(event.data);
-        worker.postMessage({ command, args });
-      });
-}
