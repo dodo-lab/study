@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "ES2021"],
+    "module": "ES2020",
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2021"
+  },
+  // コンパイル対象のディレクトリを指定
+  "include": ["src"]
+}
