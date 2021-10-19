@@ -176,4 +176,4 @@ node_modulesにインストールしたnpmパッケージをインポートす�
    import React from 'react'
    ```
 
-1. [JavaScriptファイルが同一プロジェクト内に存在する場合](./JavaScriptファイルが同一プロジェクト内に存在する場合)のステップ1～3に進む。
+1. [JavaScriptファイルが同一プロジェクト内に存在する場合](./#JavaScriptファイルが同一プロジェクト内に存在する場合)のステップ1～3に進む。
