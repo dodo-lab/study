@@ -90,3 +90,90 @@ export function toPascalCase(word) {
 ```
 
 サポートされているJSDocアノテーションは[公式](https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html#supported-jsdoc)を参照
+
+## JavaScriptの型の探索
+
+TypeScriptファイルからJavaScriptファイルをインポートする場合、TypeScriptはJavaScriptコードの型宣言を探索するために、次のようなアルゴリズムに従う。
+
+### JavaScriptファイルが同一プロジェクト内に存在する場合
+
+以下の優先順位で型推論を試みる。
+
+1. `.js`ファイルと同じフォルダに存在する、同じ名前の`.d.ts`ファイルを探す。存在していれば、`.js`ファイルの型宣言として`.d.ts`ファイルを使う。
+
+   ```text
+   my-app/
+    ├ src/
+    │  ├ index.ts
+    │  └ legacy/
+    │     ├ old-file.js
+    │     └ old-file.d.ts
+   ```
+
+   例えば上記のようなフォルダ構成で、`old-file.js`をインポートすると`old-file.d.ts`を型宣言のソースとして使う。
+
+   ```javascript
+   // index.ts
+   import './legacy/old-file.js';
+   ```
+
+1. tsconfig.jsonの`allowJs`と`checkJs`が`true`であれば、型推論をする。`.js`ファイルの中にJSDocアノテーションがあれば、その情報を用いて型推論する。
+1. モジュール全体を`any`として扱う。
+
+### サードパーティーのJavaScriptモジュールを利用する場合
+
+node_modulesにインストールしたnpmパッケージをインポートする場合、上記とは少し異なるアルゴリズムとなる。以下の優先順位で型推論を試みる。
+
+1. 対象モジュール用のローカルの型宣言を探す。もし存在していれば、それを使う。
+   例えば、フォルダ構成が次のようなものだとする。
+
+   ```text
+   my-app/
+    ├ node_modules/
+    │  └ foo/
+    ├ src/
+    │  ├ index.ts
+    │  └ types.d.ts
+   ```
+
+   そして、`types.d.ts`が次のようなものだとする。
+
+   ```javascript
+   // types.d.ts
+   declare module 'foo' {
+     let bar: {}
+     export default bar
+   }
+   ```
+
+   fooをインポートすると、fooの型ソースとして、`types.d.ts`の中のアンビエントモジュール宣言を使う。
+
+   ```javascript
+   // index.ts
+   import bar from 'foo'
+   ```
+
+1. 対象モジュールの`package.json`を参照する。そこに`types`または`typings`というフィールドが定義されていれば、そのフィールドが指している`.d.ts`ファイルを型宣言ソースとして使う。もし対象モジュールのルートに`index.d.ts`ファイルが存在していれば、同様に型宣言ソースとして使う。
+1. ディレクトリを１つずつ調べ、対象モジュール用の型宣言を持つ`node_modules/@types`ディレクトリを探す。例えば、Reactをインストールしたと仮定する。
+
+   ```shell
+   npm i react
+   npm i -D @types/react
+
+   my-app/
+    ├ node_modules/
+    │  ├ @types/
+    │  │  └ react/
+    │  └ react
+    ├ src/
+    │  └ index.ts
+   ```
+
+   Reactをインポートするときに`@types/react`フォルダを探し、それをReact用の型宣言ソースとして使う。
+
+   ```javascript
+   // index.ts
+   import React from 'react'
+   ```
+
+1. [JavaScriptファイルが同一プロジェクト内に存在する場合](./JavaScriptファイルが同一プロジェクト内に存在する場合)のステップ1～3に進む。
