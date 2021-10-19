@@ -3,6 +3,7 @@
 ## Tips
 
 - [11章 JavaScriptとの相互運用](chapter_11_js_interoperability/)
+- [12章 TypeScriptプロジェクトのビルドと実行](chapter_12_build_exec/)
 
 |リンク|説明|
 |---|---|
