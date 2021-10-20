@@ -151,3 +151,19 @@ TSC では、どの環境をターゲットとするかを指定するための�
 ### エラー監視
 
 TypeScript はコンパイル時にエラーについて警告するが、実行時エラーについても要因を特定するための手段が必要。[Sentry](https://sentry.io)や[Bugsnag](https://www.bugsnag.com/)のようなエラー監視ツールを使い、エラーの解析を行う。
+
+## TypeScript をサーバー上で実行する
+
+TypeScript コードを Node.js 環境で実行するには、`tsconfig.json`のモジュールフラグを`commonjs`に設定する。
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs"
+  }
+}
+```
+
+上記の例では ES2015 の import と export の呼び出しが、それぞれ require と module.exports にコンパイルされ、追加のバンドルは必要とせずに Node.js 上で実行することができる。
+ソースマップを使用している場合は、ソースマップを Node.js プロセスに供給する必要がある。npm から[source-map-support](https://www.npmjs.com/package/source-map-support)パッケージを取得し、セットアップの指示に従えばいい。
