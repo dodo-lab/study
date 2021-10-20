@@ -37,12 +37,15 @@ TypeScript コードを JavaScript にコンパイルする際、TSC はいく�
 | 宣言マップ   | .d.ts.map | {"declarationMap": true}       | No                         |
 
 - ソースマップ
+
   生成された JavaScript を、生成元の TypeScript ファイルの特定の行／列へとリンクするファイル。コードをデバッグしたり、JavaScript 例外のスタックトレース内の行と列を TypeScript ファイルへマップすることが可能。
 
 - 型宣言
+
   生成された型を、他の TypeScript プロジェクトから利用できるようにする。
 
 - 宣言マップ
+
   TypeScript プロジェクトのコンパイル時間を短縮するために使われる。
 
 ### コンパイルターゲットの指定
@@ -50,11 +53,14 @@ TypeScript コードを JavaScript にコンパイルする際、TSC はいく�
 すべての JavaScript 環境がすべての JavaScript の機能を標準でサポートしている訳ではないが、JavaScript の最新バージョンでコードを書くべき。そのために次の２つの方法がある。
 
 - トランスパイル
+
   最新バージョンの JavaScript から、ターゲットとするプラットフォームがサポートしている最も古い JavaScript バージョンに自動変換する。例えば`for..of`ループや`async/await`を、`for`ループや`then`に自動変換する。
 
 - ポリフィル
+
   使用している JavaScript ランタイムに欠けている機能を提供する。
   TSC ではサポートしていないため、以下のような方法で対応する。
+
   - [core-js](https://www.npmjs.com/package/core-js)のようなポリフィルライブラリーからインストール
   - [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill/)を使って、型チェック済の TypeScript コードを Babel にかけて、自動的にポリフィルをコードに追加
 
@@ -62,13 +68,82 @@ TSC は古い JavaScript バージョンへのトランスパイルを標準サ�
 TSC では、どの環境をターゲットとするかを指定するための３つの設定が提供されている。
 
 - target
+
   トランスパイル先となる JavaScript バージョンを設定する。
   例）es5、es2020、esnext
 
 - module
+
   ターゲットとしたいモジュールシステムを設定する。
   例）CommonJS、es2020、UMD
 
 - lib
+
   ターゲットとする環境でどの JavaScript 機能を利用できるかを設定する。この設定によって、設定された機能が実装される訳ではないが、ポリフィルを介して利用可能であることを TypeScript に伝えている。
   例）es2020、dom、es6
+
+### プロジェクト参照
+
+アプリケーションの規模が大きくなるにつれて、TSC がコードの型チェックとコンパイルを行う時間は長くなる。これを解決するために、TSC にはコンパイル時間を劇的に速くするための`プロジェクト参照`と呼ばれる機能があり、次のように利用する。
+
+1. TypeScript プロジェクトを複数のプロジェクトに分割する。１つのプロジェクトは、`tsconfig.json`といくつかの TypeScript コードを含んでいるフォルダとし、一緒に更新されることが多いコード同士を同じフォルダ内に配置する。
+
+2. それぞれのプロジェクトフォルダの中に、少なくとも次のものを含む`tsconfig.json`を作成する。
+
+   ```json
+   {
+     "compilerOptions": {
+       "composite": true,
+       "declaration": true,
+       "declarationMap": true
+     },
+     "include": ["./**/*.ts"],
+     "references": [
+       {
+         "path": "../myReferencedProject",
+         "prepend": true
+       }
+     ]
+   }
+   ```
+
+   各項目の説明は次の通り。
+
+   - composite
+
+     このプロジェクトが、より大きな TypeScript プロジェクトのサブプロジェクトであることを TSC に伝える。
+
+   - declaration
+
+     このプロジェクトに対して、`.d.ts`宣言ファイルを発行することを TSC に指示する。
+     プロジェクト参照の機能では、プロジェクト同士は互いの宣言ファイルや出力された JavaScript にアクセスできるが、TypeScript コードにはアクセスできない。それにより、TSC がコードの型チェックやコンパイルを再度行わない境界が形成される。
+
+   - declarationMap
+
+     生成される型宣言に対してソースマップを作成することを TSC に指示する。
+     型宣言のソースマップがあると、変数の定義元へのジャンプや変数名のリネームといったコードエディタの機能をサブプロジェクトにまたがって使えるようになる。
+
+   - references
+
+     このプロジェクトが依存するサブプロジェクトの配列。
+     path は`tsconfig.json`を含んでいるフォルダ、または TSC の設定ファイルそのものを指す必要がある。
+     prepend は参照しているサブプロジェクトで生成される JavaScript とソースマップに追加することを指示する。
+
+3. 別のサブプロジェクトからまだ参照されていないすべてのサブプロジェクトを参照するルート`tsconfig.json`を作成する。
+
+   ```json
+   {
+     "files": [],
+     "references": [
+       { "path": "./myFirstProject" },
+       { "path": "./mySecondProject" }
+     ]
+   }
+   ```
+
+4. TSC でプロジェクトをコンパイルするときに、build フラグを使い、プロジェクト参照を考慮にいれるよう TSC に指示する。
+
+   ```shell
+   tsc --build
+   # もしくは省略して、"tsc -b"でもOK
+   ```
