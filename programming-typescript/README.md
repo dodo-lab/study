@@ -8,6 +8,7 @@
 - [型ユーティリティ](tips/typed-utility.md)
 - [宣言の振る舞い](tips/declaration-behavior.md)
 - [トリプルスラッシュ・ディレクティブ](tips/triple-slash-directives.md)
+- [安全性に関するTSCフラグ](tips/tsc-safety-flag.md)
 
 |リンク|説明|
 |---|---|
