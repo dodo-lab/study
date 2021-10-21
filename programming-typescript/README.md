@@ -6,6 +6,7 @@
 - [12章 TypeScriptプロジェクトのビルドと実行](chapter_12_build_exec/)
 - [型演算子](tips/typed-operator.md)
 - [型ユーティリティ](tips/typed-utility.md)
+- [宣言の振る舞い](tips/declaration-behavior.md)
 
 |リンク|説明|
 |---|---|
