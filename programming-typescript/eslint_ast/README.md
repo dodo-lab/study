@@ -85,3 +85,19 @@ ESLint や ESLint の TypeScript 用プラグインに定義されたお勧め�
 - plugin:@typescript-eslint/recommended-requiring-type-checking
 
   `@typescript-eslint/eslint-plugin`パッケージに含まれる、TypeScript 特有のお勧めルールのうち、型チェックが必要なルールを有効にする。例えば、不必要な型アサーションが指定されている時に警告を出す`@typescript-eslint/no-unnecessary-type-assertion`というルールが含まれる。型チェックが必要な分、リントに時間を要するため、そのトレードオフを考慮して有効にするか決めるべき。
+
+### TSLint からの移行
+
+すでに TSLint を導入しているプロジェクトを ESLint へ移行する際は、`tslint-to-eslint-config`パッケージでスムーズに移行できる。
+
+- tslint-to-eslint-config
+
+  `tslint.json`や`tsconfig.json`の各種設定ファイルの内容を元に、ESLint の設定ファイルを生成する。
+  各種設定ファイルが存在するフォルダにて、次のコマンドで実行する。
+
+  ```shell
+  npx tslint-to-eslint-config
+  ```
+
+ただし、これだけで TSLint の設定が完全に再現できる訳ではない。すべてのルールをそのまま列挙で ESLint に移行することはできないため、実行時にいくつか警告が出る場合がある。
+移行先の ESLint で存在しないようなルールを使っている場合は、内部的に TSLint を使ってリントする`@typescript-eslint/eslint-plugin-tslint`パッケージを使う設定が出力される。この場合、手動で`@typescript-eslint/eslint-plugin-tslint`をインストールする必要がある。このほかにも、ESLint 本体に含まれないルールに変換された場合は、そのルールを含むプラグインを別途インストールしなければならない。いずれも実行時のログに必要な対応が出力されるため、その内容に基づいて対応する。
