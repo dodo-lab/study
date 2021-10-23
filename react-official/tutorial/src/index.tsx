@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-const Square: React.FC = () => {
-  return <button className="square">{/* TODO */}</button>;
+interface SquareProps {
+  value: number;
+}
+
+const Square: React.FC<SquareProps> = ({ value }) => {
+  return <button className="square">{value}</button>;
 };
 
 const Board: React.FC = () => {
   const renderSquare = (i: number) => {
-    return <Square />;
+    return <Square value={i} />;
   };
 
   const status = 'Next player: X';
@@ -40,7 +44,7 @@ const Game: React.FC = () => {
   return (
     <div className="game">
       <div className="game-board">
-        <Board></Board>
+        <Board />
       </div>
       <div className="game-info">
         <div>{/* status */}</div>
