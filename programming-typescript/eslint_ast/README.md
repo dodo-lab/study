@@ -1,4 +1,4 @@
-# TSLint と ASC
+# ESLint と ASC
 
 ## TypeScript プロジェクトでの ESLint 利用
 
