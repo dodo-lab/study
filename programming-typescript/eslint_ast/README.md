@@ -101,3 +101,39 @@ ESLint や ESLint の TypeScript 用プラグインに定義されたお勧め�
 
 ただし、これだけで TSLint の設定が完全に再現できる訳ではない。すべてのルールをそのまま列挙で ESLint に移行することはできないため、実行時にいくつか警告が出る場合がある。
 移行先の ESLint で存在しないようなルールを使っている場合は、内部的に TSLint を使ってリントする`@typescript-eslint/eslint-plugin-tslint`パッケージを使う設定が出力される。この場合、手動で`@typescript-eslint/eslint-plugin-tslint`をインストールする必要がある。このほかにも、ESLint 本体に含まれないルールに変換された場合は、そのルールを含むプラグインを別途インストールしなければならない。いずれも実行時のログに必要な対応が出力されるため、その内容に基づいて対応する。
+
+## TypeScript 向け独自ルールの実装
+
+ESLint を利用するとき、ほとんどの場合は ESLint 本体やサードパーティのプラグインが提供するルールだけで事足りが、もし独自ルールが必要になった場合はここで解説する方法で実装可能。
+
+### 実装するルールの仕様
+
+TypeScript では、クラスのコンストラクタ引数で public や readonly のような修飾子を付けると、それが自動的にクラスのプロパティになる。これは、ECMAScript 標準にはない TypeScript の独自機能のため、利用を避けたいケースを想定し、上記機能を違反として検出するルールを実装する。
+
+たとえば、次のコードでは`ng`で始まる変数名の箇所がルール違反として検出される。
+
+```ts
+declare const foo: Function;
+
+class MyClass {
+  private ok1 = 1;
+  ok2 = !this.ng1;
+
+  constructor(
+    ok3: string,
+    public readonly ng1: boolean, // NG
+    @foo protected ng2 = 1, // NG
+    private ng3?: RegExp // NG
+  );
+}
+```
+
+### ESLint と AST
+
+ESLint はリントの際、ソースコードをパースして AST を生成する。各ルールは生のソースコードではなく、パース結果の AST に対してリントを行う。
+JavaScript の AST の仕様としては、[ESTree][link-estree]がデファクトスタンダードとなっている。ESLint のデフォルトのパーサーである[Espree](https://github.com/eslint/espree)も、[ESTree][link-estree]に準拠し、かつ ESLint の機能に必要な追加情報を保持した AST[^1] を出力する。これがどのようなものか確認するには、[AST Explorer][link-ast-exp]というツールを使うのが便利。ブラウザで[AST Explorer][link-ast-exp]を開き、ページ上部のパーサー選択の UI(デフォルトで`acorn`が選択されている)にマウスオーバーし、`espree`を選択する。さらに、ページ左側に`const a = 1`と入力してみると、ページ右側に`Espree`がパースした結果の AST が表示される。
+
+[^1]: ESLint が要求する AST の仕様の詳細は[公式ドキュメント](https://eslint.org/docs/developer-guide/working-with-custom-parsers#the-ast-specification)を参照
+
+[link-estree]: https://github.com/estree/estree
+[link-ast-exp]: https://astexplorer.net/
