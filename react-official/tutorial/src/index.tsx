@@ -1,9 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
+import { Repeat } from 'typescript-tuple';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 type SquareValue = 'O' | 'X' | null;
+type BoardState = Repeat<SquareValue, 9>;
 
 interface SquareProps {
   value: SquareValue;
@@ -19,7 +21,9 @@ const Square: React.FC<SquareProps> = ({ value, onClick }) => {
 };
 
 const Board: React.FC = () => {
-  const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(null));
+  const [squares, setSquares] = useState<BoardState>(
+    Array(9).fill(null) as BoardState
+  );
   const [nextValue, setNextValue] = useState<SquareValue>('X');
 
   const handleClick = (i: number) => {
@@ -27,7 +31,10 @@ const Board: React.FC = () => {
       return;
     }
 
-    setSquares(squares.map((v, index) => (i === index ? nextValue : v)));
+    const newSquares = squares.slice() as BoardState;
+    newSquares[i] = nextValue;
+
+    setSquares(newSquares);
     setNextValue(nextValue === 'X' ? 'O' : 'X');
   };
 
