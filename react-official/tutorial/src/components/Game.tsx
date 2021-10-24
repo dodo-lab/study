@@ -18,7 +18,7 @@ const Game: React.FC = () => {
 
   const current = histories[stepNumber];
 
-  const winner = useMemo(() => {
+  const { winner, lines } = useMemo(() => {
     return calculateWinner(current.squares);
   }, [current]);
 
@@ -58,7 +58,7 @@ const Game: React.FC = () => {
   }
 
   function handleClick(i: number) {
-    if (calculateWinner(current.squares) || current.squares[i]) {
+    if (calculateWinner(current.squares).winner || current.squares[i]) {
       return;
     }
 
@@ -83,7 +83,7 @@ const Game: React.FC = () => {
   return (
     <div className="game">
       <div className="game-board">
-        <Board squares={current.squares} onClick={handleClick} />
+        <Board squares={current.squares} lines={lines} onClick={handleClick} />
       </div>
       <div className="game-info">
         <div>{status}</div>
@@ -111,10 +111,14 @@ function calculateWinner(squares: SquareValue[]) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {
+        winner: squares[a],
+        lines: lines[i],
+      };
     }
   }
-  return null;
+
+  return { winner: null, lines: [] };
 }
 
 export default Game;
