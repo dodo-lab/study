@@ -25,6 +25,8 @@ const Game: React.FC = () => {
   const status = useMemo(() => {
     if (winner) {
       return `Winner: ${winner}`;
+    } else if (histories.length === 10) {
+      return 'draw';
     } else {
       return `Next player: ${nextValue}`;
     }
