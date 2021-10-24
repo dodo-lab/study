@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { CSSProperties, useMemo, useState } from 'react';
 import { BoardState, SquareValue } from '../interface';
 import Board from './Board';
 
@@ -33,9 +33,13 @@ const Game: React.FC = () => {
     const desc = move
       ? `Go to move #${move} (${col}, ${row})`
       : 'Go to game start';
+    const style: CSSProperties =
+      move === stepNumber ? { fontWeight: 'bold', color: 'orange' } : {};
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
+        <button onClick={() => jumpTo(move)} style={style}>
+          {desc}
+        </button>
       </li>
     );
   });
