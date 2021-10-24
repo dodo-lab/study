@@ -48,3 +48,12 @@ JavaScript では`true && expression`は必ず`expression`と評価され、`fal
 ### コンポーネントのレンダーを防ぐ
 
 他のコンポーネントによってレンダーされているにも関わらず、コンポーネントが自分のことを隠したいというケースの場合、レンダー出力の代わりに`null`を返せばよい。
+
+※詳細は[公式](https://ja.reactjs.org/docs/conditional-rendering.html#preventing-component-from-rendering)を参照
+
+## リストと key
+
+### key は兄弟要素の中で一意であればよい
+
+配列内で使われる key はその兄弟要素の中で一意である必要がある。
+ただし、グローバルに一意である必要はない。２つの異なる配列を作る場合は同一の key が使われても構わない。
