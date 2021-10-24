@@ -4,11 +4,12 @@ import Board from './Board';
 
 type History = {
   squares: BoardState;
+  position: number;
 };
 
 const Game: React.FC = () => {
   const [histories, setHistories] = useState<History[]>([
-    { squares: Array(9).fill(null) as BoardState },
+    { squares: Array(9).fill(null) as BoardState, position: 0 },
   ]);
   const [nextValue, setNextValue] = useState<SquareValue>('X');
   const [stepNumber, setStepNumber] = useState(0);
@@ -28,7 +29,10 @@ const Game: React.FC = () => {
   }, [winner, nextValue]);
 
   const moves = histories.map((history, move) => {
-    const desc = move ? `Go to move #${move}` : 'Go to game start';
+    const { col, row } = calcPosition(history.position);
+    const desc = move
+      ? `Go to move #${move} (${col}, ${row})`
+      : 'Go to game start';
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{desc}</button>
@@ -36,7 +40,13 @@ const Game: React.FC = () => {
     );
   });
 
-  const handleClick = (i: number) => {
+  function calcPosition(position: number) {
+    const col = Math.floor(position / 3);
+    const row = position % 3;
+    return { col, row };
+  }
+
+  function handleClick(i: number) {
     if (calculateWinner(current.squares) || current.squares[i]) {
       return;
     }
@@ -45,15 +55,15 @@ const Game: React.FC = () => {
     const newSquares = current.squares.slice() as BoardState;
     newSquares[i] = nextValue;
 
-    setHistories(newHistories.concat([{ squares: newSquares }]));
+    setHistories(newHistories.concat([{ squares: newSquares, position: i }]));
     setNextValue(nextValue === 'X' ? 'O' : 'X');
     setStepNumber(newHistories.length);
-  };
+  }
 
-  const jumpTo = (step: number) => {
+  function jumpTo(step: number) {
     setStepNumber(step);
     setNextValue(step % 2 === 0 ? 'X' : 'O');
-  };
+  }
 
   return (
     <div className="game">
