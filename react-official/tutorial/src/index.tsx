@@ -3,23 +3,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-// interface SquareProps {
-//   value: number;
-// }
+type SquareValue = 'O' | 'X' | null;
 
-const Square: React.FC = () => {
-  const [value, setValue] = useState<string | null>(null);
+interface SquareProps {
+  value: SquareValue;
+  onClick: () => void;
+}
 
+const Square: React.FC<SquareProps> = ({ value, onClick }) => {
   return (
-    <button className="square" onClick={() => setValue('X')}>
+    <button className="square" onClick={onClick}>
       {value}
     </button>
   );
 };
 
 const Board: React.FC = () => {
+  const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(null));
+
+  const handleClick = (i: number) => {
+    setSquares(squares.map((v, index) => (i === index ? 'X' : v)));
+  };
+
   const renderSquare = (i: number) => {
-    return <Square />;
+    return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   };
 
   const status = 'Next player: X';
