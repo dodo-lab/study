@@ -30,7 +30,7 @@ const Game: React.FC = () => {
     } else {
       return `Next player: ${nextValue}`;
     }
-  }, [winner, nextValue]);
+  }, [winner, nextValue, histories]);
 
   const moves = useMemo(() => {
     const sortedHistories = reverse ? [...histories].reverse() : histories;
