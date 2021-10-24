@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-interface SquareProps {
-  value: number;
-}
+// interface SquareProps {
+//   value: number;
+// }
 
-const Square: React.FC<SquareProps> = ({ value }) => {
-  return <button className="square">{value}</button>;
+const Square: React.FC = () => {
+  const [value, setValue] = useState<string | null>(null);
+
+  return (
+    <button className="square" onClick={() => setValue('X')}>
+      {value}
+    </button>
+  );
 };
 
 const Board: React.FC = () => {
   const renderSquare = (i: number) => {
-    return <Square value={i} />;
+    return <Square />;
   };
 
   const status = 'Next player: X';
