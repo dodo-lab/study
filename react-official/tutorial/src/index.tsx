@@ -20,16 +20,20 @@ const Square: React.FC<SquareProps> = ({ value, onClick }) => {
 
 const Board: React.FC = () => {
   const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(null));
+  const [nextValue, setNextValue] = useState<SquareValue>('X');
 
   const handleClick = (i: number) => {
-    setSquares(squares.map((v, index) => (i === index ? 'X' : v)));
+    if (squares[i] === null) {
+      setSquares(squares.map((v, index) => (i === index ? nextValue : v)));
+      setNextValue(nextValue === 'X' ? 'O' : 'X');
+    }
   };
 
   const renderSquare = (i: number) => {
     return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   };
 
-  const status = 'Next player: X';
+  const status = `Next player: ${nextValue}`;
 
   return (
     <div>
