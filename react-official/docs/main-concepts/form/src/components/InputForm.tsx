@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useInput } from './../hooks';
 
 const InputForm: React.FC = () => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
+  const nameInput = useInput('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    alert(`A name was submitted: ${value}`);
+    alert(`A name was submitted: ${nameInput.value}`);
     event.preventDefault();
   };
 
@@ -16,7 +13,7 @@ const InputForm: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" value={value} onChange={handleChange} />
+        <input type="text" {...nameInput} />
       </label>
       <input type="submit" value="Submit" />
     </form>
