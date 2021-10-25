@@ -57,3 +57,24 @@ JavaScript では`true && expression`は必ず`expression`と評価され、`fal
 
 配列内で使われる key はその兄弟要素の中で一意である必要がある。
 ただし、グローバルに一意である必要はない。２つの異なる配列を作る場合は同一の key が使われても構わない。
+
+※詳細は[公式](https://ja.reactjs.org/docs/lists-and-keys.html#keys-must-only-be-unique-among-siblings)を参照
+
+## フォーム
+
+input / textarea / select の入力イベント処理は、実装済のため[こちら](./form/)を参照。
+
+### 制御された入力における null 値
+
+input 等のタグの value プロパティに`null`もしくは`undefined`を指定すると、編集可能となる。
+例として以下のコードで示す。最初は入力フィールドがロックされ、１秒後に編集可能となる。
+
+```js
+ReactDOM.render(<input value="hi" />, mountNode);
+
+setTimeout(function () {
+  ReactDOM.render(<input value={null} />, mountNode);
+}, 1000);
+```
+
+※詳細は[公式](https://ja.reactjs.org/docs/forms.html#controlled-input-null-value)を参照
