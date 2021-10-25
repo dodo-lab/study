@@ -10,3 +10,24 @@ webpack 等で生成されるバンドルは、アプリの規模に比例して
 
 あらかじめコードを分割することで、これらの問題を回避する。
 コード分割はユーザーが必要なコードだけを`遅延読み込み`する手助けとなる。初期ロードの際に読み込むコード量を削減でき、パフォーマンスの改善に繋がる。
+
+### 動的 import
+
+- before
+
+  ```js
+  import { add } from './math';
+
+  console.log(add(16, 26));
+  ```
+
+- after
+
+  ```js
+  import('./math').then((math) => {
+    console.log(math.add(16, 26));
+  });
+  ```
+
+webpack がこの構文を見つけると、自動的にアプリのコードを分割する。
+※詳細は[公式](https://ja.reactjs.org/docs/code-splitting.html#import)を参照
