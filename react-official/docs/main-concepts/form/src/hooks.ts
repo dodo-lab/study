@@ -8,7 +8,8 @@ export const useInput = (initValue: string) => {
       const { target } = event;
       if (
         target instanceof HTMLInputElement ||
-        target instanceof HTMLTextAreaElement
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement
       ) {
         setValue(target.value);
       }
