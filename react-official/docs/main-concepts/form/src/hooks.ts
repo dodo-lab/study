@@ -4,7 +4,14 @@ export const useInput = (initValue: string) => {
   const [value, setValue] = useState(initValue);
   return {
     value,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-      setValue(event.target.value),
+    onChange: (event: React.ChangeEvent<HTMLElement>) => {
+      const { target } = event;
+      if (
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement
+      ) {
+        setValue(target.value);
+      }
+    },
   };
 };
