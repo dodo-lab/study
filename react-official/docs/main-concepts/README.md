@@ -78,3 +78,27 @@ setTimeout(function () {
 ```
 
 ※詳細は[公式](https://ja.reactjs.org/docs/forms.html#controlled-input-null-value)を参照
+
+## React の流儀
+
+### state 管理の判断
+
+コンポーネントでデータを持つ際、どれを state として管理するかを判断する必要がある。
+以下、３つの質問をすることで state 管理対象かを判断する。質問に対していずれか Yes であれば、state 管理対象にすべきでない。すべて No であれば、state 管理対象として検討する。
+
+1. 親から props を通じて与えられたデータか？
+2. 時間経過で変化しないデータか？
+3. コンポーネント内にある他の props や state を使って算出可能なデータか？
+
+※詳細は[公式](https://ja.reactjs.org/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state)を参照
+
+### state の配置場所の判断
+
+どのコンポーネントが state を所有すべきかの判断過程は以下の通り。
+
+1. 対象の state を使用するすべてのコンポーネントを確認する
+2. 上記 1 で抽出したコンポーネント群の「共通の親コンポーネント」を探す
+3. 共通の親コンポーネントか、さらに上位のコンポーネントが state を持つべき
+4. もし state を持つに適したコンポーネントが見つからない場合、state を保持するだけのコンポーネントを作り、上記 2 で見つけた「共通の親コンポーネント」に配置する
+
+※詳細は[公式](https://ja.reactjs.org/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live)を参照
