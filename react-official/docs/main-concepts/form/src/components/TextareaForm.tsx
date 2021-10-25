@@ -1,23 +1,16 @@
 import React from 'react';
 import { useInput } from '../hooks';
+import CommonForm from './CommonForm';
 
 const TextareaForm: React.FC = () => {
-  const essayInput = useInput(
+  const essay = useInput(
     'Please write an essay about your favorite DOM element'
   );
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    alert(`An essay was submitted: ${essayInput.value}`);
-    event.preventDefault();
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Essay: <textarea {...essayInput} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <CommonForm value={essay.value} label="Essay">
+      <textarea {...essay} />
+    </CommonForm>
   );
 };
 

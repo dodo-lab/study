@@ -1,22 +1,14 @@
 import React from 'react';
 import { useInput } from './../hooks';
+import CommonForm from './CommonForm';
 
 const InputForm: React.FC = () => {
-  const nameInput = useInput('');
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    alert(`A name was submitted: ${nameInput.value}`);
-    event.preventDefault();
-  };
+  const name = useInput('');
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" {...nameInput} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <CommonForm value={name.value} label="Name">
+      <input type="text" {...name} />
+    </CommonForm>
   );
 };
 
