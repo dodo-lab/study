@@ -72,3 +72,28 @@ function MyComponent() {
 `fallback`プロパティは遅延コンポーネントのローディング待機中に表示したいあらゆる React 要素を受け取る。`Suspense`コンポーネントは遅延コンポーネントより上位であれば、どこでも配置可能。また、複数の遅延コンポーネントを単一の`Suspense`コンポーネントでラップすることも可能。
 
 ※詳細は[公式](https://ja.reactjs.org/docs/code-splitting.html#reactlazy)を参照
+
+### ルーティング単位でのコード分割
+
+コード分割の導入に適している場所はルーティング。下記は、`React Router`のようなルーティングライブラリを使ったアプリに、`React.lazy`でルーティングベースのコード分割を導入する方法例。
+
+```js
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+const Home = lazy(() => import('./routes/Home'));
+const About = lazy(() => import('./routes/About'));
+
+const App = () => (
+  <Router>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+      </Switch>
+    </Suspense>
+  </Router>
+);
+```
+
+※詳細は[公式](https://ja.reactjs.org/docs/code-splitting.html#route-based-code-splitting)を参照
