@@ -14,8 +14,8 @@ function App() {
       <Box
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
-        {pages.map(({ link, component }) => (
-          <Route exact path={link} component={component} />
+        {pages.map(({ link, component }, index) => (
+          <Route key={index} exact path={link} component={component} />
         ))}
         <Route exact path="/" component={ContextPage} />
       </Box>

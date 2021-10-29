@@ -23,6 +23,7 @@ const SideBar: React.FC<Props> = ({ drawerWidth }) => {
         <List>
           {pages.map(({ text }, index) => (
             <ListItemButton
+              key={index}
               selected={selectedIndex === index}
               onClick={() => handleSelectedIndex(index)}
             >
