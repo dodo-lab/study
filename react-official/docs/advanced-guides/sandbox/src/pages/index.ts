@@ -2,6 +2,7 @@ import React from 'react';
 import ContextPage from './context/ContextPage';
 import ErrorBoundaryPage from './error-boundary/ErrorBoundaryPage';
 import ForwardingRefsPage from './forwarding-refs/ForwardingRefsPage';
+import HigherOrderComponentsPage from './higher-order-components/HigherOrderComponentsPage';
 
 type Page = {
   text: string;
@@ -20,5 +21,10 @@ export const pages: Page[] = [
     text: 'Forwarding refs',
     link: '/forwarding-refs',
     component: ForwardingRefsPage,
+  },
+  {
+    text: '高階コンポーネント',
+    link: '/higher-order-components',
+    component: HigherOrderComponentsPage,
   },
 ];
