@@ -1,5 +1,6 @@
 import { Button, Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import hoistNonReactStatic from 'hoist-non-react-statics';
 
 type InjectProps = {
   log: string;
@@ -21,6 +22,8 @@ function withLogger<T>(Component: React.ComponentType<T & InjectProps>) {
   WithLogger.displayName = `WithLogger(${
     Component.displayName || 'Component'
   })`;
+  // 静的メソッドをコピーしておく
+  hoistNonReactStatic(WithLogger, Component);
 
   return WithLogger;
 }

@@ -14,6 +14,7 @@
     "@types/node": "^12.20.36",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "hoist-non-react-statics": "^3.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/hoist-non-react-statics": "^3.3.1",
     "@types/react-router-dom": "^5.3.2"
   }
 }
