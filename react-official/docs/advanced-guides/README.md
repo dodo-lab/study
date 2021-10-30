@@ -268,3 +268,11 @@ function Glossary(props) {
   );
 }
 ```
+
+## 高階コンポーネント
+
+高階コンポーネントはコンポーネントのロジックを再利用するための、React における応用テクニック。これは React API の一部ではなく、あくまで設計パターンの１つ。
+
+実装内容は[こちら](./sandbox/src/pages/higher-order-components/)を参照。
+
+※詳細は[公式](https://ja.reactjs.org/docs/higher-order-components.html)を参照
