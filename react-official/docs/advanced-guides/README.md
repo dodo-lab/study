@@ -237,6 +237,7 @@ ref のフォワーディングはあるコンポーネントを通じて、そ�
   ```
 
   Table.js はフラグメントを使用しない場合と同様。Columns コンポーネントの`div`を`React.Fragment`にした結果、HTML 出力は以下のように不要な要素（`div`）が追加されなくなる。
+  ※フラグメントの省略記法として`<>・・・</>`という書き方も可能。
 
   ```html
   <table>
@@ -248,3 +249,22 @@ ref のフォワーディングはあるコンポーネントを通じて、そ�
   ```
 
 ※詳細は[公式](https://ja.reactjs.org/docs/fragments.html)を参照
+
+### key 付きフラグメント
+
+明示的に`<React.Fragment>`と宣言したフラグメントでは key を持つことが可能。これはコレクションをフラグメントの配列に変換するときに有用。
+
+```js
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map((item) => (
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  );
+}
+```
