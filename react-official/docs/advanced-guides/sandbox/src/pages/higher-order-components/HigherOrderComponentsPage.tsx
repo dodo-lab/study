@@ -6,7 +6,8 @@ type InjectProps = {
 };
 
 function withLogger<T>(Component: React.ComponentType<T & InjectProps>) {
-  return function WithLogger(props: T & InjectProps) {
+  // 引数のComponentをラップした高階コンポーネントを作成
+  const WithLogger: React.FC<T & InjectProps> = (props) => {
     const { log } = props;
 
     useEffect(() => {
@@ -16,6 +17,12 @@ function withLogger<T>(Component: React.ComponentType<T & InjectProps>) {
 
     return <Component {...props} />;
   };
+  // 表示名に引数のComponentも含めることでデバッグしやすくする
+  WithLogger.displayName = `WithLogger(${
+    Component.displayName || 'Component'
+  })`;
+
+  return WithLogger;
 }
 
 const HigherOrderComponentsPage: React.FC = () => {
