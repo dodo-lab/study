@@ -40,13 +40,13 @@ React は２つの仮定に基づくことで、再レンダーの要否を判�
 - 更新前
 
   ```js
-  <Article className="before" title="stuff" />
+  <article className="before" title="stuff" />
   ```
 
 - 更新後
 
   ```js
-  <Article className="after" title="stuff" />
+  <article className="after" title="stuff" />
   ```
 
 この DOM ノードを更新した後、React は子要素に対して再帰的に差分検出を行う。
@@ -54,3 +54,57 @@ React は２つの仮定に基づくことで、再レンダーの要否を判�
 ### 同じ型のコンポーネント要素
 
 コンポーネントが更新される場合、インスタンスは変わらず、`state`が保持される。React は更新対象のコンポーネントのインスタンスの props を更新し、`UNSAFE_componentWillReceiveProps()`、`UNSAFE_componentWillUpdate()`、`componentDidUpdate()`がコールされる。
+
+### 子要素の再帰的な処理
+
+DOM ノードの子要素に対して再帰的に差分検出をする場合、React は更新前後の両方の子要素のリストをそれぞれ比較していく。そして差分を見つけたところで、以降はすべて更新されたものとして扱う。
+
+例えば以下のような場合は、特に問題なく動作する。
+
+- 更新前
+
+  ```html
+  <ul>
+    <li>first</li>
+    <li>second</li>
+  </ul>
+  ```
+
+- 更新後
+
+  ```html
+  <ul>
+    <li>first</li>
+    <li>second</li>
+    <li>third</li>
+  </ul>
+  ```
+
+具体的な動作としては以下のようになる。
+
+1. 更新前後の１つ目の`li要素`を比較し、一致しているため何もしない
+2. 更新前後の２つ目の`li要素`を比較し、一致しているため何もしない
+3. 更新後のみに３つ目の`li要素`があるため、要素を追加する
+
+もし、先頭に要素を追加した場合はパフォーマンスに悪影響を及ぼす。例えば以下のような場合、すべての子要素が要更新と判断し、再レンダーされる。
+
+- 更新前
+
+  ```html
+  <ul>
+    <li>Duke</li>
+    <li>Villanova</li>
+  </ul>
+  ```
+
+- 更新後
+
+  ```html
+  <ul>
+    <li>Connecticut</li>
+    <li>Duke</li>
+    <li>Villanova</li>
+  </ul>
+  ```
+
+React は`<li>Duke</li>`と`<li>Villanova</li>`をそのまま保持できるという事に気付かず、すべての子要素を変更してしまう。非効率で問題となるため、次の節で解決策を提示する。
