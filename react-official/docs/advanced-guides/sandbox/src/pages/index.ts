@@ -4,6 +4,7 @@ import ErrorBoundaryPage from './error-boundary/ErrorBoundaryPage';
 import ForwardingRefsPage from './forwarding-refs/ForwardingRefsPage';
 import HigherOrderComponentsPage from './higher-order-components/HigherOrderComponentsPage';
 import PortalPage from './portal/PortalPage';
+import ProfilerPage from './profiler/ProfilerPage';
 
 type Page = {
   text: string;
@@ -32,5 +33,10 @@ export const pages: Page[] = [
     text: 'ポータル',
     link: '/portal',
     component: PortalPage,
+  },
+  {
+    text: 'プロファイラ',
+    link: '/profiler',
+    component: ProfilerPage,
   },
 ];
