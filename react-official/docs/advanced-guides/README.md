@@ -375,3 +375,16 @@ function BlueDatePicker() {
 - 真偽値／null／undefined は無視される
 
   `true`と`false`／`null`／`undefined`は子要素として渡すことができる。ただし、これらは何もレンダーしない。
+
+## パフォーマンス最適化
+
+※詳細は[公式](https://ja.reactjs.org/docs/optimizing-performance.html)を参照
+
+### 長いリストの仮想化
+
+長いデータのリストをレンダーする場合、リスト全体から表示されている領域のみに絞って描画することで、パフォーマンス改善が見込める。具体的には生成する DOM ノードの数やコンポーネントの再描画に要する時間を大幅に削減可能。
+
+人気があるリスト仮想化のライブラリは以下のようなものがある。
+
+- [react-window](https://react-window.now.sh/)
+- [react-virtualized](https://bvaughn.github.io/react-virtualized/)
