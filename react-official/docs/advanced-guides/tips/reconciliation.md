@@ -50,3 +50,7 @@ React は２つの仮定に基づくことで、再レンダーの要否を判�
   ```
 
 この DOM ノードを更新した後、React は子要素に対して再帰的に差分検出を行う。
+
+### 同じ型のコンポーネント要素
+
+コンポーネントが更新される場合、インスタンスは変わらず、`state`が保持される。React は更新対象のコンポーネントのインスタンスの props を更新し、`UNSAFE_componentWillReceiveProps()`、`UNSAFE_componentWillUpdate()`、`componentDidUpdate()`がコールされる。
