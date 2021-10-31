@@ -25,3 +25,6 @@ ref のフォワーディングはあるコンポーネントを通じて、そ�
   - フォワーディングコンポーネントに`ref`を渡す
 
 実装内容は[こちら](./../sandbox/src/pages/forwarding-refs/)を参照。
+
+[react.forwardref]: https://ja.reactjs.org/docs/react-api.html#reactforwardref
+[react.createref]: https://ja.reactjs.org/docs/react-api.html#reactcreateref
