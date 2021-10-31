@@ -8,16 +8,24 @@ const PortalPage: React.FC = () => {
       <Box sx={{ width: 800, height: 100, backgroundColor: 'skyblue' }}>
         <p>この領域は{'<div id="root">'}配下でレンダーされている</p>
       </Box>
-      <PortalComponent>
-        <Box sx={{ width: 800, height: 200, backgroundColor: 'lightgreen' }}>
-          <div style={{ marginLeft: 200 }}>
-            <p>この領域は{'<div id="root-portal">'}配下でレンダーされている</p>
-            <p>↑ marginLeft指定あり(200px)</p>
-            <p>↓ marginLeft指定なしで、[A-Z]を表示</p>
-          </div>
-          <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
-        </Box>
-      </PortalComponent>
+      <div
+        onClick={() =>
+          alert('ポータルコンポーネントもクリックイベントを検知可能')
+        }
+      >
+        <PortalComponent>
+          <Box sx={{ width: 800, height: 200, backgroundColor: 'lightgreen' }}>
+            <div style={{ marginLeft: 200 }}>
+              <p>
+                この領域は{'<div id="root-portal">'}配下でレンダーされている
+              </p>
+              <p>↑ marginLeft指定あり(200px)</p>
+              <p>↓ marginLeft指定なしで、[A-Z]を表示</p>
+            </div>
+            <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+          </Box>
+        </PortalComponent>
+      </div>
     </>
   );
 };
