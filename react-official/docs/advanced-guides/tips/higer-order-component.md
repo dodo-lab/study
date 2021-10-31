@@ -15,4 +15,4 @@
 
 - ref 属性は渡されない
 
-  HOC の通例として、すべての props はラップされたコンポーネントに渡されるが、ref に関しては渡されない。この解決方法は、[React.forwardRef][]を利用すること。
+  HOC の通例として、すべての props はラップされたコンポーネントに渡されるが、ref に関しては渡されない。この解決方法は、[React.forwardRef](https://ja.reactjs.org/docs/react-api.html#reactforwardref)を利用すること。
