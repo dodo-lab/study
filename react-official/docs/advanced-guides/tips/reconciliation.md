@@ -32,3 +32,21 @@ React は２つの仮定に基づくことで、再レンダーの要否を判�
     <Counter />
   </span>
   ```
+
+### 同じ型の DOM 要素
+
+同じ型の２つの DOM 要素を比較した場合、React はそれぞれの属性を調べ、変更された属性のみ更新する。例えば以下の場合、`className`のみが更新される。
+
+- 更新前
+
+  ```js
+  <Article className="before" title="stuff" />
+  ```
+
+- 更新後
+
+  ```js
+  <Article className="after" title="stuff" />
+  ```
+
+この DOM ノードを更新した後、React は子要素に対して再帰的に差分検出を行う。
