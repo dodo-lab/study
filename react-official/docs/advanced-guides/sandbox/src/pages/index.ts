@@ -3,6 +3,7 @@ import ContextPage from './context/ContextPage';
 import ErrorBoundaryPage from './error-boundary/ErrorBoundaryPage';
 import ForwardingRefsPage from './forwarding-refs/ForwardingRefsPage';
 import HigherOrderComponentsPage from './higher-order-components/HigherOrderComponentsPage';
+import PortalPage from './portal/PortalPage';
 
 type Page = {
   text: string;
@@ -26,5 +27,10 @@ export const pages: Page[] = [
     text: '高階コンポーネント',
     link: '/higher-order-components',
     component: HigherOrderComponentsPage,
+  },
+  {
+    text: 'ポータル',
+    link: '/portal',
+    component: PortalPage,
   },
 ];
