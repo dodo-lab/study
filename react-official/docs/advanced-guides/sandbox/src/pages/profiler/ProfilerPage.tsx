@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { Profiler, ProfilerOnRenderCallback } from 'react';
 
 /**
@@ -43,9 +44,16 @@ const ProfilerPage: React.FC = () => {
       </div>
       <div>
         <Profiler id="button2" onRender={profilerCallback}>
-          {[...Array(10)].map((_, index) => (
-            <Button key={index}>Button2</Button>
-          ))}
+          <Box>
+            {[...Array(10)].map((_, index) => (
+              <Button key={index}>Button2</Button>
+            ))}
+            <Profiler id="button3" onRender={profilerCallback}>
+              {[...Array(10)].map((_, index) => (
+                <Button key={index}>Button3</Button>
+              ))}
+            </Profiler>
+          </Box>
         </Profiler>
       </div>
     </>
