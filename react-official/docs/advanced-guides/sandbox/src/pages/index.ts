@@ -6,6 +6,7 @@ import HigherOrderComponentsPage from './higher-order-components/HigherOrderComp
 import PortalPage from './portal/PortalPage';
 import ProfilerPage from './profiler/ProfilerPage';
 import RefPage from './ref/RefPage';
+import RenderPropsPage from './render-props/RenderPropsPage';
 
 type Page = {
   text: string;
@@ -44,5 +45,10 @@ export const pages: Page[] = [
     text: 'ref',
     link: '/ref',
     component: RefPage,
+  },
+  {
+    text: 'レンダープロップ',
+    link: '/render-props',
+    component: RenderPropsPage,
   },
 ];
