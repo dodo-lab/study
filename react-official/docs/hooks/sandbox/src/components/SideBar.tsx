@@ -1,7 +1,7 @@
 import { Drawer, List, ListItemButton, ListItemText } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import React, { useLayoutEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router';
 import { pages } from './../pages/';
 
 type Props = {
@@ -11,11 +11,18 @@ type Props = {
 const SideBar: React.FC<Props> = ({ drawerWidth }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const history = useHistory();
+  const location = useLocation();
 
   const handleSelectedIndex = (index: number) => {
     history.push(pages[index].link);
-    setSelectedIndex(index);
   };
+
+  useLayoutEffect(() => {
+    const index = pages.findIndex((page) => page.link === location.pathname);
+    if (index !== -1) {
+      setSelectedIndex(index);
+    }
+  }, [location]);
 
   return (
     <Drawer anchor="left" open={true} variant="permanent">
