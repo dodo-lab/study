@@ -10,7 +10,7 @@ type Page = {
 };
 
 export const pages: Page[] = [
-  { text: 'use state', link: '/use-state', component: UseStatePage },
-  { text: 'use effect', link: '/use-effect', component: UseEffectPage },
+  { text: 'useState', link: '/use-state', component: UseStatePage },
+  { text: 'useEffect', link: '/use-effect', component: UseEffectPage },
   { text: 'custom hooks', link: '/custom-hooks', component: CustomHooksPage },
 ];
