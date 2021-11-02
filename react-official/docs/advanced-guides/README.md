@@ -1,6 +1,6 @@
 # React 公式 ADVANCED GUIDES
 
-React 公式の[ADVANCED GUIDES](https://ja.reactjs.org/docs/accessibility.html)を見て個人的に重要と感じたポイントの整理／実装をする。
+React 公式の[ADVANCED GUIDES](https://ja.reactjs.org/docs/accessibility.html)から抜粋。
 
 - [Ref](./tips/ref.md)
 - [コード分割](./tips/code-division.md)
