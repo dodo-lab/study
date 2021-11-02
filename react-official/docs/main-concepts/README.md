@@ -1,6 +1,6 @@
 # React 公式 MAIN CONCEPTS
 
-React 公式の[MAIN CONCEPTS](https://ja.reactjs.org/docs/hello-world.html)を見て個人的に重要と感じたポイントをまとめる。
+React 公式の[MAIN CONCEPTS](https://ja.reactjs.org/docs/hello-world.html)から抜粋。
 
 ## JSX
 
