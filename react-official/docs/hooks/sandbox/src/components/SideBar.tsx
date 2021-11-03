@@ -20,6 +20,7 @@ const SideBar: React.FC<Props> = ({ drawerWidth }) => {
   useLayoutEffect(() => {
     const index = pages.findIndex((page) => page.link === location.pathname);
     if (index !== -1) {
+      document.title = pages[index].text + ' | React App';
       setSelectedIndex(index);
     }
   }, [location]);
