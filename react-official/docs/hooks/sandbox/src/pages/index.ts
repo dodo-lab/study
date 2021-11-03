@@ -8,6 +8,7 @@ import UseReducerPage from './use-reducer/UseReducerPage';
 import UseCallbackPage from './use-callback/UseCallbackPage';
 import UseMemoPage from './use-memo/UseMemoPage';
 import UseRefPage from './use-ref/UseRefPage';
+import UseImperativeHandlePage from './use-imperative-handle/UseImperativeHandlePage';
 
 type Page = {
   text: string;
@@ -28,5 +29,10 @@ export const pages: Page[] = [
   { text: 'useCallback', link: '/use-callback', component: UseCallbackPage },
   { text: 'useMemo', link: '/use-memo', component: UseMemoPage },
   { text: 'useRef', link: '/use-ref', component: UseRefPage },
+  {
+    text: 'useImperativeHandle',
+    link: '/use-imperative-handle',
+    component: UseImperativeHandlePage,
+  },
   { text: 'custom hooks', link: '/custom-hooks', component: CustomHooksPage },
 ];
