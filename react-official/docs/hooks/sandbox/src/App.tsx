@@ -12,7 +12,10 @@ function App() {
     <BrowserRouter>
       <SideBar drawerWidth={drawerWidth} />
       <Box
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        }}
       >
         {pages.map(({ link, component }, index) => (
           <Route key={index} exact path={link} component={component} />
