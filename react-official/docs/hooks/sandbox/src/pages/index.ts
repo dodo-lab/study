@@ -7,6 +7,7 @@ import UseContextPage from './use-context/UseContextPage';
 import UseReducerPage from './use-reducer/UseReducerPage';
 import UseCallbackPage from './use-callback/UseCallbackPage';
 import UseMemoPage from './use-memo/UseMemoPage';
+import UseRefPage from './use-ref/UseRefPage';
 
 type Page = {
   text: string;
@@ -22,25 +23,10 @@ export const pages: Page[] = [
     link: '/use-layout-effect',
     component: UseLayoutEffectPage,
   },
-  {
-    text: 'useContext',
-    link: '/use-context',
-    component: UseContextPage,
-  },
-  {
-    text: 'useReducer',
-    link: '/use-reducer',
-    component: UseReducerPage,
-  },
-  {
-    text: 'useCallback',
-    link: '/use-callback',
-    component: UseCallbackPage,
-  },
-  {
-    text: 'useMemo',
-    link: '/use-memo',
-    component: UseMemoPage,
-  },
+  { text: 'useContext', link: '/use-context', component: UseContextPage },
+  { text: 'useReducer', link: '/use-reducer', component: UseReducerPage },
+  { text: 'useCallback', link: '/use-callback', component: UseCallbackPage },
+  { text: 'useMemo', link: '/use-memo', component: UseMemoPage },
+  { text: 'useRef', link: '/use-ref', component: UseRefPage },
   { text: 'custom hooks', link: '/custom-hooks', component: CustomHooksPage },
 ];
