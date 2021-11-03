@@ -4,6 +4,7 @@ import UseEffectPage from './use-effect/UseEffectPage';
 import CustomHooksPage from './custom-hooks/CustomHooksPage';
 import UseLayoutEffectPage from './use-layout-effect/UseLayoutEffectPage';
 import UseContextPage from './use-context/UseContextPage';
+import UseReducerPage from './use-reducer/UseReducerPage';
 
 type Page = {
   text: string;
@@ -23,6 +24,11 @@ export const pages: Page[] = [
     text: 'useContext',
     link: '/use-context',
     component: UseContextPage,
+  },
+  {
+    text: 'useReducer',
+    link: '/use-reducer',
+    component: UseReducerPage,
   },
   { text: 'custom hooks', link: '/custom-hooks', component: CustomHooksPage },
 ];
