@@ -1,9 +1,9 @@
 import { Button, Card, CardContent, CardHeader, Input } from '@mui/material';
-import React, { createRef, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 const RefPage: React.FC = () => {
-  const muiInputRef = createRef<HTMLInputElement>();
-  const inputRef = createRef<HTMLInputElement>();
+  const muiInputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const muiInputFocus = useCallback(() => {
     console.log('muiInputFocus');

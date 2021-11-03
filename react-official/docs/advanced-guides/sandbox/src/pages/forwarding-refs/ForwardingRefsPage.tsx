@@ -1,8 +1,8 @@
-import React, { createRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import FancyButton from './parts/FancyButton';
 
 const ForwardingRefsPage: React.FC = () => {
-  const buttonRef = createRef<HTMLButtonElement>();
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = () => {
     alert('Click');
