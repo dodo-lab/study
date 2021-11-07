@@ -41,3 +41,23 @@
    # もし 'react-native init' で作成したプロジェクトであれば、下記でもOK
    npm run android -- --variant=release
    ```
+
+## Debugging
+
+### [Chrome Dev Tools](https://reactnative.dev/docs/debugging#chrome-developer-tools)
+
+開発者メニューから「Debug」を選択すると、[React Native Debugger](http://localhost:8081/debugger-ui) が開く。
+
+開発者メニューを開くには、以下いずれかの方法がある。
+
+- エミュレータ：Ctrl + M
+- 実機：実機を振る（シェイクする）
+
+`React Native Debugger`のページ上で、Chrome Dev Tools を開くことで以下のような Web と同様のデバッグが可能になる。
+
+- 出力ログの解析
+- ブレークポイントを張ったデバッグ
+- 例外キャッチ時の一時停止
+- etc
+
+ソースマップにより tsx ファイルもそのままデバッグ可能。Chrome Dev Tools 上から`Ctrl + P`でソース検索すると、該当ファイルが探しやすい。
