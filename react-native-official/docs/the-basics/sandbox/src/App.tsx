@@ -1,6 +1,6 @@
+import {FlatListTest, PizzaTranslator, ScrollViewTest, SectionListTest} from 'components';
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {FlatListTest, PizzaTranslator, ScrollViewTest, SectionListTest} from './components';
 
 const App = () => {
   return (
