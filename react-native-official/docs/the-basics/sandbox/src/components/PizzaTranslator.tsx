@@ -5,7 +5,7 @@ export const PizzaTranslator: React.FC = () => {
   const [text, setText] = useState('');
 
   return (
-    <View style={styles.container}>
+    <View>
       <TextInput
         style={styles.textInput}
         placeholder="Type here to translate"
@@ -23,10 +23,6 @@ export const PizzaTranslator: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
   textInput: {
     borderStyle: 'solid',
     borderColor: 'black',

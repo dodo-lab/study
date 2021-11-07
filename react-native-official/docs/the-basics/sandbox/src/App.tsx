@@ -1,15 +1,15 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {FlatListTest, PizzaTranslator, ScrollViewTest} from './components';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+      <View style={styles.scrollView}>
         <PizzaTranslator />
         <ScrollViewTest />
         <FlatListTest />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

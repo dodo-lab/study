@@ -19,7 +19,7 @@ export const ScrollViewTest: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: 10,
     height: 200,
     borderWidth: 1,
   },
