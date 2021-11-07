@@ -1,10 +1,15 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"editor.formatOnSave": true
-	}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+		"[typescriptreact]": {
+			"editor.formatOnSave": true,
+		},
+		"[typescript]": {
+			"editor.formatOnSave": true,
+		},
+  }
 }
