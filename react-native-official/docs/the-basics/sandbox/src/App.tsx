@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-import {PizzaTranslator, ScrollViewTest} from './components';
+import {FlatListTest, PizzaTranslator, ScrollViewTest} from './components';
 
 const App = () => {
   return (
@@ -8,6 +8,7 @@ const App = () => {
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
         <PizzaTranslator />
         <ScrollViewTest />
+        <FlatListTest />
       </ScrollView>
     </SafeAreaView>
   );
