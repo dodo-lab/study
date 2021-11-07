@@ -4,6 +4,7 @@ React Native 公式の [Docs](https://reactnative.dev/docs/getting-started) か�
 
 - [The Basics](the-basics/)
 - [Workflow](workflow/)
+- [Design](design/)
 
 | リンク                                 | 説明                                            |
 | -------------------------------------- | ----------------------------------------------- |
