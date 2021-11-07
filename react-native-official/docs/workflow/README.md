@@ -61,3 +61,19 @@
 - etc
 
 ソースマップにより tsx ファイルもそのままデバッグ可能。Chrome Dev Tools 上から`Ctrl + P`でソース検索すると、該当ファイルが探しやすい。
+
+### [React Developer Tools](https://reactnative.dev/docs/debugging#chrome-developer-tools)
+
+React Developer Tools のスタンドアロン版を使って、React コンポーネントツリーをデバッグすることが可能。React Developer Tools のスタンドアロン版は`react-devtools`パッケージのグローバルインストールで使用できる。
+
+```shell
+npm install -g react-devtools
+```
+
+次にターミナルから`react-devtools`を実行すると、React Developer Tools のスタンドアロン版が起動する。
+
+```shell
+react-devtools
+```
+
+起動後、React コンポーネントツリーが表示されない場合がある。その時は開発者メニューを開くことで、デバッグ対象に接続し、React コンポーネントツリーが表示される。
