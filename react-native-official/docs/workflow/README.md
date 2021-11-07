@@ -77,3 +77,12 @@ react-devtools
 ```
 
 起動後、React コンポーネントツリーが表示されない場合がある。その時は開発者メニューを開くことで、デバッグ対象に接続し、React コンポーネントツリーが表示される。
+
+### [コンポーネントインスタンスの調査](https://reactnative.dev/docs/debugging#inspecting-component-instances)
+
+Chrome Dev Tools のコンソールから、React コンポーネントの props や state の詳細を確認することができる。手順は以下の通り。
+
+1. 上述の Chrome Dev Tools によって、React Native のデバッグができる状態にする
+2. Chrome Dev Tools 内、コンソールの左上のドロップダウンから、`debuggerWorker.js`を選択する（デフォルトは`top`が選択されている）
+3. React Developer Tools で、確認したいコンポーネントを選択する
+4. Chrome Dev Tools 内、コンソールに`$r`と入力する
