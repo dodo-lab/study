@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {FlatListTest, PizzaTranslator, ScrollViewTest} from './components';
+import {FlatListTest, PizzaTranslator, ScrollViewTest, SectionListTest} from './components';
 
 const App = () => {
   return (
@@ -9,6 +9,7 @@ const App = () => {
         <PizzaTranslator />
         <ScrollViewTest />
         <FlatListTest />
+        <SectionListTest />
       </View>
     </SafeAreaView>
   );
