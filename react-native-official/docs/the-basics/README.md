@@ -32,9 +32,7 @@ React Native にはフォームコントロールからアクティブインジ�
 
   テキスト入力ができる
 
-## [Troubleshooting](https://reactnative.dev/docs/troubleshooting)
-
-### [Metro Bundler のポートが既に使われていた場合](https://reactnative.dev/docs/troubleshooting#port-already-in-use)
+## [Metro Bundler のポートが既に使われていた場合](https://reactnative.dev/docs/troubleshooting#port-already-in-use)
 
 Metro Bundler は`8081番ポート`で動作する。他のプロセスが既にそのポートを使っている場合、以下いずれかの対応が必要。
 
@@ -49,3 +47,56 @@ npx react-native start --port=8088
 # もし 'react-native init' で作成したプロジェクトであれば、下記でもOK
 npm start -- --port=8088
 ```
+
+## [プラットフォーム固有制御](https://reactnative.dev/docs/platform-specific-code)
+
+Platform モジュールを使うことで、プラットフォーム固有の制御が可能になる。
+
+```js
+import { Platform, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  height: Platform.OS === 'ios' ? 200 : 100,
+});
+```
+
+### Platform.select メソッド
+
+key に`ios` / `android` / `native` / `default`のいずれかを指定したオブジェクトを渡すと、現在実行しているプラットフォームに最も適した値を返す。
+
+- プラットフォーム固有のスタイルを適用
+
+  ```js
+  import { Platform, StyleSheet } from 'react-native';
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      ...Platform.select({
+        ios: {
+          backgroundColor: 'red',
+        },
+        android: {
+          backgroundColor: 'green',
+        },
+        default: {
+          // other platforms, web for example
+          backgroundColor: 'blue',
+        },
+      }),
+    },
+  });
+  ```
+
+- プラットフォーム固有のコンポーネントを適用
+
+  ```js
+  const Component = Platform.select({
+    ios: () => require('ComponentIOS'),
+    android: () => require('ComponentAndroid'),
+    native: () => require('ComponentForNative'),
+    default: () => require('ComponentForWeb'),
+  })();
+
+  <Component />;
+  ```
