@@ -21,3 +21,25 @@
   Android 固有のフィードバック表現を提供。
 
 ジェスチャー検知には`onPress`props に関数を渡す。もし一定時間押し続けたことを検知したい場合は、`onLongPress`props に関数を渡す。
+
+## [React Navigation の導入](https://reactnative.dev/docs/navigation)
+
+プロジェクトに React Navigation をインストールする。
+
+```shell
+npm i @react-navigation/native @react-navigation/native-stack
+```
+
+次に必要な依存関係をインストールする。プロジェクトが Expo 管理かどうかで、異なるコマンドを実行する。
+
+- Expo 管理のプロジェクトの場合
+
+  ```shell
+  expo install react-native-screens react-native-safe-area-context
+  ```
+
+- 通常の React Native プロジェクトの場合
+
+  ```shell
+  npm install react-native-screens react-native-safe-area-context
+  ```
