@@ -68,3 +68,50 @@ var icon = this.props.active
 上述の`require`構文は、オーディオ／ビデオ／ドキュメントなどのファイルをプロジェクトへ静的に組み込むためにも使用できる。`.mp3` / `.wav` / `.mp4` / `.html` / `.pdf` など、一般的なファイルタイプがサポートされている。すべてのリストは[こちら](https://github.com/facebook/metro/blob/main/packages/metro-config/src/defaults/defaults.js#L14-L44)を参照。
 
 また、[Metro の設定](https://facebook.github.io/metro/docs/configuration/)で[assetExts](https://facebook.github.io/metro/docs/configuration/#assetexts)の Resolver Options を追加すると、他のファイルタイプをサポートできる。
+
+### [ネットワーク上の画像リソース](https://reactnative.dev/docs/images#network-images)
+
+ネットワーク上の画像を表示する場合、静的リソースとは異なり、画像のサイズを手動で指定する必要がある。
+
+```js
+// GOOD
+<Image source={{uri: 'https://reactjs.org/logo-og.png'}} style={{width: 400, height: 400}} />
+
+// BAD
+<Image source={{uri: 'https://reactjs.org/logo-og.png'}} />
+```
+
+#### [ネットワーク上の画像に対するリクエスト](https://reactnative.dev/docs/images#network-requests-for-images)
+
+画像のリクエスト時に、HTTP メソッド／HTTP ヘッダ／Body などを渡したい場合は`source`オブジェクトにこれらのプロパティを設定することで実現する。
+
+```js
+<Image
+  source={{
+    uri: 'https://reactjs.org/logo-og.png',
+    method: 'POST',
+    headers: {
+      Pragma: 'no-cache',
+    },
+    body: 'Your Body goes here',
+  }}
+  style={{ width: 400, height: 400 }}
+/>
+```
+
+### [URI データの画像を表示](https://reactnative.dev/docs/images#uri-data-images)
+
+REST API からエンコードされた画像データを取得して、表示するケースがある。`data` uri scheme を使用することで、実現可能。ネットワークリソースと同様に画像のサイズを手動で指定する必要がある。また、この方法は小さくて動的な画像にのみ推奨される。
+
+```js
+<Image
+  style={{
+    width: 51,
+    height: 51,
+    resizeMode: 'contain',
+  }}
+  source={{
+    uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+  }}
+/>
+```
