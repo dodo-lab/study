@@ -115,3 +115,32 @@ REST API からエンコードされた画像データを取得して、表示�
   }}
 />
 ```
+
+## [Colors](https://reactnative.dev/docs/colors)
+
+### [Color の表現方法](https://reactnative.dev/docs/colors#color-representations)
+
+#### RGB / RGBA
+
+React Native では 16 進法と関数記法の両方で、RGB と RGBA の表現をサポートしている。
+
+- `'#f0f'` (#RGB)
+- `'#ff00ff'` (#RRGGBB)
+- `'#f0ff'` (#RGBA)
+- `'#ff00ffff'` (#RRGGBBAA)
+- `0xff00ffff` (0xRRGGBBAA)
+- `'rgb(255, 0, 255)'`
+- `'rgba(255, 0, 255, 1.0)'`
+
+#### HSL (Hue Saturation Lightness)
+
+React Native では 関数記法で、HSL と HSLA の表現をサポートしている。
+
+- `'hsl(360, 100%, 100%)'`
+- `'hsl(360, 100%, 100%, 1.0)'`
+
+#### Color 名の文字列指定
+
+React Native では Color 名 の文字列指定での表現をサポートしている。ただし、小文字の Color 名のみサポートしている。サポート対象の Color は[CSS3/SVG の仕様](https://www.w3.org/TR/css-color-3/#svg-color)に準拠。
+
+例外として、`'transparent'`も指定可能。これは透明色を表す。
