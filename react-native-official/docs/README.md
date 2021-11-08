@@ -14,3 +14,12 @@ React Native 公式の [Docs](https://reactnative.dev/docs/getting-started) か�
 
 [rn-directory]: https://reactnative.directory/
 [expo-sdk-ver]: https://docs.expo.dev/versions/latest/?redirected#each-expo-sdk-version-depends-on-a
+
+- React Native のプロジェクト作成
+
+  ```shell
+  npx react-native init [project-name]
+
+  # TypeScriptはこっち
+  npx react-native init [project-name] --template react-native-template-typescript
+  ```
