@@ -62,3 +62,9 @@ var icon = this.props.active
   : require('./my-icon-inactive.png');
 <Image source={icon} />;
 ```
+
+### 静的な非画像のリソース
+
+上述の`require`構文は、オーディオ／ビデオ／ドキュメントなどのファイルをプロジェクトへ静的に組み込むためにも使用できる。`.mp3` / `.wav` / `.mp4` / `.html` / `.pdf` など、一般的なファイルタイプがサポートされている。すべてのリストは[こちら](https://github.com/facebook/metro/blob/main/packages/metro-config/src/defaults/defaults.js#L14-L44)を参照。
+
+また、[Metro の設定](https://facebook.github.io/metro/docs/configuration/)で[assetExts](https://facebook.github.io/metro/docs/configuration/#assetexts)の Resolver Options を追加すると、他のファイルタイプをサポートできる。
