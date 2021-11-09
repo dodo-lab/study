@@ -1,11 +1,11 @@
 import {useNavigation} from '@react-navigation/core';
-import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {BasicScreen} from './basic/BasicScreen';
+import {TouchablesScreen} from './various';
 
-const data = [BasicScreen.name];
+const data = [BasicScreen.name, TouchablesScreen.name];
 
 const LinkListItem = ({item}: {item: string}) => {
   const navigation = useNavigation();
@@ -14,6 +14,7 @@ const LinkListItem = ({item}: {item: string}) => {
     <ListItem
       hasTVPreferredFocus={undefined}
       tvParallaxProperties={undefined}
+      bottomDivider
       onPress={() => navigation.navigate(item)}>
       <ListItem.Content>
         <ListItem.Title>{item}</ListItem.Title>
