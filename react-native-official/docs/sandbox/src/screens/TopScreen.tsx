@@ -1,16 +1,31 @@
 import {useNavigation} from '@react-navigation/core';
+import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-elements';
-import {Button} from 'react-native-elements/dist/buttons/Button';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {ListItem} from 'react-native-elements';
+import {BasicScreen} from './basic/BasicScreen';
 
-export const TopScreen: React.FC = () => {
+const data = [BasicScreen.name];
+
+const LinkListItem = ({item}: {item: string}) => {
   const navigation = useNavigation();
 
   return (
+    <ListItem
+      hasTVPreferredFocus={undefined}
+      tvParallaxProperties={undefined}
+      onPress={() => navigation.navigate(item)}>
+      <ListItem.Content>
+        <ListItem.Title>{item}</ListItem.Title>
+      </ListItem.Content>
+    </ListItem>
+  );
+};
+
+const Screen: React.FC = () => {
+  return (
     <View style={styles.container}>
-      <Text h1>TopScreen</Text>
-      <Button type="outline" title="Homeへ" onPress={() => navigation.navigate('Home')} />
+      <FlatList data={data} renderItem={({item}) => <LinkListItem item={item} />} />
     </View>
   );
 };
@@ -18,7 +33,13 @@ export const TopScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
+
+export const TopScreen = {
+  name: 'Top',
+  component: Screen,
+  options: {
+    title: 'Top',
+  },
+};
