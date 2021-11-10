@@ -1,11 +1,22 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Animated, Easing, StyleSheet, View} from 'react-native';
 import {Button, ButtonGroup, Text} from 'react-native-elements';
 
-const buttons = ['Fade in', 'Fade out'];
+const buttons = ['fadeIn', 'fadeOut', 'move'] as const;
+type ButtonType = typeof buttons[number];
+type ButtonProc = {
+  [K in ButtonType]: () => void;
+};
 
 const Screen: React.FC = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const moveXAnim = useRef(new Animated.Value(0)).current;
+
+  const buttonProc: ButtonProc = {
+    fadeIn: () => fade(0, 1),
+    fadeOut: () => fade(1, 0),
+    move: () => move(150),
+  };
 
   const fade = (initValue: number, toValue: number) => {
     fadeAnim.setValue(initValue);
@@ -16,22 +27,28 @@ const Screen: React.FC = () => {
     }).start();
   };
 
-  const handlePress = (index: number) => {
-    // Fade in
-    if (index === 0) {
-      fade(0, 1);
-    }
-    // Fade out
-    else if (index == 1) {
-      fade(1, 0);
-    }
+  const move = (at: number) => {
+    moveXAnim.setValue(0);
+    Animated.timing(moveXAnim, {
+      toValue: at,
+      duration: 2000,
+      easing: Easing.bounce,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePress = (index: number, ...args: any[]) => {
+    buttonProc[buttons[index]]();
   };
 
   return (
     <View style={styles.container}>
-      <ButtonGroup buttons={buttons} onPress={handlePress} />
+      <ButtonGroup buttons={buttons.map(value => value.toString())} onPress={handlePress} />
       <Animated.View style={{opacity: fadeAnim}}>
-        <Text h1>Fade</Text>
+        <Text h2>Fade</Text>
+      </Animated.View>
+      <Animated.View style={{...styles.posAnim, transform: [{translateX: moveXAnim}]}}>
+        <Text h2>Move</Text>
       </Animated.View>
     </View>
   );
@@ -42,6 +59,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  posAnim: {
+    position: 'absolute',
+    top: 0,
   },
 });
 
