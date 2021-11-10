@@ -3,9 +3,9 @@ import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {BasicScreen} from './basic/BasicScreen';
-import {TouchablesScreen} from './various';
+import {TouchablesScreen, AnimationScreen} from './various';
 
-const data = [BasicScreen.name, TouchablesScreen.name];
+const data = [BasicScreen.name, TouchablesScreen.name, AnimationScreen.name];
 
 const LinkListItem = ({item}: {item: string}) => {
   const navigation = useNavigation();
