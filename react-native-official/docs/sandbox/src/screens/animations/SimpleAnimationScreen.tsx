@@ -1,6 +1,6 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {Animated, Easing, StyleSheet, View} from 'react-native';
-import {Button, ButtonGroup, Text} from 'react-native-elements';
+import {ButtonGroup, Text} from 'react-native-elements';
 
 const buttons = ['fadeIn', 'fadeOut', 'move', 'sequence'] as const;
 type ButtonType = typeof buttons[number];
@@ -107,10 +107,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export const AnimationScreen = {
-  name: 'Animation',
+export const SimpleAnimationScreen = {
+  name: 'SimpleAnimation',
   component: Screen,
   options: {
-    title: 'Animation',
+    title: 'SimpleAnimation',
   },
 };
