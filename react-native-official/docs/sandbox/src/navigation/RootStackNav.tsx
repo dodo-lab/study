@@ -12,6 +12,7 @@ export const RootStackNav: React.FC = () => {
       <Stack.Screen {...Screens.TouchablesScreen} />
       <Stack.Screen {...Screens.AnimationsScreen} />
       <Stack.Screen {...Screens.SimpleAnimationScreen} />
+      <Stack.Screen {...Screens.ScrollViewAnimationScreen} />
     </Stack.Navigator>
   );
 };
