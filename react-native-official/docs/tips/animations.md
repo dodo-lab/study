@@ -24,3 +24,22 @@ Animated は、以下 6 つのアニメーション可能なコンポーネン�
 - Animated.SectionList
 
 `Animated.createAnimatedComponent()`を使って、独自のアニメーションコンポーネントを作成することも可能。
+
+### アニメーションの設定
+
+アニメーションは細かく設定できる。カスタムおよび定義済みのイージング関数、遅延、持続時間、減衰係数、バネ定数など、アニメーションの種類に応じて調整可能。
+
+Animated が提供しているアニメーションタイプのうち、最もよく使われるのは`Animated.timing()`。これは、様々な定義済みのイージング関数のうちの１つを利用して、時間経過によるアニメーションをサポートしている。また、独自のイージング関数を使用することも可能。
+
+デフォルトのイージング関数は、ピークまで徐々に加速し、最後は徐々に減速して停止する `easeinOut` カーブが使用されている。以下のように、`easing`パラメータを指定することで、別のイージング関数を指定できる。
+
+```js
+const xPosition = useRef(new Animated.Value(0)).current;
+
+Animated.timing(this.state.xPosition, {
+  toValue: 100,
+  easing: Easing.bounce,
+  duration: 1000,
+  useNativeDriver: true,
+}).start();
+```
