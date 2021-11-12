@@ -43,3 +43,37 @@ Animated.timing(this.state.xPosition, {
   useNativeDriver: true,
 }).start();
 ```
+
+### アニメーションの使い方
+
+フェードインのアニメーションを例に、使い方を説明。
+
+まず、Opacity(透明度)のアニメーション値を管理するインスタンスを生成する。
+フェードインのため、初期値は 0 とする。
+
+```js
+const fadeAnim = useRef(new Animated.Value(0)).current;
+```
+
+次に`Animated`の API を使って、アニメーションの設定と開始をする。
+設定時には、先ほど生成したインスタンスを引数として渡す。
+
+```js
+// 設定
+const animation = Animated.timing(fadeAnim, {
+  toValue: 1, // アニメーションのゴール地点（目標値）
+  duration: 1000, // アニメーションさせる時間
+  useNativeDriver: true, // ネイティブドライバを使用（詳細は後述）
+});
+
+// 開始
+animation.start();
+```
+
+最後に、レンダーする要素にアニメーションを適用させる。
+
+```js
+<Animated.View style={{ opacity: fadeAnim }}>
+  <Text>FadeIn</Text>
+</Animated.View>
+```
