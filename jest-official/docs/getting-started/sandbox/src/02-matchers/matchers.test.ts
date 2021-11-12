@@ -15,3 +15,30 @@ describe('一般的なマッチャー', () => {
     }
   });
 });
+
+describe('真偽値', () => {
+  test('null', () => {
+    const n = null;
+    expect(n).toBe(null);
+    expect(n).toBeDefined();
+    expect(n).not.toBeUndefined();
+    expect(n).not.toBeTruthy();
+    expect(n).toBeFalsy();
+  });
+  test('0', () => {
+    const n = 0;
+    expect(n).toBe(0);
+    expect(n).toBeDefined();
+    expect(n).not.toBeUndefined();
+    expect(n).not.toBeTruthy();
+    expect(n).toBeFalsy();
+  });
+  test('true', () => {
+    const n = true;
+    expect(n).toBe(true);
+    expect(n).toBeDefined();
+    expect(n).not.toBeUndefined();
+    expect(n).toBeTruthy();
+    expect(n).not.toBeFalsy();
+  });
+});
