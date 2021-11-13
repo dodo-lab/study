@@ -86,3 +86,19 @@ describe('配列と反復可能なオブジェクト', () => {
     expect(new Set(shoppingList)).toContain('kleenex');
   });
 });
+
+describe('例外', () => {
+  function throwError() {
+    throw new Error('you are using the wrong JDK');
+  }
+
+  test('例外', () => {
+    // 例外コールはラップする必要がある
+    expect(() => throwError()).toThrow();
+    expect(() => throwError()).toThrow(Error);
+
+    // エラーメッセージをチェックすることも可能
+    expect(() => throwError()).toThrow('you are using the wrong JDK');
+    expect(() => throwError()).toThrow(/JDK$/);
+  });
+});
