@@ -42,3 +42,25 @@ describe('真偽値', () => {
     expect(n).not.toBeFalsy();
   });
 });
+
+describe('数値', () => {
+  test('2 + 2', () => {
+    const value = 2 + 2;
+    expect(value).toBeGreaterThan(3);
+    expect(value).toBeGreaterThanOrEqual(3.5);
+    expect(value).toBeGreaterThanOrEqual(4);
+    expect(value).toBeLessThan(5);
+    expect(value).toBeLessThanOrEqual(4.5);
+    expect(value).toBeLessThanOrEqual(4);
+
+    // toBeとtoEqualは、数値の場合は同じ動きになる
+    expect(value).toBe(4);
+    expect(value).toEqual(4);
+  });
+
+  test('丸め誤差', () => {
+    const value = 0.1 + 0.2;
+    // expect(value).toBe(0.3); ★丸め誤差が原因で失敗する
+    expect(value).toBeCloseTo(0.3);
+  });
+});
