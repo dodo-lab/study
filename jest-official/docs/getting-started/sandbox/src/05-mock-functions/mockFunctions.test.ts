@@ -16,4 +16,17 @@ describe('モック関数の利用', () => {
     // 2回目のモック関数の戻り値は47を想定
     expect(mockCallback.mock.results[1].value).toBe(47);
   });
+
+  test('モックの戻り値', () => {
+    const myMock = jest.fn();
+    myMock
+      .mockReturnValueOnce(10)
+      .mockReturnValueOnce('x')
+      .mockReturnValue(true);
+
+    expect(myMock()).toBe(10);
+    expect(myMock()).toMatch('x');
+    expect(myMock()).toBeTruthy();
+    expect(myMock()).toBeTruthy();
+  });
 });
