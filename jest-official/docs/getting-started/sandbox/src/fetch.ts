@@ -1,11 +1,11 @@
-export const fetchResolve = () => {
+export const fetchResolve = (data: string) => {
   return new Promise<string>((resolve) => {
-    resolve('http://abehiroshi.la.coocan.jp/');
+    resolve(data);
   });
 };
 
-export const fetchReject = () => {
+export const fetchReject = (error: string) => {
   return new Promise<string>((_, reject) => {
-    reject('not found');
+    reject(error);
   });
 };
