@@ -1,7 +1,7 @@
 import { forEach } from './mockFunctions';
 
-describe('モック関数の利用', () => {
-  test('モック関数', () => {
+describe('モック関数', () => {
+  test('モック関数の利用', () => {
     const mockCallback = jest.fn((x) => x + 42);
     forEach([0, 5], mockCallback);
 
