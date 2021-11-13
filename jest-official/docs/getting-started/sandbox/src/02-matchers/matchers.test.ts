@@ -64,3 +64,25 @@ describe('数値', () => {
     expect(value).toBeCloseTo(0.3);
   });
 });
+
+describe('文字列', () => {
+  test('正規表現', () => {
+    expect('team').not.toMatch(/I/);
+    expect('Christoph').toMatch(/stop/);
+  });
+});
+
+describe('配列と反復可能なオブジェクト', () => {
+  const shoppingList = [
+    'diapers',
+    'kleenex',
+    'trash bags',
+    'paper towels',
+    'milk',
+  ];
+
+  test('配列とSet', () => {
+    expect(shoppingList).toContain('milk');
+    expect(new Set(shoppingList)).toContain('kleenex');
+  });
+});
