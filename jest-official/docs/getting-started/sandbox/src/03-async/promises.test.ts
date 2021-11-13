@@ -1,18 +1,8 @@
+import { fetchResolve, fetchReject } from './../fetch';
+
 describe('Promises', () => {
   // テストコードが Promise を返すと、jest はそのpromiseがresolveされるまで待機する
   // もしくは、promiseがrejectされたらテストを失敗として扱う
-
-  const fetchResolve = () => {
-    return new Promise<string>((resolve) => {
-      resolve('http://abehiroshi.la.coocan.jp/');
-    });
-  };
-
-  const fetchReject = () => {
-    return new Promise<string>((_, reject) => {
-      reject('not found');
-    });
-  };
 
   test('promise resolve', () => {
     return fetchResolve().then((data) => {
