@@ -4,21 +4,17 @@
  */
 
 test('expect-anything', () => {
-  const mock1 = jest.fn();
-  const mock2 = jest.fn();
-  const mock3 = jest.fn();
-  const mock4 = jest.fn();
-  const mock5 = jest.fn();
+  const mock = [...Array(5)].map((_) => jest.fn());
 
-  mock1('a');
-  mock2(100);
-  mock3(true);
-  mock4(null);
-  mock5(undefined);
+  mock[0]('a');
+  mock[1](100);
+  mock[2](true);
+  mock[3](null);
+  mock[4](undefined);
 
-  expect(mock1).toBeCalledWith(expect.anything());
-  expect(mock2).toBeCalledWith(expect.anything());
-  expect(mock3).toBeCalledWith(expect.anything());
-  expect(mock4).not.toBeCalledWith(expect.anything());
-  expect(mock5).not.toBeCalledWith(expect.anything());
+  expect(mock[0]).toBeCalledWith(expect.anything());
+  expect(mock[1]).toBeCalledWith(expect.anything());
+  expect(mock[2]).toBeCalledWith(expect.anything());
+  expect(mock[3]).not.toBeCalledWith(expect.anything());
+  expect(mock[4]).not.toBeCalledWith(expect.anything());
 });
