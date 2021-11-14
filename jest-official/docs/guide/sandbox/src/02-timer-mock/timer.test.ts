@@ -42,4 +42,17 @@ describe('タイマーモック', () => {
     expect(setTimeout).toHaveBeenCalledTimes(2);
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 10000);
   });
+
+  test('指定した時間でタイマーを進める', () => {
+    const callback = jest.fn();
+    timerGame(callback);
+
+    expect(callback).toBeCalledTimes(0);
+
+    jest.advanceTimersByTime(999);
+    expect(callback).toBeCalledTimes(0);
+
+    jest.advanceTimersByTime(1);
+    expect(callback).toBeCalledTimes(1);
+  });
 });
