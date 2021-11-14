@@ -3,23 +3,7 @@
  * 非同期のコードをテストする際は、コールバック内のアサーションが確実に呼ばれたかチェックすべき。
  */
 
-type Callback = () => void;
-function doAsync(...callbacks: Callback[]) {
-  const promises: Promise<void>[] = [];
-
-  for (const cb of callbacks) {
-    promises.push(
-      new Promise<void>((resolve) => {
-        setTimeout(() => {
-          cb();
-          resolve();
-        }, 10);
-      })
-    );
-  }
-
-  return Promise.all(promises);
-}
+import { doAsync } from '../common';
 
 test('expect.assertions', () => {
   expect.assertions(2);
