@@ -5,7 +5,7 @@
  * jest.fn(implementation) は省略形
  */
 
-describe('mockImplementation', () => {
+test('mockImplementation', () => {
   const mockFunc = jest.fn().mockImplementation((scalar) => scalar + 99);
 
   const a = mockFunc(0);
