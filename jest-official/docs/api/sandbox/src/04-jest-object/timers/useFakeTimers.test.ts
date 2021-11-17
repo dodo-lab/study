@@ -26,7 +26,9 @@ test('useFakeTimers', () => {
 
   jest.advanceTimersByTime(999);
   expect(mockFunc).not.toHaveBeenCalled();
+  expect(jest.getTimerCount()).toBe(1);
 
   jest.advanceTimersByTime(1);
   expect(mockFunc).toHaveBeenCalled();
+  expect(jest.getTimerCount()).toBe(0);
 });
