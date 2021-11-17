@@ -47,6 +47,11 @@ export default {
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
 
+  displayName: {
+    name: 'JEST-TEST',
+    color: 'blue',
+  },
+
   // Make calling deprecated APIs throw helpful error messages
   // errorOnDeprecated: false,
 
