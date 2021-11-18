@@ -77,3 +77,76 @@ animation.start();
   <Text>FadeIn</Text>
 </Animated.View>
 ```
+
+### アニメーション値の補間
+
+`Animated.Value`で生成したアニメーション値は、`interpolate`メソッドを使うことで表現したい範囲に補間することが可能。補間には入力範囲と出力範囲を指定する。
+
+- `0 ～ 1`を`0 ～ 100`に補間
+
+  ```js
+  const animValue = useRef(new Animated.Value(0)).current;
+  const outputValue = animValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 100],
+  });
+  ```
+
+  | Input | Output |
+  | ----: | -----: |
+  |     0 |      0 |
+  |   0.5 |     50 |
+  |     1 |    100 |
+
+- `0 ～ 1`を`100 ～ 0`に補間
+
+  ```js
+  const outputValue = animValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [100, 0],
+  });
+  ```
+
+  | Input | Output |
+  | ----: | -----: |
+  |     0 |    100 |
+  |   0.5 |     50 |
+  |     1 |      0 |
+
+- `0 ～ 1`を`0deg ～ 360deg`に補間
+
+  ```js
+  const animValue = useRef(new Animated.Value(0)).current;
+  const outputValue = animValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+  ```
+
+  | Input |  Output |
+  | ----: | ------: |
+  |     0 |   0 deg |
+  |   0.5 | 180 deg |
+  |     1 | 360 deg |
+
+- 複数範囲指定で補間
+
+  ```js
+  const outputValue = animValue.interpolate({
+    inputRange: [-300, -100, 0, 100, 101],
+    outputRange: [300, 0, 1, 0, 0],
+  });
+  ```
+
+  | Input | Output |
+  | ----: | -----: |
+  |  -400 |    450 |
+  |  -300 |    300 |
+  |  -200 |    150 |
+  |  -100 |      0 |
+  |   -50 |    0.5 |
+  |     0 |      1 |
+  |    50 |    0.5 |
+  |   100 |      0 |
+  |   101 |      0 |
+  |   200 |      0 |
