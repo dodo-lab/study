@@ -150,3 +150,19 @@ animation.start();
   |   100 |      0 |
   |   101 |      0 |
   |   200 |      0 |
+
+### ネイティブドライバの使用
+
+ネイティブドライバを使用すると、アニメーション開始前にすべてのアニメーション情報をネイティブ側へ送信する。それにより、ブリッジを経由することなくネイティブの UI スレッドでアニメーションを動かせるため、パフォーマンスが向上する。
+
+使い方は以下のように、アニメーションの設定に `useNativeDriver: true` を追加するだけで OK。
+
+```js
+Animated.timing(animValue, {
+  toValue: 1,
+  duration: 500,
+  useNativeDriver: true,
+}).start();
+```
+
+ただし、`Animated`で提供しているすべてのアニメーションでネイティブドライバを使用できるわけではない。詳細は[こちら](https://reactnative.dev/docs/animations#caveats)を参照。
