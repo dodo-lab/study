@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ScrollViewAnimationScreen = {
+export const ScrollViewAnimationScreen: ScreenProps = {
   name: 'ScrollViewAnimation',
   component: Screen,
   options: {

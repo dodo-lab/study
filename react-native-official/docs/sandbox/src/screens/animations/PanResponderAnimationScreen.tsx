@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PanResponderAnimationScreen = {
+export const PanResponderAnimationScreen: ScreenProps = {
   name: 'PanResponderAnimation',
   component: Screen,
   options: {

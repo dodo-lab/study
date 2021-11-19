@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SimpleAnimationScreen = {
+export const SimpleAnimationScreen: ScreenProps = {
   name: 'SimpleAnimation',
   component: Screen,
   options: {

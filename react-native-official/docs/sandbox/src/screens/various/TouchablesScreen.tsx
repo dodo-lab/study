@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TouchablesScreen = {
+export const TouchablesScreen: ScreenProps = {
   name: 'Touchables',
   component: Screen,
   options: {

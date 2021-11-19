@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const BasicScreen = {
+export const BasicScreen: ScreenProps = {
   name: 'Basic',
   component: Screen,
   options: {

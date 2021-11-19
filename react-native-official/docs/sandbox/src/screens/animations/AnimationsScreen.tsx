@@ -16,7 +16,7 @@ const Screen: React.FC = () => {
   return <LinkList data={data} />;
 };
 
-export const AnimationsScreen = {
+export const AnimationsScreen: ScreenProps = {
   name: 'Animations',
   component: Screen,
   options: {

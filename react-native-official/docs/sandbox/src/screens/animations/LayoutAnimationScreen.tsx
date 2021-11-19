@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const LayoutAnimationScreen = {
+export const LayoutAnimationScreen: ScreenProps = {
   name: 'LayoutAnimation',
   component: Screen,
   options: {

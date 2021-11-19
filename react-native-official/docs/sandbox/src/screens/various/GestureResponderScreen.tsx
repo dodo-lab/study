@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const GestureResponderScreen = {
+export const GestureResponderScreen: ScreenProps = {
   name: 'GestureResponder',
   component: Screen,
   options: {
