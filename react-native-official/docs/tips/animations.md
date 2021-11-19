@@ -166,3 +166,14 @@ Animated.timing(animValue, {
 ```
 
 ただし、`Animated`で提供しているすべてのアニメーションでネイティブドライバを使用できるわけではない。詳細は[こちら](https://reactnative.dev/docs/animations#caveats)を参照。
+
+## [LayoutAnimation](https://reactnative.dev/docs/animations#layoutanimation-api)
+
+LayoutAnimation を使用すると、次のレンダリング／レイアウトのサイクルですべてのビューに使用されるアニメーションの作成と更新をグローバルに設定可能。
+
+Android で動作させるためには、UIManager で以下のようにフラグを設定する必要がある。
+
+```js
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+```
