@@ -6,7 +6,6 @@ React Native 公式の [Docs](https://reactnative.dev/docs/getting-started) か�
 - [Workflow](tips/workflow.md)
 - [Design](tips/design.md)
 - [Interaction](tips/interaction.md)
-- [Animations](tips/animations.md)
 
 | リンク                                 | 説明                                            |
 | -------------------------------------- | ----------------------------------------------- |

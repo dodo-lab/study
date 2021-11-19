@@ -43,3 +43,7 @@ npm i @react-navigation/native @react-navigation/native-stack
   ```shell
   npm install react-native-screens react-native-safe-area-context
   ```
+
+## Animation
+
+詳細は[こちら](./animations.md)を参照。
