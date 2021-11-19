@@ -13,14 +13,16 @@ const Screen: React.FC = () => {
   const [height, setHeight] = useState(50);
   const [type, setType] = useState<ButtonType>('spring');
 
-  const handleButtonPress = (index: number) => {
+  const handleTypeButtonPress = (index: number) => {
     setType(buttons[index]);
   };
 
-  const handlePress = () => {
+  const handleAnimationButtonPress = (index: number) => {
     LayoutAnimation[type]();
-    setWidth(width + 30);
-    setHeight(height + 30);
+
+    const add = index === 0 ? 30 : -30;
+    setWidth(width + add);
+    setHeight(height + add);
   };
 
   return (
@@ -28,12 +30,10 @@ const Screen: React.FC = () => {
       <ButtonGroup
         selectedIndex={buttons.indexOf(type)}
         buttons={buttons.map(value => value.toString())}
-        onPress={handleButtonPress}
+        onPress={handleTypeButtonPress}
       />
       <View style={[styles.box, {width: width, height: height}]} />
-      <TouchableOpacity onPress={handlePress}>
-        <Button title="Press me!" onPress={handlePress} />
-      </TouchableOpacity>
+      <ButtonGroup buttons={['Bigger', 'Smaller']} onPress={handleAnimationButtonPress} />
     </View>
   );
 };
