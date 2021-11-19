@@ -1,10 +1,10 @@
 import React from 'react';
 import {LinkList} from './ui-parts/LinkList';
 import {BasicScreen} from './basic/BasicScreen';
-import {TouchablesScreen} from './various';
+import {TouchablesScreen, GestureResponderScreen} from './various';
 import {AnimationsScreen} from './animations';
 
-const data = [BasicScreen.name, TouchablesScreen.name, AnimationsScreen.name];
+const data = [BasicScreen.name, TouchablesScreen.name, AnimationsScreen.name, GestureResponderScreen.name];
 
 const Screen: React.FC = () => {
   return <LinkList data={data} />;

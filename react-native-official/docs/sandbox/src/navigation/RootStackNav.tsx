@@ -15,6 +15,7 @@ export const RootStackNav: React.FC = () => {
       <Stack.Screen {...Screens.ScrollViewAnimationScreen} />
       <Stack.Screen {...Screens.PanResponderAnimationScreen} />
       <Stack.Screen {...Screens.LayoutAnimationScreen} />
+      <Stack.Screen {...Screens.GestureResponderScreen} />
     </Stack.Navigator>
   );
 };
