@@ -60,14 +60,19 @@ console.log は JavaScript スレッドで大きなボトルネックになる�
 
 [FlatList][] または、[SectionList][] コンポーネントを使用すべき。これらのコンポーネントは、パフォーマンスが大幅に向上している。主な改善点は、行数に関わらずメモリ使用量がほぼ一定であること。
 
-[FlatList][] のレンダリングが遅い場合は、[getItemLayout][] を実装して、レンダリングされたアイテムの測定をスキップすることでレンダリング速度を最適化する。
+[FlatList][] のレンダリングが遅い場合は、`getItemLayout` を実装して、レンダリングされたアイテムの測定をスキップすることでレンダリング速度を最適化する。
 
-### ほぼ変化のない再レンダリングで、JS の FPS が悪化する
+### ほぼ変化のない再レンダリングで、JS の FPS が低下する
 
 `ListView`を使用している場合、`rowHasChanged`関数を提供する必要がある。この関数は、対象行を再レンダリングする必要があるかどうかを素早く判断し、多くの作業を削減することが可能。
 
 同様に、`shouldComponentUpdate`を実装し、コンポーネントの再レンダリングが必要な条件を正確に示すことでも改善可能。ただし、大量のオブジェクトのリストを詳細に比較する必要がある場合は、コンポーネント全体を再レンダリングした方が早いかもしれない点は注意。
 
+### View をトランスフォーム(移動や回転など)すると、UI の FPS が低下する
+
+透明なテキストを画像の上に配置していたり、フレームごとに View を再描画する場合、顕著にあらわれる。`shouldRasterizeIOS`や`renderToHardwareTextureAndroid`を有効にすることで解決できる可能性がある。
+
+ただし、この機能を使いすぎると、メモリ使用量が急激に増加する可能性があるため注意が必要。そのため、使用前後でのパフォーマンスとメモリ使用量をチェックしておくべき。また、View を動かす必要がなくなったら、この機能はオフにすること。
+
 [flatlist]: https://reactnative.dev/docs/flatlist
 [sectionlist]: https://reactnative.dev/docs/sectionlist
-[getitemlayout]: https://reactnative.dev/docs/flatlist#getitemlayout
