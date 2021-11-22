@@ -74,5 +74,11 @@ console.log は JavaScript スレッドで大きなボトルネックになる�
 
 ただし、この機能を使いすぎると、メモリ使用量が急激に増加する可能性があるため注意が必要。そのため、使用前後でのパフォーマンスとメモリ使用量をチェックしておくべき。また、View を動かす必要がなくなったら、この機能はオフにすること。
 
+### Image のサイズをアニメーション化すると、UI の FPS が低下する
+
+iOS では、Image コンポーネントの幅や高さを調整するたびに、元画像から再トリミングとスケーリングが行われる。大きな画像の場合は FPS 低下が顕著になる。
+
+対策としては、幅や高さを調整する代わりに、`transform: [{scale}]`のスタイルプロパティを使用すること。
+
 [flatlist]: https://reactnative.dev/docs/flatlist
 [sectionlist]: https://reactnative.dev/docs/sectionlist
