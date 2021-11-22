@@ -180,5 +180,41 @@ handleOnPress() {
 
   大きな数値を設定すると、メモリ使用量が増加する。一方、小さな数値を設定すると、空白領域が発生する可能性が高くなる。
 
+### FlatList のリストアイテム
+
+リストアイテムのコンポーネントに関する最適化のヒントを記載。
+
+#### シンプルかつ軽量なコンポーネントを使う
+
+コンポーネントが複雑になるほど、レンダリングに時間を要する。コンポーネントが下記項目に該当するのであれば、それを避けるべき。
+
+- 複雑なロジックや入れ子
+- 重い画像
+- 過度な、エフェクト／インタラクション／情報
+
+#### shouldComponentUpdate の使用
+
+React の PureComponent では、浅い比較で shouldComponentUpdate を実装している。これは、すべての props をチェックしているため、コストがかかる。よりパフォーマンスを向上させるためには、潜在的に変更される可能性のある props のみをチェックする。
+
+もし、props が変更される可能性がないのであれば、以下のようにしても OK。
+
+```js
+shouldComponentUpdate() {
+  return false
+}
+```
+
+#### キャッシュされた最適化画像の使用
+
+コミュニティのパッケージ（[react-native-fast-image](https://github.com/DylanVann/react-native-fast-image) など）を使って、よりパフォーマンスの高い画像を作ることができる。
+
+#### getItemLayout の使用
+
+すべてのリストアイテムコンポーネントの高さが同じであれば、`getItemLayout`で [FlatList][] の代わりにレイアウトの計算結果を提供することでパフォーマンスが向上する。
+
+#### renderItem の無名関数を避ける
+
+`renderItem`に対して無名関数を指定すると、FlatList への影響有無に関わらず再レンダリングのたびにリストアイテムコンポーネントも再レンダリングされてしまう。`useCallback`の使用、もしくは render の外側に関数を移動させることで解消可能。
+
 [flatlist]: https://reactnative.dev/docs/flatlist
 [sectionlist]: https://reactnative.dev/docs/sectionlist
