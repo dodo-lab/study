@@ -36,7 +36,7 @@ React Native には、機密データを保存する方法が備わっていな�
 - [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/)
 - [react-native-encrypted-storage](https://github.com/emeraldsanto/react-native-encrypted-storage)
 
-## 認証とディープリンク
+## [ディープリンク](https://reactnative.dev/docs/security#authentication-and-deep-linking)
 
 モバイルアプリには Web にはない独特の脆弱性（ディープリンク）がある。ディープリンクとは、外部のソースからアプリに対して直接データを送信する方法。ディープリンクのスキーマは`app://xxxx`のようになる。
 
@@ -47,3 +47,28 @@ React Native には、機密データを保存する方法が備わっていな�
 例に挙げた、`app://products/1`であれば特に問題ないが、トークン／シークレット／ユーザー情報といった機密情報をディープリンクで送信するのはセキュリティ上の懸念がある。
 
 また、ディープリンクを開く際に OS が 2 つ以上のアプリがあると判断した場合、Android ではユーザにどのアプリで開くか選択を求めるモーダルを表示する。iOS では、OS が自動的(iOS 11 以降は先着順)に選択してしまうため、悪用される可能性が高くなる。[詳細はこちら](https://blog.trendmicro.com/trendlabs-security-intelligence/ios-url-scheme-susceptible-to-hijacking/)を参照。iOS ではディープリンクでなく、[ユニバーサルリンク](https://developer.apple.com/ios/universal-links/)を使うことで、アプリ内のコンテンツへ安全にリンクできる。
+
+## [OAuth2](https://reactnative.dev/docs/security#oauth2-and-redirects)
+
+OAuth2 認証プロトコルは、安全なプロトコルとして非常に人気がある。OpenID Connect プロトコルも OAuth2 に基づいている。OAuth2 において、ユーザはサードパーティ経由で認証を求められる。認証に成功すると、サードパーティは [JWT（JSON Web Token）](https://jwt.io/introduction/) [^1]と交換可能な検証コードを付与して、リクエストしたアプリへリダイレクトする。
+
+Web 上の URL は一意であることが保証されているため、Web 上での上記リダイレクトは安全。しかし、アプリの場合は前項のように URL スキームを登録する中央管理された方法がないため、安全とはいえない。このセキュリティ上の懸念に対処するために、[PKCE（Proof of Key Code Exchange）](https://oauth.net/2/pkce/)という形で追加チェックする必要がある。
+
+PKCE は、OAuth2 の仕様を拡張版。具体的には、認証とトークン交換のリクエストが同じクライアントからのものであることを検証する、セキュリティレイヤーを追加したもの。PKCE は、SHA256 暗号ハッシュアルゴリズムを使用する。SHA256 は以下のような特徴で、あらゆるサイズのテキストやファイルに固有の署名を作成する。
+
+- 入力内容やサイズに関わらず、結果は常に同じ長さ
+- 同じ入力に対して、常に同じ結果が得られる
+- 一方通行（リバースエンジニアリングで元の入力を特定できない）
+
+PKCE を使用するには、以下２つの値が必要。
+
+1. code_verifier：クライアントが生成した大きなランダム文字列
+2. code_challenge：`code_verifier`に SHA256 を適用した結果
+
+最初の`/authorize`リクエスト時に、クライアントは`code_challenge`を送信する。`/authorize`のリクエストが正しく返されると、クライアントは`code_verifier`も送信する。IDP は受け取った`code_verifier`に SHA256 を適用し、最初の`/authorize`リクエストに設定された`code_challenge`と一致するか確認する。そして、一致した場合のみ、アクセストークンを送信する。
+
+これによって、最初の認証フローを起動したアプリだけが検証コードと JWT の交換に成功することが保証される。もし悪意のあるアプリが検証コードにアクセスしたとしても、それだけでは意味がない。
+
+OAuth2 や PKCE に対応したライブラリとして、[react-native-app-auth](https://github.com/FormidableLabs/react-native-app-auth) が挙げられる。ネイティブの [AppAuth-iOS](https://github.com/openid/AppAuth-iOS) と [AppAuth-Android](https://github.com/openid/AppAuth-Android) をラップしている、IDP と通信するための SDK。
+
+[^1]: JWT は Web 上の当事者間で情報を安全に送信するためのオープンスタンダード
