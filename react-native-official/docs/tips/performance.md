@@ -218,3 +218,28 @@ shouldComponentUpdate() {
 
 [flatlist]: https://reactnative.dev/docs/flatlist
 [sectionlist]: https://reactnative.dev/docs/sectionlist
+
+## [Profiling](https://reactnative.dev/docs/profiling)
+
+iOS では Android では Instruments が、Android では systrace が有効。
+
+### systrace
+
+事前準備として、以下が必要。
+
+- Python
+
+  [公式サイト](https://www.python.org/) からダウンロード
+
+- pywin32 / six
+
+  ```shell
+  pip install pywin32
+  pip install six
+  ```
+
+例えば、下記コマンドを実行すると 10 秒間パフォーマンスを計測し、その結果を`trace.html`に出力する。
+
+```shell
+<AndroidSDKのパス>/platform-tools/systrace/systrace.py --time=10 -o trace.html sched gfx view -a <パッケージ名（例：com.sandbox）>
+```
