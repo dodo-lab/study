@@ -82,3 +82,10 @@ Hermes は、React Native に最適化されたオープンソースの JavaScri
    ```shell
    npx react-native run-ios
    ```
+
+### Chrome DevTools を使い、Hermes 環境をデバッグする
+
+1. Metro サーバーを立ち上げ、エミュータもしくは実機でアプリを起動しておく
+2. Chrome を起動し、[chrome://inspect](chrome://inspect) を開く
+3. `Configure...`ボタンをクリックし、Metro サーバーのアドレスを追加する（通常は`localhost:8081`）
+4. `Hermes React Native`と表示され、そのすぐ下の`inspect`をクリックする
