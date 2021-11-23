@@ -7,6 +7,9 @@ React Native 公式の [Docs](https://reactnative.dev/docs/getting-started) か�
 - [Design](tips/design.md)
 - [Interaction](tips/interaction.md)
 - [Performance](tips/performance.md)
+- [JavaScript Runtime](tips/javascript-runtime.md)
+
+## リンク集
 
 | リンク                                 | 説明                                            |
 | -------------------------------------- | ----------------------------------------------- |
@@ -15,6 +18,8 @@ React Native 公式の [Docs](https://reactnative.dev/docs/getting-started) か�
 
 [rn-directory]: https://reactnative.directory/
 [expo-sdk-ver]: https://docs.expo.dev/versions/latest/?redirected#each-expo-sdk-version-depends-on-a
+
+## セットアップ
 
 - React Native のプロジェクト作成
 
