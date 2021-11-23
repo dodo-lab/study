@@ -35,3 +35,15 @@ React Native には、機密データを保存する方法が備わっていな�
 
 - [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/)
 - [react-native-encrypted-storage](https://github.com/emeraldsanto/react-native-encrypted-storage)
+
+## 認証とディープリンク
+
+モバイルアプリには Web にはない独特の脆弱性（ディープリンク）がある。ディープリンクとは、外部のソースからアプリに対して直接データを送信する方法。ディープリンクのスキーマは`app://xxxx`のようになる。
+
+例えば EC アプリの場合、`app://products/1`でディープリンクを送信すると、id が 1 の商品詳細ページを開くといったことができる。これは、Web 上の URL のようなものと考えることもできるが、重要な違いがある。それは、Web と比較して安全ではないこと。そのため、機密情報をディープリンクで送信すべきでない。
+
+ディープリンクが安全でない理由は、URL スキームを登録する中央管理の方法がないため。アプリ開発者は、[iOS なら Xcode で設定](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app)し、[Android ならインテントを追加](https://developer.android.com/training/app-links/deep-linking) することで、ほぼすべての URL スキームを使用することが可能。そのため、もし悪意のあるアプリが同じスキームを登録してディープリンクをハイジャックすると、リンクに含まれるデータにアクセスされることを阻止できない。
+
+例に挙げた、`app://products/1`であれば特に問題ないが、トークン／シークレット／ユーザー情報といった機密情報をディープリンクで送信するのはセキュリティ上の懸念がある。
+
+また、ディープリンクを開く際に OS が 2 つ以上のアプリがあると判断した場合、Android ではユーザにどのアプリで開くか選択を求めるモーダルを表示する。iOS では、OS が自動的(iOS 11 以降は先着順)に選択してしまうため、悪用される可能性が高くなる。[詳細はこちら](https://blog.trendmicro.com/trendlabs-security-intelligence/ios-url-scheme-susceptible-to-hijacking/)を参照。iOS ではディープリンクでなく、[ユニバーサルリンク](https://developer.apple.com/ios/universal-links/)を使うことで、アプリ内のコンテンツへ安全にリンクできる。
