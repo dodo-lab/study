@@ -13,7 +13,7 @@ React Native は Web ブラウザと同様のタイマーを実装している�
 
 `setImmediate`は、現在の JavaScript の実行ブロックの最後（バッチされたレスポンスをネイティブに送り返す直前）に実行される。`setImmediate`コールバックの中で`setImmediate`を呼び出すと、すぐに実行される。その間、ネイティブには返らないことに注意。
 
-## [Hermes を使用する](https://reactnative.dev/docs/hermes)
+## [Hermes](https://reactnative.dev/docs/hermes)
 
 Hermes は、React Native に最適化されたオープンソースの JavaScript エンジン。Hermes を有効にすることで、起動時間の短縮／メモリ使用量の削減／アプリサイズの縮小に繋がる。
 
@@ -83,7 +83,9 @@ Hermes は、React Native に最適化されたオープンソースの JavaScri
    npx react-native run-ios
    ```
 
-### Chrome DevTools を使い、Hermes 環境をデバッグする
+### Hermes 環境をデバッグする
+
+Chrome DevTools を使うことで、デバッグが可能。手順は以下の通り。
 
 1. Metro サーバーを立ち上げ、エミュータもしくは実機でアプリを起動しておく
 2. Chrome を起動し、`chrome://inspect` を開く
