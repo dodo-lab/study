@@ -6,7 +6,9 @@ import {Button, Text} from 'react-native-elements';
 const Screen: React.FC = () => {
   const handlePress = () => {
     // Android Studio の Logcatに出力される
-    CalendarModule.createCalendarEvent('testName', 'testLocation');
+    CalendarModule.createCalendarEvent('testName', 'testLocation', eventId =>
+      console.log(`Created a new event with id ${eventId}`),
+    );
   };
 
   return (
