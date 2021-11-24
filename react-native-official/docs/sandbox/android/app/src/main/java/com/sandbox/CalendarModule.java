@@ -16,12 +16,12 @@ public class CalendarModule extends ReactContextBaseJavaModule {
     @NonNull
     @Override
     public String getName() {
-        return "CalenderModule";
+        return "CalendarModule";
     }
 
     @ReactMethod
-    public void createCalenderEvent(String name, String location) {
-        Log.d("CalenderModule", "Create event called with name: " + name
+    public void createCalendarEvent(String name, String location) {
+        Log.d("CalendarModule", "Create event called with name: " + name
                 + " and location " + location);
     }
 }

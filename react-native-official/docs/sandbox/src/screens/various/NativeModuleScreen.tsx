@@ -1,13 +1,12 @@
+import CalendarModule from 'native/CalendarModule';
 import React from 'react';
-import {NativeModules, StyleSheet, View} from 'react-native';
-import {Button, Text} from 'react-native-elements';
+import {StyleSheet, View} from 'react-native';
+import {Button} from 'react-native-elements';
 
 const Screen: React.FC = () => {
-  const {CalenderModule} = NativeModules;
-
   const handlePress = () => {
     // Android Studio の Logcatに出力される
-    CalenderModule.createCalenderEvent('testName', 'testLocation');
+    CalendarModule.createCalendarEvent('testName', 'testLocation');
   };
 
   return (
