@@ -29,6 +29,9 @@ build/
 local.properties
 *.iml
 *.hprof
+.project
+.classpath
+org.eclipse.buildship.core.prefs
 
 # node.js
 #
