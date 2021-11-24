@@ -1,7 +1,7 @@
-import CalendarModule from 'native/CalendarModule';
+import CalendarModule, {DEFAULT_EVENT_NAME} from 'native/CalendarModule';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button, Text} from 'react-native-elements';
 
 const Screen: React.FC = () => {
   const handlePress = () => {
@@ -12,6 +12,7 @@ const Screen: React.FC = () => {
   return (
     <View style={styles.container}>
       <Button title="invoke native module!" onPress={handlePress} />
+      <Text h3>{DEFAULT_EVENT_NAME}</Text>
     </View>
   );
 };
