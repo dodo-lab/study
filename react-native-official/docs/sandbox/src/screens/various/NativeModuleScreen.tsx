@@ -11,9 +11,21 @@ const Screen: React.FC = () => {
     );
   };
 
+  const handlePressPromise = async () => {
+    const name = 'testName'; // ★'error'で、エラーケースを確認可能
+
+    try {
+      const eventId = await CalendarModule.createCalendarEventPromise(name, 'testLocation');
+      console.log(`Created a new event with id ${eventId}`);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Button title="invoke native module!" onPress={handlePress} />
+      <Button title="invoke native module(Promise)!" onPress={handlePressPromise} />
       <Text h3>{DEFAULT_EVENT_NAME}</Text>
     </View>
   );
@@ -23,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
 });
 

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -30,6 +31,21 @@ public class CalendarModule extends ReactContextBaseJavaModule {
 
         Integer eventId = 99;
         callback.invoke(eventId);
+    }
+
+    @ReactMethod
+    public void createCalendarEventPromise(String name, String location, Promise promise) {
+        Log.d("CalendarModule", "Create event called with name: " + name
+                + " and location " + location);
+
+        try {
+            if(name.equals("error")) throw new Exception("name error");
+
+            Integer eventId = 100;
+            promise.resolve(eventId);
+        } catch (Exception e) {
+            promise.reject("Create Event Error", e);
+        }
     }
 
     @Override
