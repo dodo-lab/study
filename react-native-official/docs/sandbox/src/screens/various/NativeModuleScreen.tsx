@@ -1,9 +1,12 @@
 import CalendarModule, {DEFAULT_EVENT_NAME} from 'native/CalendarModule';
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import DialogModule, {SINGLE_BUTTON, DOUBLE_BUTTON, DialogClickEvent} from 'native/DialogModule';
+import React, {useEffect, useRef, useState} from 'react';
+import {EmitterSubscription, NativeEventEmitter, NativeModule, NativeModules, StyleSheet, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
 const Screen: React.FC = () => {
+  const eventListener = useRef<EmitterSubscription>();
+
   const handlePress = () => {
     // Android Studio の Logcatに出力される
     CalendarModule.createCalendarEvent('testName', 'testLocation', eventId =>
@@ -22,11 +25,26 @@ const Screen: React.FC = () => {
     }
   };
 
+  const handleDialogOpen = (type: string) => {
+    DialogModule.show('title', 'message', type);
+  };
+
+  useEffect(() => {
+    const eventEmitter = new NativeEventEmitter(NativeModules.DialogModule);
+    eventListener.current = eventEmitter.addListener('onClick', (event: DialogClickEvent) => {
+      console.log('native onClick event', event);
+    });
+
+    return () => eventListener.current?.remove();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Button title="invoke native module!" onPress={handlePress} />
       <Button title="invoke native module(Promise)!" onPress={handlePressPromise} />
       <Text h3>{DEFAULT_EVENT_NAME}</Text>
+      <Button title="dialog open(SingleButton)" onPress={() => handleDialogOpen(SINGLE_BUTTON)} />
+      <Button title="dialog open(DoubleButton)" onPress={() => handleDialogOpen(DOUBLE_BUTTON)} />
     </View>
   );
 };
