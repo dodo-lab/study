@@ -1,6 +1,7 @@
 package com.sandbox;
 
 import android.app.AlertDialog;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -25,12 +26,12 @@ public class DialogModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void addListener(String eventName) {
-        // Set up any upstream listeners or background tasks as necessary
+        Log.d("DialogModule", "addListener :" + eventName);
     }
 
     @ReactMethod
     public void removeListeners(Integer count) {
-        // Remove upstream listeners, stop unnecessary background tasks
+        Log.d("DialogModule", "removeListeners :" + count);
     }
 
     @Override

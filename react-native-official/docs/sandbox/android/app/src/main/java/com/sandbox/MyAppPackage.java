@@ -19,6 +19,7 @@ public class MyAppPackage implements ReactPackage {
 
         modules.add(new CalendarModule(reactContext));
         modules.add(new DialogModule(reactContext));
+        modules.add(new ImagePickerModule(reactContext));
 
         return modules;
     }
