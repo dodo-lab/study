@@ -7,4 +7,5 @@ interface CalenderIF {
 }
 
 export default CalendarModule as CalenderIF;
+
 export const {DEFAULT_EVENT_NAME} = CalendarModule.getConstants() as {DEFAULT_EVENT_NAME: string};
