@@ -1,7 +1,13 @@
 import React from 'react';
 import {LinkList} from './ui-parts/LinkList';
 import {BasicScreen} from './basic/BasicScreen';
-import {TouchablesScreen, GestureResponderScreen, HermesConfirmScreen, NativeModuleScreen} from './various';
+import {
+  TouchablesScreen,
+  GestureResponderScreen,
+  HermesConfirmScreen,
+  NativeModuleScreen,
+  NativeUIScreen,
+} from './various';
 import {AnimationsScreen} from './animations';
 
 const data = [
@@ -11,6 +17,7 @@ const data = [
   GestureResponderScreen.name,
   HermesConfirmScreen.name,
   NativeModuleScreen.name,
+  NativeUIScreen.name,
 ];
 
 const Screen: React.FC = () => {
