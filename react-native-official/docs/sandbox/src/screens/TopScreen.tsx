@@ -9,6 +9,7 @@ import {
   NativeUIScreen,
 } from './various';
 import {AnimationsScreen} from './animations';
+import {ComponentsScreen} from './components';
 
 const data = [
   BasicScreen.name,
@@ -18,6 +19,7 @@ const data = [
   HermesConfirmScreen.name,
   NativeModuleScreen.name,
   NativeUIScreen.name,
+  ComponentsScreen.name,
 ];
 
 const Screen: React.FC = () => {
