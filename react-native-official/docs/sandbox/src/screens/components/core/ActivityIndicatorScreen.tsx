@@ -1,24 +1,18 @@
+import {useSlider} from 'hooks/useSlider';
 import React, {useState} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {Input, Text, Switch} from 'react-native-elements';
+import {FormSlider, FormSwitch, useFormSwitch} from 'screens/ui-parts';
 
 const Screen: React.FC = () => {
-  const [animation, setAnimation] = useState(true);
-  const [size, setSize] = useState(50);
+  const {value: animation, props: animationProps} = useFormSwitch(true);
+  const [size, sizeProps] = useSlider(50, {maximumValue: 200, minimumValue: 10, step: 1});
 
   return (
     <View style={styles.container}>
       <View style={styles.settings}>
-        <View style={styles.horizon}>
-          <Text>Animation</Text>
-          <Switch value={animation} onValueChange={() => setAnimation(!animation)} />
-        </View>
-        <Input
-          label="Size"
-          value={size.toString()}
-          keyboardType="numeric"
-          onChangeText={value => setSize(parseInt(value))}
-        />
+        <FormSwitch label="Animation" switchProps={animationProps} />
+        <FormSlider label="Size" sliderProps={sizeProps} />
       </View>
       <View style={styles.horizon}>
         <ActivityIndicator size="small" />
