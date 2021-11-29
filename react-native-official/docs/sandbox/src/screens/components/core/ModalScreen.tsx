@@ -1,13 +1,26 @@
-import React, {useReducer, useState} from 'react';
+import {useButtonGroup} from 'hooks';
+import React, {useReducer} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
-import {Button, Text} from 'react-native-elements';
+import {Button, ButtonGroup, Text} from 'react-native-elements';
+import {FormSwitch, useFormSwitch} from 'screens/ui-parts';
+
+const animationTypes = ['none', 'slide', 'fade'] as const;
 
 const Screen: React.FC = () => {
   const [modalVisible, modalVisibleDispatch] = useReducer(value => !value, false);
+  const {selectedIndex: animationTypeIndex, props: animationButtonProps} = useButtonGroup(
+    animationTypes.map(v => v.toString()),
+  );
+  const {value: transparent, props: transparentProps} = useFormSwitch(true);
 
   return (
     <View style={styles.container}>
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <Modal
+        animationType={animationTypes[animationTypeIndex]}
+        transparent={transparent}
+        visible={modalVisible}
+        onShow={() => console.log('onShow')}
+        onRequestClose={modalVisibleDispatch}>
         <View style={styles.container}>
           <View style={styles.modalView}>
             <Text h4>Modal View</Text>
@@ -16,6 +29,8 @@ const Screen: React.FC = () => {
         </View>
       </Modal>
 
+      <ButtonGroup {...animationButtonProps} />
+      <FormSwitch label="transparent" switchProps={transparentProps} />
       <Button title="show" onPress={modalVisibleDispatch} />
     </View>
   );
