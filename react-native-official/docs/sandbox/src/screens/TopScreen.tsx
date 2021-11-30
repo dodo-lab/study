@@ -10,6 +10,7 @@ import {
 } from './various';
 import {AnimationsScreen} from './animations';
 import {ComponentsScreen} from './components';
+import {ApiScreen} from './api';
 
 const data = [
   BasicScreen.name,
@@ -20,6 +21,7 @@ const data = [
   NativeModuleScreen.name,
   NativeUIScreen.name,
   ComponentsScreen.name,
+  ApiScreen.name,
 ];
 
 const Screen: React.FC = () => {
