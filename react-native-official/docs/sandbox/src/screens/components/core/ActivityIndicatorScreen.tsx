@@ -1,11 +1,10 @@
-import {useSlider} from 'hooks/useSlider';
-import React, {useState} from 'react';
+import {useSlider, useSwitch} from 'hooks';
+import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {Input, Text, Switch} from 'react-native-elements';
-import {FormSlider, FormSwitch, useFormSwitch} from 'screens/ui-parts';
+import {FormSlider, FormSwitch} from 'screens/ui-parts';
 
 const Screen: React.FC = () => {
-  const {value: animation, props: animationProps} = useFormSwitch(true);
+  const {value: animation, props: animationProps} = useSwitch(true);
   const [size, sizeProps] = useSlider(50, {maximumValue: 200, minimumValue: 10, step: 1});
 
   return (

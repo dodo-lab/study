@@ -1,8 +1,8 @@
-import {useButtonGroup} from 'hooks';
+import {useButtonGroup, useSwitch} from 'hooks';
 import React, {useReducer} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {Button, ButtonGroup, Text} from 'react-native-elements';
-import {FormSwitch, useFormSwitch} from 'screens/ui-parts';
+import {FormSwitch} from 'screens/ui-parts';
 
 const animationTypes = ['none', 'slide', 'fade'] as const;
 
@@ -11,7 +11,7 @@ const Screen: React.FC = () => {
   const {selectedIndex: animationTypeIndex, props: animationButtonProps} = useButtonGroup(
     animationTypes.map(v => v.toString()),
   );
-  const {value: transparent, props: transparentProps} = useFormSwitch(true);
+  const {value: transparent, props: transparentProps} = useSwitch(true);
 
   return (
     <View style={styles.container}>
