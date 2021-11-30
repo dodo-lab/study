@@ -22,6 +22,7 @@ export const RootStackNav: React.FC = () => {
       <Stack.Screen {...Screens.ComponentsScreen} />
       <Stack.Screen {...Screens.ActivityIndicatorScreen} />
       <Stack.Screen {...Screens.ModalScreen} />
+      <Stack.Screen {...Screens.RefreshControlScreen} />
     </Stack.Navigator>
   );
 };
