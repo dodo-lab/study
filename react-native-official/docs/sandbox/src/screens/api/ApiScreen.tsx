@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {LinkList} from 'screens/ui-parts';
-import {AppStateScreen} from './apis';
+import * as Screens from './apis';
 
-const data = [AppStateScreen.name];
+const screens = Object.values(Screens);
+const data = screens.map(screen => screen.name);
 
 const Screen: React.FC = () => {
   return <LinkList data={data} />;

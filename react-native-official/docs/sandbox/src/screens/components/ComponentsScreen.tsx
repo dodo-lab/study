@@ -1,8 +1,9 @@
 import React from 'react';
 import {LinkList} from 'screens/ui-parts/LinkList';
-import {ActivityIndicatorScreen, ModalScreen, RefreshControlScreen} from './core';
+import * as Screens from './core';
 
-const data = [ActivityIndicatorScreen.name, ModalScreen.name, RefreshControlScreen.name];
+const screens = Object.values(Screens);
+const data = screens.map(screen => screen.name);
 
 const Screen: React.FC = () => {
   return <LinkList data={data} />;

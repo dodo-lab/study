@@ -28,7 +28,7 @@ const Screen: React.FC = () => {
   return <LinkList data={data} />;
 };
 
-export const TopScreen = {
+export const TopScreen: ScreenProps = {
   name: 'Top',
   component: Screen,
   options: {
