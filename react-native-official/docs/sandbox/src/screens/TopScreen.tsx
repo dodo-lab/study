@@ -7,6 +7,7 @@ import {
   HermesConfirmScreen,
   NativeModuleScreen,
   NativeUIScreen,
+  AsyncStorageScreen,
 } from './various';
 import {AnimationsScreen} from './animations';
 import {ComponentsScreen} from './components';
@@ -22,6 +23,7 @@ const data = [
   NativeUIScreen.name,
   ComponentsScreen.name,
   ApiScreen.name,
+  AsyncStorageScreen.name,
 ];
 
 const Screen: React.FC = () => {
