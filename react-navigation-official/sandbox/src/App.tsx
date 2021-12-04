@@ -13,6 +13,7 @@ const HomeScreen: React.FC<HomeProps> = ({navigation}) => {
         title="Go to Details"
         onPress={() => navigation.navigate('Details', {userId: '1001', title: 'My details'})}
       />
+      <Button title="Update title" onPress={() => navigation.setOptions({title: 'Update!!'})} />
     </View>
   );
 };
