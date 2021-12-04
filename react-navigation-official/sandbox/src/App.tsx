@@ -9,7 +9,10 @@ const HomeScreen: React.FC<HomeProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text h1>Home Screen</Text>
-      <Button title="Go to Details" onPress={() => navigation.navigate('Details', {userId: '1001'})} />
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details', {userId: '1001', title: 'My details'})}
+      />
     </View>
   );
 };
@@ -26,7 +29,10 @@ const DetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
       <Text>{userId}</Text>
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button title="Pop to top" onPress={() => navigation.popToTop()} />
-      <Button title="push Details" onPress={() => navigation.push('Details', {userId: nextUserId})} />
+      <Button
+        title="push Details"
+        onPress={() => navigation.push('Details', {userId: nextUserId, title: route.params?.title})}
+      />
       <Button title="push Details(none)" onPress={() => navigation.push('Details')} />
     </View>
   );
@@ -34,7 +40,7 @@ const DetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
 
 type RootStackParamList = {
   Home: undefined;
-  Details: {userId: string} | undefined;
+  Details: {userId: string; title?: string} | undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -43,8 +49,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} initialParams={{userId: '1000'}} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{title: 'My home'}} />
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          initialParams={{userId: '1000', title: 'Details'}}
+          options={({route}) => ({title: route.params?.title})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
