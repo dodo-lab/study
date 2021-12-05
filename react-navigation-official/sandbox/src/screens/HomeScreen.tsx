@@ -13,6 +13,7 @@ const Screen: React.FC<Props> = ({navigation}) => {
         onPress={() => navigation.navigate('Details', {userId: '1001', title: 'My details'})}
       />
       <Button title="Go to Logo Header" onPress={() => navigation.navigate('LogoHeader')} />
+      <Button title="Go to PlacingHeaderButton" onPress={() => navigation.navigate('PlacingHeaderButton')} />
       <Button title="Update title" onPress={() => navigation.setOptions({title: 'Update!!'})} />
     </View>
   );

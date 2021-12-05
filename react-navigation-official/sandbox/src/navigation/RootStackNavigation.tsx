@@ -11,6 +11,7 @@ export const RootStackNavigation: React.FC = () => {
       <Stack.Screen {...Screens.HomeScreen} />
       <Stack.Screen {...Screens.DetailsScreen} />
       <Stack.Screen {...Screens.LogoHeaderScreen} />
+      <Stack.Screen {...Screens.PlacingHeaderButtonScreen} />
     </Stack.Navigator>
   );
 };

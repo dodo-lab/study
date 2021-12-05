@@ -20,5 +20,6 @@ declare global {
     Home: undefined;
     Details: {userId: string; title?: string} | undefined;
     LogoHeader: undefined;
+    PlacingHeaderButton: undefined;
   };
 }
