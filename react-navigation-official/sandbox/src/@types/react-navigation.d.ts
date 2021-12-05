@@ -1,4 +1,4 @@
-import {EventMapBase, RouteConfig} from '@react-navigation/core';
+import {EventMapBase, RouteConfig} from '@react-navigation/native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import type {NavigationState, ParamListBase} from '@react-navigation/routers';
 
@@ -8,11 +8,17 @@ declare global {
     interface RootParamList extends ParamListBase {}
   }
 
-  type ScreenProps = RouteConfig<
-    ParamListBase,
-    keyof ParamListBase,
+  type ScreenProps<RouteName extends keyof RootStackParamList> = RouteConfig<
+    RootStackParamList,
+    RouteName,
     NavigationState,
     NativeStackNavigationOptions,
     EventMapBase
   >;
+
+  type RootStackParamList = {
+    Home: undefined;
+    Details: {userId: string; title?: string} | undefined;
+    LogoHeader: undefined;
+  };
 }
