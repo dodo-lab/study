@@ -34,5 +34,6 @@ export const HomeScreen: ScreenProps<'Home'> = {
     headerStyle: {backgroundColor: '#f4511e'},
     headerTintColor: '#fff',
     headerTitleStyle: {fontWeight: 'bold'},
+    headerRight: () => <Button onPress={() => alert('Header button')} title="Info" />,
   },
 };
