@@ -15,7 +15,7 @@ export const Navigation: React.FC<Props> = ({route}) => {
   );
 };
 
-export const MainTabNavigation: ScreenProps<'MainTabNav'> = {
+export const MainTabNav: ScreenProps<'MainTabNav'> = {
   name: 'MainTabNav',
   component: Navigation,
   options: {

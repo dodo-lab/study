@@ -1,11 +1,11 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import * as Screens from 'screens';
-import {MainTabNavigation} from './MainTabNavigation';
+import {MainTabNav} from './MainTabNav';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const RootStackNavigation: React.FC = () => {
+export const RootStackNav: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{headerTitleAlign: 'center'}}>
       {/* TODO: mapで一括制御したい */}
@@ -13,7 +13,7 @@ export const RootStackNavigation: React.FC = () => {
       <Stack.Screen {...Screens.DetailsScreen} />
       <Stack.Screen {...Screens.LogoHeaderScreen} />
       <Stack.Screen {...Screens.PlacingHeaderButtonScreen} />
-      <Stack.Screen {...MainTabNavigation} />
+      <Stack.Screen {...MainTabNav} />
     </Stack.Navigator>
   );
 };
