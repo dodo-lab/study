@@ -31,8 +31,8 @@ declare global {
     Details: {userId: string; title?: string} | undefined;
     LogoHeader: undefined;
     PlacingHeaderButton: undefined;
-    MainTabNav: undefined;
-    Settings: undefined;
+    MainTabNav: {screen: 'News' | 'Settings' = 'News'} | undefined;
     News: undefined;
+    Settings: undefined;
   };
 }
