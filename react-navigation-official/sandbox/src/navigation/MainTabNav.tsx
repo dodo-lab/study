@@ -3,19 +3,19 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import * as Screens from 'screens';
 
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<MainTabParamList>();
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainTabNav'>;
 export const Navigation: React.FC<Props> = ({route}) => {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}} initialRouteName={route.params?.screen}>
+    <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen {...Screens.NewsScreen} />
       <Tab.Screen {...Screens.SettingsScreen} />
     </Tab.Navigator>
   );
 };
 
-export const MainTabNav: ScreenProps<'MainTabNav'> = {
+export const MainTabNav: ScreenProps<RootStackParamList, 'MainTabNav'> = {
   name: 'MainTabNav',
   component: Navigation,
   options: {

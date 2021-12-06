@@ -4,7 +4,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Settings'>;
+type Props = NativeStackScreenProps<MainTabParamList, 'Settings'>;
 const Screen: React.FC<Props> = ({navigation}) => {
   return (
     <View style={styles.container}>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SettingsScreen: TabScreenProps<'Settings'> = {
+export const SettingsScreen: TabScreenProps<MainTabParamList, 'Settings'> = {
   name: 'Settings',
   component: Screen,
   options: {

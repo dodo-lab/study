@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const HomeScreen: ScreenProps<'Home'> = {
+export const HomeScreen: ScreenProps<RootStackParamList, 'Home'> = {
   name: 'Home',
   component: Screen,
   options: {
