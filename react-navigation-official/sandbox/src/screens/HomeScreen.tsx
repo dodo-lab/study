@@ -1,10 +1,20 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 const Screen: React.FC<Props> = ({navigation}) => {
+  useEffect(() => {
+    const subscribe = navigation.addListener('focus', () => console.log('focus'));
+    return subscribe;
+  }, [navigation]);
+
+  useEffect(() => {
+    const subscribe = navigation.addListener('blur', () => console.log('blur'));
+    return subscribe;
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text h1>Home Screen</Text>

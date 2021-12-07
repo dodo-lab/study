@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
@@ -8,6 +8,11 @@ const Screen: React.FC<Props> = ({navigation, route}) => {
   if (!route.params?.userId) throw new Error('userId is undefined');
   const userId = route.params.userId;
   const nextUserId = (parseInt(userId, 10) + 1).toString();
+
+  useEffect(() => {
+    const subscribe = navigation.addListener('beforeRemove', () => console.log('beforeRemove'));
+    return subscribe;
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
