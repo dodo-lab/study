@@ -1,11 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useLayoutEffect, useReducer, useState} from 'react';
+import React, {useLayoutEffect, useReducer} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PlacingHeaderButton'>;
 const Screen: React.FC<Props> = ({navigation}) => {
-  const [count, countIncrement] = useReducer(value => value + 1, 0);
+  const [count, countIncrement] = useReducer((value: number) => value + 1, 0);
 
   // コンポーネントからsetOptionsを使うことで、ヘッダボタンとコンポーネントの連携が可能になる.
   useLayoutEffect(() => {

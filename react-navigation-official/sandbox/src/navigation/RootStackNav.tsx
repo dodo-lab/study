@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import * as Screens from 'screens';
+
 import {MainTabNav} from './MainTabNav';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

@@ -1,4 +1,3 @@
-import {RouteProp} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -8,7 +7,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Details'>;
 const Screen: React.FC<Props> = ({navigation, route}) => {
   if (!route.params?.userId) throw new Error('userId is undefined');
   const userId = route.params.userId;
-  const nextUserId = (parseInt(userId) + 1).toString();
+  const nextUserId = (parseInt(userId, 10) + 1).toString();
 
   return (
     <View style={styles.container}>
