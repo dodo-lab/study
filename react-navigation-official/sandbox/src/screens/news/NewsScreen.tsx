@@ -27,5 +27,9 @@ export const NewsScreen: TabScreenProps<MainTabParamList, 'News'> = {
   options: {
     title: 'News',
     tabBarIcon: ({color}) => <Entypo name="news" size={24} color={color} />,
+    tabBarBadge: 5,
+    tabBarBadgeStyle: {
+      backgroundColor: 'green',
+    },
   },
 };
