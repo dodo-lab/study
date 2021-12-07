@@ -32,6 +32,6 @@ declare global {
 
   type MainTabParamList = {
     News: undefined;
-    Settings: undefined;
+    Settings: {userId: string};
   };
 }

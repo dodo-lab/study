@@ -5,10 +5,11 @@ import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<MainTabParamList, 'Settings'>;
-const Screen: React.FC<Props> = ({navigation}) => {
+const Screen: React.FC<Props> = ({route}) => {
   return (
     <View style={styles.container}>
       <Text h1>SettingsScreen</Text>
+      <Text h4>{route.params.userId}</Text>
     </View>
   );
 };
