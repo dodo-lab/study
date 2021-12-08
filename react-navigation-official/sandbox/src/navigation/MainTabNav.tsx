@@ -6,7 +6,7 @@ import * as Screens from 'screens';
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainTabNav'>;
-export const Navigation: React.FC<Props> = ({route}) => {
+const Navigation: React.FC<Props> = ({route}) => {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen {...Screens.NewsScreen} />
