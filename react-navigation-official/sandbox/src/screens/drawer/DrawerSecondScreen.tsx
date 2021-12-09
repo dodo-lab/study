@@ -1,9 +1,9 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {DrawerScreenProps} from '@react-navigation/drawer';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
-type Props = NativeStackScreenProps<DrawerParamList, 'DrawerSecond'>;
+type Props = DrawerScreenProps<DrawerParamList, 'DrawerSecond'>;
 const Screen: React.FC<Props> = ({navigation}) => {
   return (
     <View style={styles.container}>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const DrawerSecondScreen: DrawerScreenProps<DrawerParamList, 'DrawerSecond'> = {
+export const DrawerSecondScreen: DrawerInstanceProps<DrawerParamList, 'DrawerSecond'> = {
   name: 'DrawerSecond',
   component: Screen,
   options: {

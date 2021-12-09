@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const HomeScreen: ScreenProps<RootStackParamList, 'Home'> = {
+export const HomeScreen: ScreenInstanceProps<RootStackParamList, 'Home'> = {
   name: 'Home',
   component: Screen,
   options: {

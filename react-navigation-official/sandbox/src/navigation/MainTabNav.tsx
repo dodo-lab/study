@@ -15,7 +15,7 @@ const Navigation: React.FC<Props> = ({route}) => {
   );
 };
 
-export const MainTabNav: ScreenProps<RootStackParamList, 'MainTabNav'> = {
+export const MainTabNav: ScreenInstanceProps<RootStackParamList, 'MainTabNav'> = {
   name: 'MainTabNav',
   component: Navigation,
   options: {

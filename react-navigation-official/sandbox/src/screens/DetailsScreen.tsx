@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const DetailsScreen: ScreenProps<RootStackParamList, 'Details'> = {
+export const DetailsScreen: ScreenInstanceProps<RootStackParamList, 'Details'> = {
   name: 'Details',
   component: Screen,
   initialParams: {userId: '1000', title: 'Details'},

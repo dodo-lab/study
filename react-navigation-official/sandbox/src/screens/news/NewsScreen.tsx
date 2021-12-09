@@ -1,11 +1,11 @@
 import {Entypo} from '@expo/vector-icons';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
-type Props = NativeStackScreenProps<MainTabParamList, 'News'>;
-const Screen: React.FC<Props> = ({navigation}) => {
+type Props = BottomTabScreenProps<MainTabParamList, 'News'>;
+const Screen: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <Text h1>NewsScreen</Text>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const NewsScreen: TabScreenProps<MainTabParamList, 'News'> = {
+export const NewsScreen: TabInstanceProps<MainTabParamList, 'News'> = {
   name: 'News',
   component: Screen,
   options: {

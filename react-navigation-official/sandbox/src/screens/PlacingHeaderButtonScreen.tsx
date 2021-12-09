@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PlacingHeaderButtonScreen: ScreenProps<RootStackParamList, 'PlacingHeaderButton'> = {
+export const PlacingHeaderButtonScreen: ScreenInstanceProps<RootStackParamList, 'PlacingHeaderButton'> = {
   name: 'PlacingHeaderButton',
   component: Screen,
   options: {

@@ -1,10 +1,10 @@
 import {Ionicons} from '@expo/vector-icons';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
-type Props = NativeStackScreenProps<MainTabParamList, 'Settings'>;
+type Props = BottomTabScreenProps<MainTabParamList, 'Settings'>;
 const Screen: React.FC<Props> = ({route}) => {
   return (
     <View style={styles.container}>
@@ -22,11 +22,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SettingsScreen: TabScreenProps<MainTabParamList, 'Settings'> = {
+export const SettingsScreen: TabInstanceProps<MainTabParamList, 'Settings'> = {
   name: 'Settings',
   component: Screen,
   options: {
     title: 'Settings',
     tabBarIcon: ({color}) => <Ionicons name="md-settings-outline" size={24} color={color} />,
   },
+  initialParams: {userId: '001'},
 };
