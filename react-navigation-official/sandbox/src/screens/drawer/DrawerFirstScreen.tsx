@@ -9,6 +9,7 @@ const Screen: React.FC<Props> = ({navigation}) => {
     <View style={styles.container}>
       <Text h1>DrawerFirstScreen</Text>
       <Button title="Go to Second" onPress={() => navigation.navigate('DrawerSecond')} />
+      <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
     </View>
   );
 };
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
 });
 
