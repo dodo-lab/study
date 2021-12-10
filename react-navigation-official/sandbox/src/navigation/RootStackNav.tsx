@@ -9,8 +9,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootStackNav: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{headerTitleAlign: 'center'}}>
+    <Stack.Navigator initialRouteName="Top" screenOptions={{headerTitleAlign: 'center'}}>
       {/* TODO: mapで一括制御したい */}
+      <Stack.Screen {...Screens.TopScreen} />
       <Stack.Screen {...Screens.HomeScreen} />
       <Stack.Screen {...Screens.DetailsScreen} />
       <Stack.Screen {...Screens.LogoHeaderScreen} />

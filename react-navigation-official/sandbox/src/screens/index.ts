@@ -1,3 +1,4 @@
+export * from './TopScreen';
 export * from './various';
 export * from './settings';
 export * from './news';

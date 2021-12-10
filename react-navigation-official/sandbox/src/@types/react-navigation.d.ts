@@ -38,6 +38,7 @@ declare global {
   >;
 
   type RootStackParamList = {
+    Top: undefined;
     Home: undefined;
     Details: {userId: string; title?: string} | undefined;
     LogoHeader: undefined;
