@@ -1,13 +1,16 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useUser} from 'contexts';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<AuthenticationFlowStackParamList, 'SignIn'>;
-const Screen: React.FC<Props> = ({navigation}) => {
+const Screen: React.FC<Props> = () => {
+  const {signIn} = useUser();
+
   return (
     <View style={styles.container}>
-      <Text h1>SignInScreen</Text>
+      <Button title="Sign in" onPress={signIn} />
     </View>
   );
 };
