@@ -22,14 +22,10 @@ const Screen: React.FC<Props> = ({navigation}) => {
         title="Go to Details"
         onPress={() => navigation.navigate('Details', {userId: '1001', title: 'My details'})}
       />
-      <Button title="Go to Logo Header" onPress={() => navigation.navigate('LogoHeader')} />
-      <Button title="Go to PlacingHeaderButton" onPress={() => navigation.navigate('PlacingHeaderButton')} />
-      <Button title="Go to MainTabNav" onPress={() => navigation.navigate('MainTabNav')} />
       <Button
         title="Go to MainTabNav(Settings)"
         onPress={() => navigation.navigate('MainTabNav', {screen: 'Settings', params: {userId: 'test-user'}})}
       />
-      <Button title="Go to DrawerNav" onPress={() => navigation.navigate('DrawerNav')} />
       <Button title="Update title" onPress={() => navigation.setOptions({title: 'Update!!'})} />
     </View>
   );

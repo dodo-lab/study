@@ -45,6 +45,7 @@ declare global {
     PlacingHeaderButton: undefined;
     MainTabNav: NavigatorScreenParams<MainTabParamList> | undefined;
     DrawerNav: NavigatorScreenParams<DrawerParamList> | undefined;
+    AuthenticationFlowNav: NavigatorScreenParams<AuthenticationFlowStackParamList> | undefined;
   };
 
   type MainTabParamList = {
@@ -55,5 +56,11 @@ declare global {
   type DrawerParamList = {
     DrawerFirst: undefined;
     DrawerSecond: undefined;
+  };
+
+  type AuthenticationFlowStackParamList = {
+    SignIn: undefined;
+    UserHome: undefined;
+    UserSettings: undefined;
   };
 }

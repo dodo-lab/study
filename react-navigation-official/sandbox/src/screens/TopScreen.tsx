@@ -3,7 +3,14 @@ import React from 'react';
 
 import {LinkList} from './ui-parts/LinkList';
 
-const data: (keyof RootStackParamList)[] = ['Home', 'MainTabNav', 'DrawerNav'];
+const data: (keyof RootStackParamList)[] = [
+  'Home',
+  'LogoHeader',
+  'PlacingHeaderButton',
+  'MainTabNav',
+  'DrawerNav',
+  'AuthenticationFlowNav',
+];
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Top'>;
 const Screen: React.FC<Props> = ({navigation}) => {
