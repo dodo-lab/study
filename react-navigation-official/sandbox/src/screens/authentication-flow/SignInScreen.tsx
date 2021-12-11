@@ -1,16 +1,28 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useUser} from 'contexts';
+import {useInput} from 'hooks/useInput';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button, Input} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<AuthenticationFlowStackParamList, 'SignIn'>;
 const Screen: React.FC<Props> = () => {
+  const [userId, userIdProps] = useInput('');
   const {signIn} = useUser();
+
+  const handlePress = () => {
+    if (userId === '') {
+      alert('IDを入力してください');
+      return;
+    }
+
+    signIn(userId);
+  };
 
   return (
     <View style={styles.container}>
-      <Button title="Sign in" onPress={signIn} />
+      <Input {...userIdProps} placeholder="User Id" />
+      <Button title="Sign in" onPress={handlePress} />
     </View>
   );
 };

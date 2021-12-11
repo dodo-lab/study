@@ -1,19 +1,25 @@
+import * as SecureStore from 'expo-secure-store';
 import {createUseContextAndProvider} from 'framework/utils/contextUtils';
-import React, {Reducer, useMemo, useReducer} from 'react';
+import React, {Reducer, useEffect, useMemo, useReducer} from 'react';
 
 type UserContextParams = {
-  signIn: () => void;
+  signIn: (token: string) => void;
   signOut: () => void;
   isSignedIn: () => boolean;
 };
 
-type UserActionType = keyof Pick<UserContextParams, 'signIn' | 'signOut'>;
+type UserActionType = {
+  type: keyof Pick<UserContextParams, 'signIn' | 'signOut'>;
+  token?: string;
+};
+
+const STORE_KEY = 'userToken';
 
 const [useUser, UserProvider] = createUseContextAndProvider<UserContextParams>();
 
 const WithUser: React.FC = ({children}) => {
-  const [token, dispatch] = useReducer<Reducer<string | null, UserActionType>>((_, action) => {
-    switch (action) {
+  const [userToken, dispatch] = useReducer<Reducer<string | null, UserActionType>>((_, action) => {
+    switch (action.type) {
       case 'signIn':
         return 'signedIn';
       case 'signOut':
@@ -21,13 +27,37 @@ const WithUser: React.FC = ({children}) => {
     }
   }, null);
 
+  useEffect(() => {
+    const restoreSync = async () => {
+      try {
+        const restoreToken = await SecureStore.getItemAsync(STORE_KEY);
+        console.log('restore', restoreToken);
+        if (restoreToken) {
+          dispatch({type: 'signIn', token: restoreToken});
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    restoreSync().catch(e => console.error(e));
+  }, []);
+
   const userContext = useMemo<UserContextParams>(
     () => ({
-      signIn: () => dispatch('signIn'),
-      signOut: () => dispatch('signOut'),
-      isSignedIn: () => token !== null,
+      signIn: token => {
+        SecureStore.setItemAsync(STORE_KEY, token)
+          .then(() => dispatch({type: 'signIn', token}))
+          .catch(e => console.error(e));
+      },
+      signOut: () => {
+        SecureStore.deleteItemAsync(STORE_KEY)
+          .then(() => dispatch({type: 'signOut'}))
+          .catch(e => console.error(e));
+      },
+      isSignedIn: () => userToken !== null,
     }),
-    [token],
+    [userToken],
   );
 
   return <UserProvider value={userContext}>{children}</UserProvider>;
