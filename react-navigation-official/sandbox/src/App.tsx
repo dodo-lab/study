@@ -1,11 +1,14 @@
 import {NavigationContainer} from '@react-navigation/native';
+import {WithUser} from 'contexts';
 import {RootStackNav} from 'navigation/RootStackNav';
 import React from 'react';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RootStackNav />
-    </NavigationContainer>
+    <WithUser>
+      <NavigationContainer>
+        <RootStackNav />
+      </NavigationContainer>
+    </WithUser>
   );
 }
