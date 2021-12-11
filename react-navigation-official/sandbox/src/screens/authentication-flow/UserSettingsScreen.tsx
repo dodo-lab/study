@@ -1,13 +1,16 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useUser} from 'contexts';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<AuthenticationFlowStackParamList, 'UserSettings'>;
-const Screen: React.FC<Props> = ({navigation}) => {
+const Screen: React.FC<Props> = () => {
+  const {signOut} = useUser();
+
   return (
     <View style={styles.container}>
-      <Text h1>UserSettingsScreen</Text>
+      <Button title="Sign out" onPress={signOut} />
     </View>
   );
 };

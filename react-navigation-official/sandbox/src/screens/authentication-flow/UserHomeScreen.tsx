@@ -1,13 +1,13 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 type Props = NativeStackScreenProps<AuthenticationFlowStackParamList, 'UserHome'>;
 const Screen: React.FC<Props> = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text h1>UserHomeScreen</Text>
+      <Button title="Go to UserSettings" onPress={() => navigation.navigate('UserSettings')} />
     </View>
   );
 };
