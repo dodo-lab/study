@@ -46,6 +46,7 @@ declare global {
     MainTabNav: NavigatorScreenParams<MainTabParamList> | undefined;
     DrawerNav: NavigatorScreenParams<DrawerParamList> | undefined;
     AuthenticationFlowNav: NavigatorScreenParams<AuthenticationFlowStackParamList> | undefined;
+    Modal: {message: string};
   };
 
   type MainTabParamList = {

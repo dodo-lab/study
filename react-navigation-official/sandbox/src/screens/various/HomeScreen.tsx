@@ -26,6 +26,7 @@ const Screen: React.FC<Props> = ({navigation}) => {
         title="Go to MainTabNav(Settings)"
         onPress={() => navigation.navigate('MainTabNav', {screen: 'Settings', params: {userId: 'test-user'}})}
       />
+      <Button title="Open modal" onPress={() => navigation.navigate('Modal', {message: 'from home!'})} />
       <Button title="Update title" onPress={() => navigation.setOptions({title: 'Update!!'})} />
     </View>
   );
