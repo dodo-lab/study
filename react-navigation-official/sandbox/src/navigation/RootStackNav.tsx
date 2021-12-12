@@ -1,4 +1,3 @@
-import {Ionicons} from '@expo/vector-icons';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import * as Screens from 'screens';
@@ -18,6 +17,7 @@ export const RootStackNav: React.FC = () => {
         <Stack.Screen {...Screens.DetailsScreen} />
         <Stack.Screen {...Screens.LogoHeaderScreen} />
         <Stack.Screen {...Screens.PlacingHeaderButtonScreen} />
+        <Stack.Screen {...Screens.CustomizeHardwareBackScreen} />
         <Stack.Screen {...MainTabNav} />
         <Stack.Screen {...DrawerNav} />
         <Stack.Screen {...AuthenticationFlowNav} />
