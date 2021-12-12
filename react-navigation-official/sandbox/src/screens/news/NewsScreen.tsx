@@ -1,11 +1,19 @@
 import {Entypo} from '@expo/vector-icons';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import React from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
 type Props = BottomTabScreenProps<MainTabParamList, 'News'>;
 const Screen: React.FC<Props> = () => {
+  useFocusEffect(
+    useCallback(() => {
+      console.log('focused');
+      return () => console.log('unfocused');
+    }, []),
+  );
+
   return (
     <View style={styles.container}>
       <Text h1>NewsScreen</Text>
