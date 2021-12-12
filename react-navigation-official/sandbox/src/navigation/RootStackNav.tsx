@@ -1,4 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useInitialize} from 'contexts/InitializeContext';
 import React from 'react';
 import * as Screens from 'screens';
 
@@ -9,8 +10,12 @@ import {MainTabNav} from './MainTabNav';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootStackNav: React.FC = () => {
+  const {firstScreen} = useInitialize();
+
   return (
-    <Stack.Navigator initialRouteName="Top" screenOptions={{headerTitleAlign: 'center', animation: 'slide_from_right'}}>
+    <Stack.Navigator
+      initialRouteName={firstScreen}
+      screenOptions={{headerTitleAlign: 'center', animation: 'slide_from_right'}}>
       <Stack.Group>
         <Stack.Screen {...Screens.TopScreen} />
         <Stack.Screen {...Screens.HomeScreen} />
