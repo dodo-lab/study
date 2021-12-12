@@ -11,6 +11,7 @@ const data: (keyof RootStackParamList)[] = [
   'DrawerNav',
   'AuthenticationFlowNav',
   'CustomizeHardwareBack',
+  'PreventingGoingBack',
 ];
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Top'>;

@@ -18,6 +18,7 @@ export const RootStackNav: React.FC = () => {
         <Stack.Screen {...Screens.LogoHeaderScreen} />
         <Stack.Screen {...Screens.PlacingHeaderButtonScreen} />
         <Stack.Screen {...Screens.CustomizeHardwareBackScreen} />
+        <Stack.Screen {...Screens.PreventingGoingBackScreen} />
         <Stack.Screen {...MainTabNav} />
         <Stack.Screen {...DrawerNav} />
         <Stack.Screen {...AuthenticationFlowNav} />

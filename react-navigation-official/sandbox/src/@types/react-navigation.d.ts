@@ -48,6 +48,7 @@ declare global {
     AuthenticationFlowNav: NavigatorScreenParams<AuthenticationFlowStackParamList> | undefined;
     Modal: {message: string};
     CustomizeHardwareBack: undefined;
+    PreventingGoingBack: undefined;
   };
 
   type MainTabParamList = {
