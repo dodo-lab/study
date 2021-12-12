@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useUser} from 'contexts';
-import {useInput} from 'hooks/useInput';
+import {useInput} from 'hooks';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';

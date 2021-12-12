@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useInput} from 'hooks/useInput';
+import {useInput} from 'hooks';
 import React, {useEffect} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {Input} from 'react-native-elements';
