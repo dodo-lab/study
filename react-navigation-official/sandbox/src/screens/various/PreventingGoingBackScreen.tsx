@@ -9,27 +9,27 @@ const Screen: React.FC<Props> = ({navigation}) => {
   const [text, textProps] = useInput('');
   const hasUnsavedChanges = Boolean(text);
 
-  useEffect(
-    () =>
-      navigation.addListener('beforeRemove', e => {
-        if (!hasUnsavedChanges) return;
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', e => {
+      if (!hasUnsavedChanges) return;
 
-        e.preventDefault();
+      e.preventDefault();
 
-        Alert.alert('確認', '編集内容を破棄して、戻りますか？', [
-          {
-            text: 'No',
-            style: 'cancel',
-          },
-          {
-            text: 'Yes',
-            style: 'destructive',
-            onPress: () => navigation.dispatch(e.data.action),
-          },
-        ]);
-      }),
-    [navigation, hasUnsavedChanges],
-  );
+      Alert.alert('確認', '編集内容を破棄して、戻りますか？', [
+        {
+          text: 'No',
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          style: 'destructive',
+          onPress: () => navigation.dispatch(e.data.action),
+        },
+      ]);
+    });
+
+    return unsubscribe;
+  }, [navigation, hasUnsavedChanges]);
 
   return (
     <View style={styles.container}>
