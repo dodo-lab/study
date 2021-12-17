@@ -3,6 +3,7 @@ package com.example.diceroller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -25,26 +26,41 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
 
         val randomInt = (1..6).random()
-        val resultText: TextView = findViewById(R.id.result_text)
-        resultText.text = randomInt.toString()
+        setDiceNo(randomInt)
     }
 
     private fun reset() {
-        val resultText: TextView = findViewById(R.id.result_text)
-        resultText.text = "0"
+        setDiceNo(0)
     }
 
     private fun countUp() {
         val resultText: TextView = findViewById(R.id.result_text)
         if(resultText.text == "Hello World!") {
-            resultText.text = "1"
+            setDiceNo(1)
         }
         else {
             var next = resultText.text.toString().toInt();
             if(next < 6) {
                 next++
-                resultText.text = next.toString()
+                setDiceNo(next)
             }
         }
+    }
+
+    private fun setDiceNo(no: Int) {
+        val resultText: TextView = findViewById(R.id.result_text)
+        resultText.text = no.toString()
+
+        val diceImage: ImageView = findViewById(R.id.dice_image)
+        val drawableResource = when(no) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            6 -> R.drawable.dice_6
+            else -> R.drawable.empty_dice
+        }
+        diceImage.setImageResource(drawableResource)
     }
 }
