@@ -8,9 +8,15 @@ import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+    lateinit var resultText: TextView
+    lateinit var diceImage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        resultText = findViewById(R.id.result_text)
+        diceImage = findViewById(R.id.dice_image)
 
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
@@ -34,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun countUp() {
-        val resultText: TextView = findViewById(R.id.result_text)
         if(resultText.text == "Hello World!") {
             setDiceNo(1)
         }
@@ -48,10 +53,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDiceNo(no: Int) {
-        val resultText: TextView = findViewById(R.id.result_text)
         resultText.text = no.toString()
 
-        val diceImage: ImageView = findViewById(R.id.dice_image)
         val drawableResource = when(no) {
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
