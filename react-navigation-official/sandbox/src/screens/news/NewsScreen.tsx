@@ -1,12 +1,17 @@
 import {Entypo} from '@expo/vector-icons';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {useFocusEffect} from '@react-navigation/native';
+import {CompositeScreenProps, useFocusEffect} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {Button, Text} from 'react-native-elements';
 
-type Props = BottomTabScreenProps<MainTabParamList, 'News'>;
-const Screen: React.FC<Props> = () => {
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<MainTabParamList, 'News'>,
+  NativeStackScreenProps<RootStackParamList>
+>;
+
+const Screen: React.FC<Props> = ({navigation}) => {
   useFocusEffect(
     useCallback(() => {
       console.log('focused');
@@ -17,6 +22,8 @@ const Screen: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <Text h1>NewsScreen</Text>
+      <Button title="Go to Top" onPress={() => navigation.navigate('Top')} />
+      <Button title="Go to Settings" onPress={() => navigation.navigate('Settings', {userId: 'news'})} />
     </View>
   );
 };
