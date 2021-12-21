@@ -2,8 +2,9 @@ import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import {BottomTabNavigationEventMap} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import {DrawerNavigationOptions} from '@react-navigation/drawer';
 import {DrawerNavigationEventMap} from '@react-navigation/drawer/lib/typescript/src/types';
-import {EventMapBase, NavigatorScreenParams, RouteConfig} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteConfig} from '@react-navigation/native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import {NativeStackNavigationEventMap} from '@react-navigation/native-stack/lib/typescript/src/types';
 import type {
   DrawerNavigationState,
   NavigationState,
@@ -18,7 +19,7 @@ declare global {
     RouteName,
     NavigationState<ParamList>,
     NativeStackNavigationOptions,
-    EventMapBase
+    NativeStackNavigationEventMap
   >;
 
   type TabInstanceProps<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
