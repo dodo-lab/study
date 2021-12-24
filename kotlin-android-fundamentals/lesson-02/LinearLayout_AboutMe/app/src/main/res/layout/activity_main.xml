@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_margin"
         android:contentDescription="@string/yellow_star"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        tools:ignore="ImageContrastCheck" />
 
     <ScrollView
         android:id="@+id/bio_scroll"
@@ -31,12 +32,29 @@
         android:paddingStart="@dimen/small_padding"
         android:paddingEnd="@dimen/small_padding">
 
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/NameStyle"
+        <LinearLayout
+            android:id="@+id/bio_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/bio" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bio_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin"
+                android:background="#329358"
+                android:contentDescription="@string/bio_info"
+                app:srcCompat="@android:drawable/ic_dialog_info" />
+
+            <TextView
+                android:id="@+id/bio_text"
+                style="@style/NameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@string/bio" />
+        </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
