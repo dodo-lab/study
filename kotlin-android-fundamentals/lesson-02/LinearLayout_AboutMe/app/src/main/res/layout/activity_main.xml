@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/name_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/name"
@@ -36,6 +36,14 @@
         android:layout_marginTop="@dimen/layout_margin"
         android:fontFamily="@font/roboto"
         android:text="@string/done" />
+
+    <TextView
+        android:id="@+id/nickname_text"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/star_image"
