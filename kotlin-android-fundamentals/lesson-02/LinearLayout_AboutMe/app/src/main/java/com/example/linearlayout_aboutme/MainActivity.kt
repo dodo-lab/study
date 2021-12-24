@@ -40,5 +40,12 @@ class MainActivity : AppCompatActivity() {
         view.visibility = View.GONE
         nicknameEdit.visibility = View.VISIBLE
         doneButton.visibility = View.VISIBLE
+
+        // nicknameEditにフォーカスする
+        nicknameEdit.requestFocus()
+
+        // キーボードを表示する
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(nicknameEdit, 0)
     }
 }
