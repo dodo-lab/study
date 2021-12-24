@@ -17,7 +17,7 @@
         style="@style/NameStyle" />
 
     <EditText
-        android:id="@+id/nicname_edit"
+        android:id="@+id/nickname_edit"
         style="@style/NameStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
