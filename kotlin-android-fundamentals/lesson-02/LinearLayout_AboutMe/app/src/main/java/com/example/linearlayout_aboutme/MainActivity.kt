@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.done_button).setOnClickListener { addNickname(it) }
+        findViewById<TextView>(R.id.nickname_text).setOnClickListener { updateNickname(it) }
     }
 
     private fun addNickname(view: View) {
@@ -30,5 +31,14 @@ class MainActivity : AppCompatActivity() {
         // キーボードを非表示にする
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun updateNickname(view: View) {
+        val nicknameEdit = findViewById<EditText>(R.id.nickname_edit)
+        val doneButton = findViewById<Button>(R.id.done_button)
+
+        view.visibility = View.GONE
+        nicknameEdit.visibility = View.VISIBLE
+        doneButton.visibility = View.VISIBLE
     }
 }
