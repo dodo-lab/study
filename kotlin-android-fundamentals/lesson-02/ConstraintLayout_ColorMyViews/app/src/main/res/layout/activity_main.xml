@@ -5,6 +5,7 @@
     android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_200"
     tools:context=".MainActivity">
 
     <TextView
@@ -69,4 +70,32 @@
         app:layout_constraintStart_toEndOf="@+id/box_two_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box_four_text" />
+
+    <TextView
+        android:id="@+id/label_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:fontFamily="@font/roboto"
+        android:text="@string/how_to_play"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/info_text"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginEnd="@dimen/margin_wide"
+        android:text="@string/tap_the_boxes_and_buttons"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintStart_toEndOf="@+id/label_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/box_two_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.0"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
