@@ -18,38 +18,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        findViewById<Button>(R.id.done_button).setOnClickListener { addNickname(it) }
-        findViewById<TextView>(R.id.nickname_text).setOnClickListener { updateNickname(it) }
+        binding.doneButton.setOnClickListener { addNickname(it) }
+        binding.nicknameText.setOnClickListener { updateNickname() }
     }
 
     private fun addNickname(view: View) {
-        val nicknameEdit = findViewById<EditText>(R.id.nickname_edit)
-        val nicknameText = findViewById<TextView>(R.id.nickname_text)
-
-        nicknameText.text = nicknameEdit.text
-
-        view.visibility = View.GONE
-        nicknameEdit.visibility = View.GONE
-        nicknameText.visibility = View.VISIBLE
+        binding.apply {
+            nicknameText.text = nicknameEdit.text.toString()
+            doneButton.visibility = View.GONE
+            nicknameEdit.visibility = View.GONE
+            nicknameText.visibility = View.VISIBLE
+        }
 
         // キーボードを非表示にする
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun updateNickname(view: View) {
-        val nicknameEdit = findViewById<EditText>(R.id.nickname_edit)
-        val doneButton = findViewById<Button>(R.id.done_button)
+    private fun updateNickname() {
+        binding.apply {
+            nicknameText.visibility = View.GONE
+            nicknameEdit.visibility = View.VISIBLE
+            doneButton.visibility = View.VISIBLE
 
-        view.visibility = View.GONE
-        nicknameEdit.visibility = View.VISIBLE
-        doneButton.visibility = View.VISIBLE
-
-        // nicknameEditにフォーカスする
-        nicknameEdit.requestFocus()
+            // nicknameEditにフォーカスする
+            nicknameEdit.requestFocus()
+        }
 
         // キーボードを表示する
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(nicknameEdit, 0)
+        imm.showSoftInput(binding.nicknameEdit, 0)
     }
 }
