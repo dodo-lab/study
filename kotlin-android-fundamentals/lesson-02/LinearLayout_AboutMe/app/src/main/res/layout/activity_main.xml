@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:background="@color/accent"
             android:paddingBottom="@dimen/small_padding"
+            android:text="@={myName.nickname}"
             android:textAlignment="center"
             android:visibility="gone" />
 
