@@ -82,6 +82,12 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setImageResource(currentDessert.imageId)
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        Log.i("MainActivity", "onStart Called")
+    }
+
     /**
      * Updates the score when the dessert is clicked. Possibly shows a new dessert.
      */
