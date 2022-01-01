@@ -44,6 +44,10 @@ class GameViewModel : ViewModel() {
         _eventGameFinish.value = true
     }
 
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = false
+    }
+
     /**
      * Resets the list of words and randomizes the order
      */
