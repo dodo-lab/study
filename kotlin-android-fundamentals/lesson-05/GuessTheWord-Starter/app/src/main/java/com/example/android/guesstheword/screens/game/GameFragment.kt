@@ -57,17 +57,15 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
         // LiveDataのObserver設定
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
         viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
             if (hasFinished) gameFinished()
         })
 
         binding.gameViewModel = viewModel
+
+        // バインディングがLiveDataの更新を監視できるよう、ライフサイクルオーナーを設定する
+        binding.lifecycleOwner = viewLifecycleOwner
+
         return binding.root
 
     }
