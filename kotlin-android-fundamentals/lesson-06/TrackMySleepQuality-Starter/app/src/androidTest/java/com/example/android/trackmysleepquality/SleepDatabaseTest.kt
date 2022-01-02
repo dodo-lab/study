@@ -22,11 +22,13 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
-import org.junit.Assert.assertEquals
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
+import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.MethodSorters
 import java.io.IOException
 
 
@@ -37,6 +39,7 @@ import java.io.IOException
  */
 
 @RunWith(AndroidJUnit4::class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class SleepDatabaseTest {
 
     private lateinit var sleepDao: SleepDatabaseDao
@@ -62,10 +65,34 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() {
-        val night = SleepNight()
-        sleepDao.insert(night)
+    fun a1_insertAndGetNight() {
+        sleepDao.insert(SleepNight())
         val tonight = sleepDao.getTonight()
         assertEquals(tonight?.sleepQuality, -1)
+    }
+
+    @Test
+    fun a2_update() {
+        sleepDao.insert(SleepNight())
+        var tonight = sleepDao.getTonight()
+        assertNotNull(tonight)
+        if(tonight != null) {
+            tonight.sleepQuality = 10
+            sleepDao.update(tonight)
+
+            tonight = sleepDao.getTonight()
+            assertEquals(tonight?.sleepQuality, 10)
+        }
+    }
+
+    @Test
+    fun a3_clear() {
+        sleepDao.insert(SleepNight())
+        var tonight = sleepDao.getTonight()
+        assertNotNull(tonight)
+
+        sleepDao.clear()
+        tonight = sleepDao.getTonight()
+        assertNull(tonight)
     }
 }
