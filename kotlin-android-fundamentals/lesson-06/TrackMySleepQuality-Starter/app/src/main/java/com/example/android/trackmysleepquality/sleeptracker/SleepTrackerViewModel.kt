@@ -37,9 +37,11 @@ class SleepTrackerViewModel(
         formatNights(nights, application.resources)
     }
 
+    // SleepQualityFragmentへのナビゲーションイベント
     private val _navigateToSleepQuality = MutableLiveData<SleepNight>()
     val navigateToSleepQuality: LiveData<SleepNight> get() = _navigateToSleepQuality
 
+    // 各種ボタンの有効／無効状態
     val startButtonVisible = Transformations.map(tonight) {
         it == null
     }
