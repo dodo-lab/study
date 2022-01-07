@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SettingsScreen: TabInstanceProps<MainTabParamList, 'Settings'> = {
+export const SettingsScreen: TabInstanceConfig<MainTabParamList, 'Settings'> = {
   name: 'Settings',
   component: Screen,
   options: {

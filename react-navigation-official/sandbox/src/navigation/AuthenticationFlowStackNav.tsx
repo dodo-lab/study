@@ -23,7 +23,7 @@ const Navigation: React.FC<Props> = () => {
   );
 };
 
-export const AuthenticationFlowNav: ScreenInstanceProps<RootStackParamList, 'AuthenticationFlowNav'> = {
+export const AuthenticationFlowNav: ScreenInstanceConfig<RootStackParamList, 'AuthenticationFlowNav'> = {
   name: 'AuthenticationFlowNav',
   component: Navigation,
   options: {

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const UserSettingsScreen: ScreenInstanceProps<AuthenticationFlowStackParamList, 'UserSettings'> = {
+export const UserSettingsScreen: ScreenInstanceConfig<AuthenticationFlowStackParamList, 'UserSettings'> = {
   name: 'UserSettings',
   component: Screen,
   options: {

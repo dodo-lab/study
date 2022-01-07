@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const UserHomeScreen: ScreenInstanceProps<AuthenticationFlowStackParamList, 'UserHome'> = {
+export const UserHomeScreen: ScreenInstanceConfig<AuthenticationFlowStackParamList, 'UserHome'> = {
   name: 'UserHome',
   component: Screen,
   options: {

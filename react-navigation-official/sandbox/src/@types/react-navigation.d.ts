@@ -14,7 +14,7 @@ import type {
 
 // https://reactnavigation.org/docs/typescript/#specifying-default-types-for-usenavigation-link-ref-etc
 declare global {
-  type ScreenInstanceProps<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
+  type ScreenInstanceConfig<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
     ParamList,
     RouteName,
     NavigationState<ParamList>,
@@ -22,7 +22,7 @@ declare global {
     NativeStackNavigationEventMap
   >;
 
-  type TabInstanceProps<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
+  type TabInstanceConfig<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
     ParamList,
     RouteName,
     TabNavigationState<ParamList>,
@@ -30,7 +30,7 @@ declare global {
     BottomTabNavigationEventMap
   >;
 
-  type DrawerInstanceProps<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
+  type DrawerInstanceConfig<ParamList extends ParamListBase, RouteName extends keyof ParamList> = RouteConfig<
     ParamList,
     RouteName,
     DrawerNavigationState<ParamList>,

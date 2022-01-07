@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const DrawerFirstScreen: DrawerInstanceProps<DrawerParamList, 'DrawerFirst'> = {
+export const DrawerFirstScreen: DrawerInstanceConfig<DrawerParamList, 'DrawerFirst'> = {
   name: 'DrawerFirst',
   component: Screen,
   options: {

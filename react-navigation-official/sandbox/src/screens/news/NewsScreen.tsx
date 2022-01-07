@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const NewsScreen: TabInstanceProps<MainTabParamList, 'News'> = {
+export const NewsScreen: TabInstanceConfig<MainTabParamList, 'News'> = {
   name: 'News',
   component: Screen,
   options: {

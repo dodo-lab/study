@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const CustomizeHardwareBackScreen: ScreenInstanceProps<RootStackParamList, 'CustomizeHardwareBack'> = {
+export const CustomizeHardwareBackScreen: ScreenInstanceConfig<RootStackParamList, 'CustomizeHardwareBack'> = {
   name: 'CustomizeHardwareBack',
   component: Screen,
   options: {

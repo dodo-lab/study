@@ -13,7 +13,7 @@ const Navigation: React.FC = () => {
   );
 };
 
-export const DrawerNav: ScreenInstanceProps<RootStackParamList, 'DrawerNav'> = {
+export const DrawerNav: ScreenInstanceConfig<RootStackParamList, 'DrawerNav'> = {
   name: 'DrawerNav',
   component: Navigation,
   options: {

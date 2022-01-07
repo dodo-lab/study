@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PreventingGoingBackScreen: ScreenInstanceProps<RootStackParamList, 'PreventingGoingBack'> = {
+export const PreventingGoingBackScreen: ScreenInstanceConfig<RootStackParamList, 'PreventingGoingBack'> = {
   name: 'PreventingGoingBack',
   component: Screen,
   options: {

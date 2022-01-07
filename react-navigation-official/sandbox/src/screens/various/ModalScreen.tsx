@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ModalScreen: ScreenInstanceProps<RootStackParamList, 'Modal'> = {
+export const ModalScreen: ScreenInstanceConfig<RootStackParamList, 'Modal'> = {
   name: 'Modal',
   component: Screen,
   options: {

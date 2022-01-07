@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const DrawerSecondScreen: DrawerInstanceProps<DrawerParamList, 'DrawerSecond'> = {
+export const DrawerSecondScreen: DrawerInstanceConfig<DrawerParamList, 'DrawerSecond'> = {
   name: 'DrawerSecond',
   component: Screen,
   options: {

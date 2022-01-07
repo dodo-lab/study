@@ -19,7 +19,7 @@ const Screen: React.FC<Props> = ({navigation}) => {
   return <LinkList<RootStackParamList> data={data} onPress={index => navigation.navigate(data[index])} />;
 };
 
-export const TopScreen: ScreenInstanceProps<RootStackParamList, 'Top'> = {
+export const TopScreen: ScreenInstanceConfig<RootStackParamList, 'Top'> = {
   name: 'Top',
   component: Screen,
   options: {

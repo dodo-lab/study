@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SignInScreen: ScreenInstanceProps<AuthenticationFlowStackParamList, 'SignIn'> = {
+export const SignInScreen: ScreenInstanceConfig<AuthenticationFlowStackParamList, 'SignIn'> = {
   name: 'SignIn',
   component: Screen,
   options: {

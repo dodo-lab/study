@@ -30,7 +30,7 @@ const LogoTitle: React.FC = () => {
   return <Image style={{width: 40, height: 40}} source={logo} />;
 };
 
-export const LogoHeaderScreen: ScreenInstanceProps<RootStackParamList, 'LogoHeader'> = {
+export const LogoHeaderScreen: ScreenInstanceConfig<RootStackParamList, 'LogoHeader'> = {
   name: 'LogoHeader',
   component: Screen,
   options: {
