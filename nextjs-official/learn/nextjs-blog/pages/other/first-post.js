@@ -28,6 +28,10 @@ export default function FirstPost() {
         <Link href="/">
           <a>Back to home</a>
         </Link>
+        <br />
+        <Link href="/other/redirect">
+          <a>Redirect</a>
+        </Link>
       </h2>
     </Layout>
   );
