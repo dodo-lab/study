@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-
-import styles from '../styles/Home.module.css';
+import {useState} from 'react';
 import CodeSampleModal from '../components/CodeSampleModal';
+import styles from '../styles/Home.module.css';
 
-export default function Start({ countries }) {
+export default function Start({countries}) {
   const [results, setResults] = useState(countries);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,10 +14,7 @@ export default function Start({ countries }) {
         <title>Core Web Vitals</title>
         <meta name="description" content="Core web vitals walk through" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet" />
       </Head>
 
       <main className={styles.container}>
@@ -36,24 +32,20 @@ export default function Start({ countries }) {
             type="text"
             placeholder="Country search..."
             className={styles.input}
-            onChange={async (e) => {
-              const { value } = e.currentTarget;
+            onChange={async e => {
+              const {value} = e.currentTarget;
 
-              const Fuse = (await import('fuse.js')).default
-              const _ = (await import('lodash')).default
+              const Fuse = (await import('fuse.js')).default;
+              const _ = (await import('lodash')).default;
 
               const fuse = new Fuse(countries, {
                 keys: ['name'],
                 threshold: 0.3,
               });
 
-              const searchResult = fuse
-                .search(value)
-                .map((result) => result.item);
+              const searchResult = fuse.search(value).map(result => result.item);
 
-              const updatedResults = searchResult.length
-                ? searchResult
-                : countries;
+              const updatedResults = searchResult.length ? searchResult : countries;
               setResults(updatedResults);
 
               // Fake analytics hit
@@ -64,7 +56,7 @@ export default function Start({ countries }) {
           />
 
           <ul className={styles.countries}>
-            {results.map((country) => (
+            {results.map(country => (
               <li key={country.cca2} className={styles.country}>
                 <p>
                   {country.name} - {country.population.toLocaleString()}
@@ -78,10 +70,7 @@ export default function Start({ countries }) {
           <h2 className={styles.secondaryHeading}>Code Sample</h2>
           <p>Ever wondered how to write a function that prints Hello World?</p>
           <button onClick={() => setIsModalOpen(true)}>Show Me</button>
-          <CodeSampleModal
-            isOpen={isModalOpen}
-            closeModal={() => setIsModalOpen(false)}
-          />
+          <CodeSampleModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
         </div>
       </main>
 
@@ -89,11 +78,10 @@ export default function Start({ countries }) {
         <a
           href="https://vercel.com?utm_source=learn&&utm_campaign=core-web-vitals"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           Powered by
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt='Vercel Logo' width={72} height={16} />
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
@@ -107,7 +95,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      countries: countries.map((country) => ({
+      countries: countries.map(country => ({
         name: country.name.common,
         cca2: country.cca2,
         population: country.population,
