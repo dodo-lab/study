@@ -1,7 +1,11 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function MyApp({Component, pageProps}) {
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export function reportWebVitals(metric) {
+  console.log(metric);
+}
+
+export default MyApp;
