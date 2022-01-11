@@ -5,13 +5,13 @@ type Props = {
   message: string;
 };
 
-const About: React.FC<Props> = ({message}) => {
+const StaticPage: React.FC<Props> = ({message}) => {
   useEffect(() => {
     console.log('useEffect');
   }, []);
   return (
     <>
-      <h1>About</h1>
+      <h1>Static Page</h1>
       <p>{message}</p>
     </>
   );
@@ -26,4 +26,4 @@ export const getStaticProps: GetStaticProps = async context => {
   };
 };
 
-export default About;
+export default StaticPage;

@@ -16,8 +16,8 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Go to{' '}
-          <Link href="/about">
-            <a>About</a>
+          <Link href="/static-page">
+            <a>Static Page</a>
           </Link>
         </h1>
 
