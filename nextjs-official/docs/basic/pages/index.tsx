@@ -20,6 +20,12 @@ const Home: NextPage = () => {
             <a>Static Page</a>
           </Link>
         </h1>
+        <h1 className={styles.title}>
+          Go to{' '}
+          <Link href="/dynamic-page">
+            <a>Dynamic Page</a>
+          </Link>
+        </h1>
 
         <p className={styles.description}>
           Get started by editing <code className={styles.code}>pages/index.tsx</code>
