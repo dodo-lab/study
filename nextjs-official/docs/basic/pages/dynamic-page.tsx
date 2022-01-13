@@ -2,26 +2,29 @@ import {GetServerSideProps} from 'next';
 import React, {useEffect} from 'react';
 
 type Props = {
-  message: string;
+  host?: string;
+  test?: string;
 };
 
-const DynamicPage: React.FC<Props> = ({message}) => {
+const DynamicPage: React.FC<Props> = ({host, test}) => {
   useEffect(() => {
     console.log('useEffect dynamic');
   }, []);
   return (
     <>
       <h1>Dynamic Page</h1>
-      <p>{message}</p>
+      <p>{host}</p>
+      <p>{test}</p>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps<Props> = async context => {
   console.log('getServerSideProps');
   return {
     props: {
-      message: 'server-side',
+      host: process.env.DB_HOST,
+      test: process.env.DEV_TEST,
     },
   };
 };
