@@ -15,6 +15,7 @@ const DynamicPage: React.FC<Props> = ({host, test}) => {
       <h1>Dynamic Page</h1>
       <p>{host}</p>
       <p>{test}</p>
+      <p>{process.env.NEXT_PUBLIC_ANALYTICS_ID}</p>
     </>
   );
 };
