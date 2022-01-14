@@ -8,6 +8,7 @@ const links = [
   {name: 'Static Page', href: '/static-page'},
   {name: 'Dynamic Page', href: '/dynamic-page'},
   {name: 'Item Page', href: '/item/1001/sort-by'},
+  {name: 'Shallow Routing', href: '/shallow-routing?counter=5'},
 ];
 
 const Home: NextPage = () => {
