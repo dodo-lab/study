@@ -1,7 +1,7 @@
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import Router from 'next/router';
+import LinkList from '../components/parts/LinkList';
 import styles from '../styles/Home.module.css';
 
 const links = [
@@ -25,14 +25,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {links.map(link => (
-          <h1 key={link.href} className={styles.title}>
-            Go to{' '}
-            <Link href={link.href}>
-              <a>{link.name}</a>
-            </Link>
-          </h1>
-        ))}
+        <LinkList links={links} />
         <button onClick={goToItemPage}>Go to Item Page</button>
       </main>
     </div>
