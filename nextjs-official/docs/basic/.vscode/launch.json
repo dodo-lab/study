@@ -7,6 +7,17 @@
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
       "port": 9229
+    },
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "Next: Client",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack://_N_E/*": "${webRoot}/*"
+      }
     }
   ]
 }
