@@ -1,1 +1,7 @@
 apply plugin: "java"
+
+// javac のオプション
+// http://gradle.monochromeroad.com/docs/dsl/org.gradle.api.tasks.compile.CompileOptions.html
+compileJava {
+  options.encoding = 'UTF-8'
+}
