@@ -18,6 +18,10 @@ distZip {
   baseName = 'HelloGradle'
 }
 
+javadoc {
+  options.encoding = 'UTF-8'
+}
+
 // ★ローカルのサードパーティライブラリ(jar)を利用
 // dependencies {
 //   implementation files('lib/commons-lang3-3.1.jar')
