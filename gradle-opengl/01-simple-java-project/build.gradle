@@ -13,3 +13,7 @@ startScripts {
   // スクリプトファイル名
   applicationName = 'simple-app'
 }
+
+distZip {
+  baseName = 'HelloGradle'
+}

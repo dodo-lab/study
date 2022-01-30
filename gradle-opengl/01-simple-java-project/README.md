@@ -41,3 +41,11 @@ WindowsとUnix用に起動用スクリプトを自動生成できる。
 ```bash
 gradle startScripts
 ```
+
+## 作成したアプリケーションをzipにまとめて出力
+
+タスクが完了すると、`build/distributions`にzipファイルが出力される。
+
+```bash
+gradle distZip
+```
