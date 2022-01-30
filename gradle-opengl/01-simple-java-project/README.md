@@ -33,3 +33,11 @@ gradle clean compileJava
 ```bash
 gradle run --args="arg1 arg2"
 ```
+
+## 起動用スクリプトを自動生成
+
+WindowsとUnix用に起動用スクリプトを自動生成できる。
+
+```bash
+gradle startScripts
+```

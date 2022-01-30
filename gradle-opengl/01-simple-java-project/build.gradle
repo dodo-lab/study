@@ -8,3 +8,8 @@ mainClassName = 'sample.gradle.GradleMain'
 compileJava {
   options.encoding = 'UTF-8'
 }
+
+startScripts {
+  // スクリプトファイル名
+  applicationName = 'simple-app'
+}
