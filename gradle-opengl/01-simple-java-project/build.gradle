@@ -20,11 +20,20 @@ distZip {
 
 // ★ローカルのサードパーティライブラリ(jar)を利用
 // dependencies {
-//   compile files('lib/commons-lang3-3.1.jar')
+//   implementation files('lib/commons-lang3-3.1.jar')
 //   // 個別ファイルを複数指定
-//   compile files('lib/test1.jar', 'lib/test2.jar')
+//   implementation files('lib/test1.jar', 'lib/test2.jar')
 //   // 'lib'フォルダ直下の'jar'を全て指定
-//   compile fileTree(dir: 'lib', include: '*.jar')
+//   implementation fileTree(dir: 'lib', include: '*.jar')
 //   // 'lib'フォルダ以下、サブフォルダも含めた全ての'jar'を指定
-//   compile fileTree(dir: 'lib', include: '**/*.jar')
+//   implementation fileTree(dir: 'lib', include: '**/*.jar')
 // }
+
+// ★セントラルリポジトリのライブラリ(jar)を利用
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
