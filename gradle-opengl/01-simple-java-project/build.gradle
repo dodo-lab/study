@@ -1,4 +1,7 @@
-apply plugin: "java"
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'sample.gradle.GradleMain'
 
 // javac のオプション
 // http://gradle.monochromeroad.com/docs/dsl/org.gradle.api.tasks.compile.CompileOptions.html
