@@ -27,3 +27,9 @@ gradle clean
 ```bash
 gradle clean compileJava
 ```
+
+## runタスクで実行するMainクラスに引数を渡す
+
+```bash
+gradle run --args="arg1 arg2"
+```
