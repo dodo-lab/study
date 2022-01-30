@@ -15,4 +15,8 @@ public class GradleMain {
       System.out.println(args[i]);
     }
   }
+
+  public String method() {
+    return "original";
+  }
 }

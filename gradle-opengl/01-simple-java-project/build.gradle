@@ -40,4 +40,9 @@ repositories {
 
 dependencies {
   implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+  // JUnit用
+  testImplementation 'com.googlecode.jmockit:jmockit:1.4'
+  testImplementation 'junit:junit:4.11'
+  testImplementation 'org.hamcrest:hamcrest-library:1.3'
 }

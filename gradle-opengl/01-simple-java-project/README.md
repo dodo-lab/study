@@ -55,3 +55,9 @@ gradle distZip
 ```bash
 gradle javadoc
 ```
+
+## テスト実行
+
+```bash
+gradle test
+```
