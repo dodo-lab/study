@@ -32,25 +32,27 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tiles = widgets.map((widget) {
+      return ListTile(
+        title: Text(widget.toString()),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => widget),
+          );
+        },
+      );
+    });
+
+    final divided = tiles.isNotEmpty
+        ? ListTile.divideTiles(context: context, tiles: tiles).toList()
+        : <Widget>[];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select Route'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, i) {
-          final widget = widgets[i];
-          return ListTile(
-            title: Text(widget.toString()),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => widget),
-              );
-            },
-          );
-        },
-        itemCount: widgets.length,
-      ),
+      body: ListView(children: divided),
     );
   }
 }
