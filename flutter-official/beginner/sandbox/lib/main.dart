@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) =>
             const NavigationMenu(widgets: [NavigationBasics(), NamedRoute()]),
-        '/cookbook/navigation/named-route': (context) => const NamedRoute(),
-        '/cookbook/navigation/named-route/second': (context) =>
+        NamedRoute.routeName: (context) => const NamedRoute(),
+        NamedRouteSecondScreen.routeName: (context) =>
             const NamedRouteSecondScreen(),
       },
     );

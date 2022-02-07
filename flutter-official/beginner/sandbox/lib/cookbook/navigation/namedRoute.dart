@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class NamedRoute extends StatelessWidget {
   const NamedRoute({Key? key}) : super(key: key);
 
+  static const routeName = '/cookbook/navigation/named-route';
+
   @override
   Widget build(BuildContext context) {
     return const NamedRouteFirstScreen();
@@ -31,6 +33,8 @@ class NamedRouteFirstScreen extends StatelessWidget {
 
 class NamedRouteSecondScreen extends StatelessWidget {
   const NamedRouteSecondScreen({Key? key}) : super(key: key);
+
+  static const routeName = '/cookbook/navigation/named-route/second';
 
   @override
   Widget build(BuildContext context) {
