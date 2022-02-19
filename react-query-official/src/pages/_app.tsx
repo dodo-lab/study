@@ -4,6 +4,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {createTheme, CssBaseline, ThemeProvider} from '@mui/material';
 import type {AppProps} from 'next/app';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {ReactQueryDevtools} from 'react-query/devtools';
 
 const theme = createTheme({
   breakpoints: {
@@ -17,12 +19,17 @@ const theme = createTheme({
   },
 });
 
+const queryClient = new QueryClient();
+
 function MyApp({Component, pageProps}: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
