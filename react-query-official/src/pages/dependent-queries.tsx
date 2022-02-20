@@ -1,12 +1,11 @@
 import {Container, Typography} from '@mui/material';
-import axios from 'axios';
+import {useFaker} from 'backend/api';
 import QueryResult from 'components/QueryResult';
 import React from 'react';
-import {useQuery} from 'react-query';
 
 const ParallelQueries: React.FC = () => {
-  const user1 = useQuery('user1', async () => (await axios.get('/api/faker', {params: {delay: 2000}})).data);
-  const user2 = useQuery('user2', async () => (await axios.get('/api/faker', {params: {delay: 2000}})).data, {
+  const user1 = useFaker(2000, 'user1');
+  const user2 = useFaker(2000, 'user2', {
     enabled: user1.isSuccess,
   });
 
