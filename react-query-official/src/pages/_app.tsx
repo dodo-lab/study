@@ -3,6 +3,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {Box, createTheme, CssBaseline, ThemeProvider} from '@mui/material';
+import GlobalLoadingIndicator from 'components/GlobalLoadingIndicator';
 import SideBar from 'components/SideBar';
 import type {AppProps} from 'next/app';
 import {QueryClient, QueryClientProvider} from 'react-query';
@@ -32,6 +33,7 @@ function MyApp({Component, pageProps}: AppProps) {
         <CssBaseline />
         <Box sx={{display: 'flex'}}>
           <SideBar links={links} />
+          <GlobalLoadingIndicator />
           <Box component="main" sx={{flexGrow: 1}}>
             <Component {...pageProps} />
           </Box>
