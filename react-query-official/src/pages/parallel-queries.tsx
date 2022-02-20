@@ -12,8 +12,6 @@ const ParallelQueries: React.FC = () => {
     })),
   );
 
-  console.log(users);
-
   return (
     <Container maxWidth="xl">
       <Typography variant="h2">Parallel Queries</Typography>
