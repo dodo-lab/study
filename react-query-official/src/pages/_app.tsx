@@ -23,7 +23,7 @@ const theme = createTheme({
 
 const queryClient = new QueryClient();
 
-const links = ['queries', 'parallel-queries', 'dependent-queries'];
+const links = ['queries', 'parallel-queries', 'dependent-queries', 'query-retry'];
 
 function MyApp({Component, pageProps}: AppProps) {
   return (
