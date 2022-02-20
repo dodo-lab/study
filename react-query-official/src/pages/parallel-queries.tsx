@@ -16,7 +16,7 @@ const ParallelQueries: React.FC = () => {
     <Container maxWidth="xl">
       <Typography variant="h2">Parallel Queries</Typography>
       {users.map((user, index) => {
-        return <QueryResult key={index} title={`user-${index}`} result={user} filter="data" />;
+        return <QueryResult key={index} title={`user-${index}`} result={user} filters={['data']} />;
       })}
     </Container>
   );

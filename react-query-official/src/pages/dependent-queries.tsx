@@ -13,8 +13,8 @@ const ParallelQueries: React.FC = () => {
     <Container maxWidth="xl">
       <Typography variant="h2">Dependent Queries</Typography>
 
-      <QueryResult title="user1" result={user1} filter="data" />
-      <QueryResult title="user2" result={user2} filter="data" />
+      <QueryResult title="user1" result={user1} filters={['data']} />
+      <QueryResult title="user2" result={user2} filters={['data']} />
     </Container>
   );
 };
