@@ -2,7 +2,7 @@ import {Box, Drawer, List, ListItemButton, ListItemText} from '@mui/material';
 import {useRouter} from 'next/router';
 import React from 'react';
 
-const drawerWidth = 140;
+const drawerWidth = 200;
 
 type Props = {
   links: string[];
