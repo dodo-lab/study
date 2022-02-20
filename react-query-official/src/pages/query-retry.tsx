@@ -1,4 +1,4 @@
-import {Container} from '@mui/material';
+import {Container, Typography} from '@mui/material';
 import {useError400} from 'backend/api';
 import QueryResult from 'components/QueryResult';
 import React from 'react';
@@ -12,6 +12,7 @@ const QueryRetry: React.FC = () => {
 
   return (
     <Container maxWidth="xl">
+      <Typography variant="h2">Query Retry</Typography>
       <QueryResult title="no retry" result={noRetry} filters={['failureCount', 'isFetching']} />
       <QueryResult title="retry" result={retry} filters={['failureCount', 'isFetching']} />
       <QueryResult title="retry 5th" result={retry5} filters={['failureCount', 'isFetching']} />
