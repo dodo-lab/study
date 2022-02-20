@@ -23,7 +23,7 @@ const QueryResult: React.FC<Props> = ({title, result, filters}) => {
       <Divider sx={{mb: 2}} />
       <Typography variant="h5">
         {title}
-        {result.isLoading && <CircularProgress size={22} sx={{ml: 2}} />}
+        {result.isFetching && <CircularProgress size={22} sx={{ml: 2}} />}
       </Typography>
       <Typography component="pre">{JSON.stringify(showResult, null, 2)}</Typography>
     </>
