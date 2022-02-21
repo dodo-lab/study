@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {QueryKey, useQuery, UseQueryOptions} from 'react-query';
+import {QueryKey, useInfiniteQuery, UseInfiniteQueryOptions, useQuery, UseQueryOptions} from 'react-query';
 
-export type ApiFakerResponse = {
+type ApiFakerResponse = {
   name: string;
 };
 
@@ -13,9 +13,20 @@ export function useFaker<TData = ApiFakerResponse, TError = unknown, TQueryKey e
   return useQuery(queryKey, async () => (await axios.get('/api/faker', {params: {delay}})).data, options);
 }
 
-export function useError400<TData = undefined, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
+type ApiFakersResponse = {
+  index: number;
+  name: string;
+}[];
+
+export function useFakers<TData = ApiFakersResponse, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
+  delay: number,
+  count: number,
   queryKey: TQueryKey,
-  options?: UseQueryOptions<undefined, TError, TData, TQueryKey>,
+  options?: UseInfiniteQueryOptions<ApiFakersResponse, TError, TData, ApiFakersResponse, TQueryKey>,
 ) {
-  return useQuery(queryKey, async () => await (await axios.get('/api/400')).data, options);
+  return useInfiniteQuery(
+    queryKey,
+    async ({pageParam = 0}) => (await axios.get('/api/fakers', {params: {delay, cursor: pageParam, count}})).data,
+    options,
+  );
 }
