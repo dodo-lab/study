@@ -3,8 +3,6 @@ import faker from 'faker';
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {assertString} from 'utils/typeGuard';
 
-const name = faker;
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const delayStr = req.query.delay ?? '0';
   assertString(delayStr);
