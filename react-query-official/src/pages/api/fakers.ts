@@ -4,7 +4,7 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import {apiCommonExec} from 'utils/api';
 import {assertString} from 'utils/typeGuard';
 
-const get = (req: NextApiRequest, res: NextApiResponse) => {
+const get = async (req: NextApiRequest, res: NextApiResponse) => {
   const delayStr = req.query.delay ?? '0';
   const cursorStr = req.query.cursor ?? '0';
   const countStr = req.query.count ?? '0';
@@ -30,5 +30,5 @@ const get = (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  apiCommonExec(req, res, {get});
+  await apiCommonExec(req, res, {get});
 }
