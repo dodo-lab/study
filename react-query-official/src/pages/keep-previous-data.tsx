@@ -1,5 +1,5 @@
 import {Container, Divider, FormControlLabel, Pagination, Switch, Typography} from '@mui/material';
-import {useFaker} from 'backend/api';
+import {useGetFaker} from 'backend/api';
 import QueryResult from 'components/QueryResult';
 import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
@@ -11,7 +11,7 @@ type FormInput = {
 const KeepPreviousData: React.FC = () => {
   const [page, setPage] = useState(1);
   const {register, watch} = useForm<FormInput>({defaultValues: {keepPreviousData: true}});
-  const faker = useFaker(1000, ['keep-previous-data', page], {
+  const faker = useGetFaker(1000, ['keep-previous-data', page], {
     keepPreviousData: watch('keepPreviousData'),
     cacheTime: 0,
   });

@@ -1,11 +1,11 @@
 import {Container, Typography} from '@mui/material';
-import {useFaker} from 'backend/api';
+import {useGetFaker} from 'backend/api';
 import QueryResult from 'components/QueryResult';
 import React from 'react';
 
 const ParallelQueries: React.FC = () => {
-  const user1 = useFaker(2000, 'user1');
-  const user2 = useFaker(2000, 'user2', {
+  const user1 = useGetFaker(2000, 'user1');
+  const user2 = useGetFaker(2000, 'user2', {
     enabled: user1.isSuccess,
   });
 

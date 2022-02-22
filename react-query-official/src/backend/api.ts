@@ -5,7 +5,7 @@ type ApiFakerResponse = {
   name: string;
 };
 
-export function useFaker<TData = ApiFakerResponse, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
+export function useGetFaker<TData = ApiFakerResponse, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
   delay: number,
   queryKey: TQueryKey,
   options?: UseQueryOptions<ApiFakerResponse, TError, TData, TQueryKey>,
@@ -18,7 +18,7 @@ type ApiFakersResponse = {
   name: string;
 }[];
 
-export function useFakers<TData = ApiFakersResponse, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
+export function useGetFakers<TData = ApiFakersResponse, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
   delay: number,
   count: number,
   queryKey: TQueryKey,

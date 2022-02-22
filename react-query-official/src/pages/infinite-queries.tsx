@@ -1,12 +1,12 @@
 import {Button, Container, Divider, Typography} from '@mui/material';
-import {useFakers} from 'backend/api';
+import {useGetFakers} from 'backend/api';
 import React from 'react';
 
 const count = 10;
 const fetchMax = 3;
 
 const InfiniteQueries: React.FC = () => {
-  const {data, fetchNextPage, hasNextPage, isFetchingNextPage} = useFakers(1000, count, 'infinite-query', {
+  const {data, fetchNextPage, hasNextPage, isFetchingNextPage} = useGetFakers(1000, count, 'infinite-query', {
     getNextPageParam: (lastPage, pages) => (pages.length < fetchMax ? pages.length * count : undefined),
     cacheTime: 0,
   });
