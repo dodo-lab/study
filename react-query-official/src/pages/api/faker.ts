@@ -1,9 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import faker from 'faker';
 import type {NextApiRequest, NextApiResponse} from 'next';
+import {apiCommonExec} from 'utils/api';
 import {assertString} from 'utils/typeGuard';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const get = async (req: NextApiRequest, res: NextApiResponse) => {
   const delayStr = req.query.delay ?? '0';
   assertString(delayStr);
 
@@ -16,4 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       resolve();
     }, delay);
   });
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  await apiCommonExec(req, res, {get});
 }
