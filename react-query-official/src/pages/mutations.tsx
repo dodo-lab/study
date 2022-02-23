@@ -22,7 +22,7 @@ const Mutations: React.FC = () => {
           queryClient.setQueryData(GET_KEY, data);
           break;
         case 'invalidateQueries':
-          queryClient.invalidateQueries(GET_KEY);
+          queryClient.invalidateQueries(GET_KEY, {exact: true});
           break;
       }
     },
