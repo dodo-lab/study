@@ -1,5 +1,13 @@
 import axios from 'axios';
-import {QueryKey, useInfiniteQuery, UseInfiniteQueryOptions, useQuery, UseQueryOptions} from 'react-query';
+import {
+  QueryKey,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  useMutation,
+  UseMutationOptions,
+  useQuery,
+  UseQueryOptions,
+} from 'react-query';
 
 type ApiFakerResponse = {
   name: string;
@@ -11,6 +19,13 @@ export function useGetFaker<TData = ApiFakerResponse, TError = unknown, TQueryKe
   options?: UseQueryOptions<ApiFakerResponse, TError, TData, TQueryKey>,
 ) {
   return useQuery(queryKey, async () => (await axios.get('/api/faker', {params: {delay}})).data, options);
+}
+
+export function usePostFaker<TData = ApiFakerResponse, TError = unknown, TQueryKey extends QueryKey = QueryKey>(
+  queryKey: TQueryKey,
+  options?: UseMutationOptions<TData, TError, void, unknown>,
+) {
+  return useMutation(queryKey, async () => (await axios.post('/api/faker')).data, options);
 }
 
 type ApiFakersResponse = {

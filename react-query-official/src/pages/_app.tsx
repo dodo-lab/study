@@ -30,6 +30,7 @@ const links = [
   'query-retry',
   'keep-previous-data',
   'infinite-queries',
+  'mutations',
 ];
 
 function MyApp({Component, pageProps}: AppProps) {

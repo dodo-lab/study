@@ -4,6 +4,12 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import {apiCommonExec} from 'utils/api';
 import {assertString} from 'utils/typeGuard';
 
+const post = async (req: NextApiRequest, res: NextApiResponse) => {
+  res.status(200).json({
+    name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  });
+};
+
 const get = async (req: NextApiRequest, res: NextApiResponse) => {
   const delayStr = req.query.delay ?? '0';
   assertString(delayStr);
@@ -20,5 +26,5 @@ const get = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await apiCommonExec(req, res, {get});
+  await apiCommonExec(req, res, {get, post});
 }
