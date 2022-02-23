@@ -1,11 +1,12 @@
-import {Container, Typography} from '@mui/material';
+import {Button, Container, Typography} from '@mui/material';
 import axios from 'axios';
 import {useError400} from 'backend/api';
 import QueryResult from 'components/QueryResult';
 import React from 'react';
-import {useQuery} from 'react-query';
+import {useQuery, useQueryClient} from 'react-query';
 
 const Queries: React.FC = () => {
+  const queryClient = useQueryClient();
   const hello = useQuery('hello', async () => {
     return (await axios.get('/api/hello')).data;
   });
@@ -20,6 +21,12 @@ const Queries: React.FC = () => {
       <QueryResult title="hello" result={hello} />
       <QueryResult title="error400" result={error400} />
       <QueryResult title="timeout" result={timeout} />
+      <Button variant="contained" onClick={() => queryClient.cancelQueries('timeout')}>
+        CANCEL TIMEOUT
+      </Button>
+      <Button sx={{ml: 2}} variant="contained" onClick={() => queryClient.cancelQueries()}>
+        CANCEL ALL
+      </Button>
     </Container>
   );
 };
