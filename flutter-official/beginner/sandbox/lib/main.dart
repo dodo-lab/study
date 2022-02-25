@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/navigation/namedRoute.dart';
 import 'package:sandbox/cookbook/navigation/navigationBasics.dart';
 import 'package:sandbox/cookbook/navigation/returningData.dart';
+import 'package:sandbox/cookbook/networking/fetch_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +18,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: '/',
       routes: {
-        '/': (context) => const NavigationMenu(
-            widgets: [NavigationBasics(), NamedRoute(), ReturingData()]),
+        '/': (context) => const NavigationMenu(widgets: [
+              NavigationBasics(),
+              NamedRoute(),
+              ReturingData(),
+              FetchData(),
+            ]),
         NamedRoute.routeName: (context) => const NamedRoute(),
         NamedRouteSecondScreen.routeName: (context) =>
             const NamedRouteSecondScreen(),
