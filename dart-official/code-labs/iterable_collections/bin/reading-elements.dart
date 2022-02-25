@@ -15,7 +15,33 @@ void firstAndLast() {
   }
 }
 
+bool predicate(String item) {
+  return item.length > 5;
+}
+
+void firstWhere() {
+  const items = ['Salad', 'Popcorn', 'Toast', 'Lasagne'];
+
+  final foundItem1 = items.firstWhere((item) => item.length > 5);
+  print('foundItem1: $foundItem1');
+
+  final foundItem2 = items.firstWhere((item) {
+    return item.length > 5;
+  });
+  print('foundItem2: $foundItem2');
+
+  final foundItem3 = items.firstWhere(predicate);
+  print('foundItem3: $foundItem3');
+
+  final foundItem4 = items.firstWhere(
+    (item) => item.length > 10,
+    orElse: () => 'None!',
+  );
+  print('foundItem4: $foundItem4');
+}
+
 void main(List<String> arguments) {
   forInLoop();
   firstAndLast();
+  firstWhere();
 }
