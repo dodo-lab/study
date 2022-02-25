@@ -33,6 +33,7 @@ void firstWhere() {
   final foundItem3 = items.firstWhere(predicate);
   print('foundItem3: $foundItem3');
 
+  // 第一引数の条件にマッチしない場合、orElseを指定しないとStateErrorが発生する
   final foundItem4 = items.firstWhere(
     (item) => item.length > 10,
     orElse: () => 'None!',
