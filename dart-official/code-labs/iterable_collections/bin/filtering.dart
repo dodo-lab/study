@@ -15,6 +15,19 @@ void where() {
   }
 }
 
+void takeWhileAndSkipWhile() {
+  const numbers = [1, 3, -2, 0, 4, 5];
+
+  // 値が'0'より前の要素を抽出
+  final numbersUntilZero = numbers.takeWhile((value) => value != 0);
+  print('Numbers until 0: $numbersUntilZero');
+
+  // 値が'0'以降の要素を抽出
+  final numbersStartingAtZero = numbers.skipWhile((value) => value != 0);
+  print('Numbers starting at 0: $numbersStartingAtZero');
+}
+
 void main() {
   where();
+  takeWhileAndSkipWhile();
 }
