@@ -19,7 +19,7 @@ class Vector {
   }
 
   @override
-  int get hashCode => x.hashCode ^ y.hashCode;
+  int get hashCode => Object.hash(x, y);
 }
 
 void main() {
