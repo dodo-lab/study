@@ -27,8 +27,20 @@ void parsingURIs() {
   assert(uri.origin == 'https://example.org:8080');
 }
 
+void buildingURIs() {
+  final uri = Uri(
+    scheme: 'https',
+    host: 'example.org',
+    port: 8080,
+    path: '/foo/bar',
+    fragment: 'frag',
+  );
+  assert(uri.toString() == 'https://example.org:8080/foo/bar#frag');
+}
+
 void main() {
   encodingAndDecodingFullyQualifiedURIs();
   encodingAndDecodingURIComponents();
   parsingURIs();
+  buildingURIs();
 }
