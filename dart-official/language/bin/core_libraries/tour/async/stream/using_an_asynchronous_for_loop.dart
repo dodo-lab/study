@@ -1,6 +1,6 @@
 import 'dart:io';
 
-void searchFilesByStream(String path) async {
+void searchFilesByStream(String path) {
   print('----searchFilesByStream');
   FileSystemEntity.isDirectory(path).then((isDir) {
     if (isDir) {
