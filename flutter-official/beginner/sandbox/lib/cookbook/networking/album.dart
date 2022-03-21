@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -22,8 +23,12 @@ class Album {
 }
 
 Future<Album> fetchAlbum() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  final response = await http.get(
+    Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
+    headers: {
+      HttpHeaders.authorizationHeader: 'Basic api_token',
+    },
+  );
 
   if (response.statusCode == 200) {
     return Album.fromJson(jsonDecode(response.body));
@@ -36,7 +41,7 @@ Future<Album> deleteAlbum(String id) async {
   final http.Response response = await http.delete(
     Uri.parse('https://jsonplaceholder.typicode.com/albums/$id'),
     headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
+      HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
     },
   );
 
