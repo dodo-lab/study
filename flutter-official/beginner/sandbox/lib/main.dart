@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/navigation/namedRoute.dart';
-import 'package:sandbox/cookbook/navigation/navigationBasics.dart';
-import 'package:sandbox/cookbook/navigation/returningData.dart';
-import 'package:sandbox/cookbook/networking/fetch_data.dart';
+import 'package:sandbox/cookbook/navigation/navigation.dart';
+import 'package:sandbox/cookbook/networking/networking.dart';
+import 'package:sandbox/widgets/navigation_menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,47 +18,17 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: '/',
       routes: {
-        '/': (context) => const NavigationMenu(widgets: [
-              NavigationBasics(),
-              NamedRoute(),
-              ReturingData(),
-              FetchData(),
-            ]),
+        '/': (context) => const NavigationMenu(
+              title: 'Top',
+              widgets: [
+                Navigation(),
+                Networking(),
+              ],
+            ),
         NamedRoute.routeName: (context) => const NamedRoute(),
         NamedRouteSecondScreen.routeName: (context) =>
             const NamedRouteSecondScreen(),
       },
-    );
-  }
-}
-
-class NavigationMenu extends StatelessWidget {
-  final List<Widget> widgets;
-  const NavigationMenu({Key? key, required this.widgets}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final tiles = widgets.map((widget) {
-      return ListTile(
-        title: Text(widget.toString()),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => widget),
-          );
-        },
-      );
-    });
-
-    final divided = tiles.isNotEmpty
-        ? ListTile.divideTiles(context: context, tiles: tiles).toList()
-        : <Widget>[];
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Select Route'),
-      ),
-      body: ListView(children: divided),
     );
   }
 }
