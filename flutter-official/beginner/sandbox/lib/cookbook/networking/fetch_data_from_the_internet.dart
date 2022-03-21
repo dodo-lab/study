@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/networking/album.dart';
 
-class FetchData extends StatefulWidget {
-  const FetchData({Key? key}) : super(key: key);
+class FetchDataFromTheInternet extends StatefulWidget {
+  const FetchDataFromTheInternet({Key? key}) : super(key: key);
 
   @override
-  _FetchDataState createState() => _FetchDataState();
+  _FetchDataFromTheInternetState createState() =>
+      _FetchDataFromTheInternetState();
 }
 
-class _FetchDataState extends State<FetchData> {
+class _FetchDataFromTheInternetState extends State<FetchDataFromTheInternet> {
   late Future<Album> futureAlbum;
 
   @override

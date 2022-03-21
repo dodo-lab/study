@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NamedRoute extends StatelessWidget {
-  const NamedRoute({Key? key}) : super(key: key);
+class NavigateWithNamedRoutes extends StatelessWidget {
+  const NavigateWithNamedRoutes({Key? key}) : super(key: key);
 
   static const routeName = '/cookbook/navigation/named-route';
 

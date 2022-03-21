@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NavigationBasics extends StatelessWidget {
-  const NavigationBasics({Key? key}) : super(key: key);
+class NavigateToNewScreenAndBack extends StatelessWidget {
+  const NavigateToNewScreenAndBack({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

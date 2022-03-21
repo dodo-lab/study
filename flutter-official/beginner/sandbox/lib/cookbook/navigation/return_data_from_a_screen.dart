@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ReturingData extends StatelessWidget {
-  const ReturingData({Key? key}) : super(key: key);
+class ReturnDataFromScreen extends StatelessWidget {
+  const ReturnDataFromScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

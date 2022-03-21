@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sandbox/cookbook/navigation/namedRoute.dart';
-import 'package:sandbox/cookbook/navigation/navigationBasics.dart';
-import 'package:sandbox/cookbook/navigation/returningData.dart';
+import 'package:sandbox/cookbook/navigation/navigate_to_a_new_screen_and_back.dart';
+import 'package:sandbox/cookbook/navigation/navigate_with_named_routes.dart';
+import 'package:sandbox/cookbook/navigation/return_data_from_a_screen.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class Navigation extends StatelessWidget {
@@ -10,9 +10,9 @@ class Navigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const NavigationMenu(title: 'Navigation', widgets: [
-      NavigationBasics(),
-      NamedRoute(),
-      ReturingData(),
+      NavigateToNewScreenAndBack(),
+      NavigateWithNamedRoutes(),
+      ReturnDataFromScreen(),
     ]);
   }
 }
