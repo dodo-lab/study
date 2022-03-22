@@ -71,3 +71,19 @@ Future<Album> createAlbum(String title) async {
     throw Exception('Failed to create album.');
   }
 }
+
+Future<Album> updateAlbum(String title) async {
+  final response = await http.put(
+    Uri.parse('$_albumsUri/1'),
+    headers: {
+      HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({'title': title}),
+  );
+
+  if (response.statusCode == 200) {
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to update album.');
+  }
+}
