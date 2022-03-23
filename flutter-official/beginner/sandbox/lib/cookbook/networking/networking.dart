@@ -4,6 +4,7 @@ import 'package:sandbox/cookbook/networking/fetch_data_from_the_internet.dart';
 import 'package:sandbox/cookbook/networking/parse_json_in_the_background.dart';
 import 'package:sandbox/cookbook/networking/send_data_to_the_internet.dart';
 import 'package:sandbox/cookbook/networking/update_data_over_the_internet.dart';
+import 'package:sandbox/cookbook/networking/work_with_web_sockets.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class Networking extends StatelessWidget {
@@ -17,6 +18,7 @@ class Networking extends StatelessWidget {
       ParseJsonInTheBackground(),
       SendDataToTheInternet(),
       UpdateDataOverTheInternet(),
+      WorkWithWebSockets(),
     ]);
   }
 }
