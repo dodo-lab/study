@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/navigation/navigate_with_named_routes.dart';
 import 'package:sandbox/cookbook/navigation/navigation.dart';
 import 'package:sandbox/cookbook/networking/networking.dart';
+import 'package:sandbox/development/development.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
               widgets: [
                 Navigation(),
                 Networking(),
+                Development(),
               ],
             ),
         NavigateWithNamedRoutes.routeName: (context) =>
