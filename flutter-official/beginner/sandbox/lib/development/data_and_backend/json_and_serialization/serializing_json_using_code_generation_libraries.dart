@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:sandbox/development/data_and_backend/json_and_serialization/user.dart';
+import 'package:sandbox/development/data_and_backend/json_and_serialization/model/user.dart';
 import 'package:sandbox/widgets/widgets_with_title.dart';
 
 class SerializingJsonUsingCodeGenerationLibraries extends StatelessWidget {
