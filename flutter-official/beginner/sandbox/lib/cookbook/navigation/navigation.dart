@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/cookbook/navigation/animate_widget_across_screens.dart';
 import 'package:sandbox/cookbook/navigation/navigate_to_a_new_screen_and_back.dart';
 import 'package:sandbox/cookbook/navigation/navigate_with_named_routes.dart';
 import 'package:sandbox/cookbook/navigation/return_data_from_a_screen.dart';
@@ -10,6 +11,7 @@ class Navigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const NavigationMenu(title: 'Navigation', widgets: [
+      AnimateWidgetAcrossScreens(),
       NavigateToNewScreenAndBack(),
       NavigateWithNamedRoutes(),
       ReturnDataFromScreen(),
