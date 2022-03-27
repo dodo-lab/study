@@ -4,6 +4,7 @@ import 'package:sandbox/cookbook/navigation/navigate_to_a_new_screen_and_back.da
 import 'package:sandbox/cookbook/navigation/navigate_with_named_routes.dart';
 import 'package:sandbox/cookbook/navigation/pass_arguments_to_a_named_route.dart';
 import 'package:sandbox/cookbook/navigation/return_data_from_a_screen.dart';
+import 'package:sandbox/cookbook/navigation/send_data_to_a_new_screen.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class Navigation extends StatelessWidget {
@@ -17,6 +18,7 @@ class Navigation extends StatelessWidget {
       NavigateWithNamedRoutes(),
       PassArgumentsToNamedRoute(),
       ReturnDataFromScreen(),
+      SendDataToNewScreen(),
     ]);
   }
 }
