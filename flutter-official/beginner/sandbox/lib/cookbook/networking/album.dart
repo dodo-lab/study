@@ -24,8 +24,8 @@ class Album {
   }
 }
 
-Future<Album> fetchAlbum() async {
-  final response = await http.get(
+Future<Album> fetchAlbum(http.Client client) async {
+  final response = await client.get(
     Uri.parse('$_albumsUri/1'),
     headers: {
       HttpHeaders.authorizationHeader: 'Basic api_token',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/networking/album.dart';
+import 'package:http/http.dart' as http;
 
 class UpdateDataOverTheInternet extends StatefulWidget {
   const UpdateDataOverTheInternet({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class UpdateDataOverTheInternetState extends State<UpdateDataOverTheInternet> {
   @override
   void initState() {
     super.initState();
-    _futureAlbum = fetchAlbum();
+    _futureAlbum = fetchAlbum(http.Client());
   }
 
   @override

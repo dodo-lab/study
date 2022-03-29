@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/networking/album.dart';
+import 'package:http/http.dart' as http;
 
 class DeleteDataOnTheInternet extends StatefulWidget {
   const DeleteDataOnTheInternet({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class DeleteDataOnTheInternetState extends State<DeleteDataOnTheInternet> {
   @override
   void initState() {
     super.initState();
-    _futureAlbum = fetchAlbum();
+    _futureAlbum = fetchAlbum(http.Client());
   }
 
   @override
