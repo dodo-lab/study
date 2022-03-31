@@ -85,10 +85,13 @@ class _LoginPageState extends State<LoginPage> {
                     _passwordController.clear();
                   },
                 ),
-                // TODO: Add an elevation to NEXT (103)
+                // FIXED: Add an elevation to NEXT (103)
                 // TODO: Add a beveled rectangular border to NEXT (103)
                 ElevatedButton(
-                  child: const Text('OK'),
+                  child: const Text('NEXT'),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(8.0),
+                  ),
                   onPressed: () {
                     // FIXED: Show the next page (101)
                     Navigator.pop(context);
