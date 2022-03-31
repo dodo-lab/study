@@ -74,11 +74,21 @@ class _LoginPageState extends State<LoginPage> {
             ),
             // FIXED: Add button bar (101)
             ButtonBar(
-              // TODO: Add a beveled rectangular border to CANCEL (103)
               children: <Widget>[
                 // FIXED: Add buttons (101)
+                // FIXED: Add a beveled rectangular border to CANCEL (103)
                 TextButton(
                   child: const Text('CANCEL'),
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.secondary,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
                     // FIXED: Clear the text fields (101)
                     _usernameController.clear();
@@ -86,11 +96,16 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 // FIXED: Add an elevation to NEXT (103)
-                // TODO: Add a beveled rectangular border to NEXT (103)
+                // FIXED: Add a beveled rectangular border to NEXT (103)
                 ElevatedButton(
                   child: const Text('NEXT'),
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(8.0),
+                    shape: MaterialStateProperty.all(
+                      const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                      ),
+                    ),
                   ),
                   onPressed: () {
                     // FIXED: Show the next page (101)
