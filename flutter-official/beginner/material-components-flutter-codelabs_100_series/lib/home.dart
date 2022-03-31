@@ -13,9 +13,11 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shrine/model/product.dart';
 import 'package:shrine/model/products_repository.dart';
+import 'package:shrine/supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -83,6 +85,7 @@ class HomePage extends StatelessWidget {
   }
 
   // TODO: Add a variable for Category (104)
+
   @override
   Widget build(BuildContext context) {
     // TODO: Return an AsymmetricView (104)
@@ -90,6 +93,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       // FIXED: Add app bar (102)
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         title: const Text('SHRINE'),
         leading: IconButton(
           icon: const Icon(
@@ -122,12 +126,14 @@ class HomePage extends StatelessWidget {
         ],
       ),
       // FIXED: Add a grid view (102)
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        childAspectRatio: 8.0 / 9.0,
-        children: _buildGridCards(context),
-      ),
+      body: AsymmetricView(
+          products: ProductsRepository.loadProducts(Category.all)),
+      // GridView.count(
+      //   crossAxisCount: 2,
+      //   padding: const EdgeInsets.all(16.0),
+      //   childAspectRatio: 8.0 / 9.0,
+      //   children: _buildGridCards(context),
+      // ),
       // FIXED: Set resizeToAvoidBottomInset (101)
       resizeToAvoidBottomInset: false,
     );
