@@ -38,20 +38,25 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 Image.asset('assets/diamond.png'),
                 const SizedBox(height: 16.0),
-                const Text('SHRINE'),
+                Text(
+                  'SHRINE',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               ],
             ),
             const SizedBox(height: 120.0),
             // TODO: Wrap Username with AccentColorOverride (103)
-            // TODO: Remove filled: true values (103)
+            // FIXED: Remove filled: true values (103)
             // TODO: Wrap Password with AccentColorOverride (103)
             // FIXED: Add TextField widgets (101)
             // [Name]
             TextField(
               controller: _usernameController,
-              decoration: const InputDecoration(
-                filled: true,
+              decoration: InputDecoration(
                 labelText: 'Username',
+                labelStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
             ),
             // spacer
@@ -59,9 +64,11 @@ class _LoginPageState extends State<LoginPage> {
             // [Password]
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
-                filled: true,
+              decoration: InputDecoration(
                 labelText: 'Password',
+                labelStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
               obscureText: true,
             ),
