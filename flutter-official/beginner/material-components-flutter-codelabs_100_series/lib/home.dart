@@ -88,54 +88,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Return an AsymmetricView (104)
+    // FIXED: Return an AsymmetricView (104)
     // TODO: Pass Category variable to AsymmetricView (104)
-    return Scaffold(
-      // FIXED: Add app bar (102)
-      appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        title: const Text('SHRINE'),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            semanticLabel: 'menu',
-          ),
-          onPressed: () {
-            print('Menu button');
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              semanticLabel: 'search',
-            ),
-            onPressed: () {
-              print('Search button');
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.tune,
-              semanticLabel: 'filter',
-            ),
-            onPressed: () {
-              print('Filter button');
-            },
-          ),
-        ],
-      ),
-      // FIXED: Add a grid view (102)
-      body: AsymmetricView(
-          products: ProductsRepository.loadProducts(Category.all)),
-      // GridView.count(
-      //   crossAxisCount: 2,
-      //   padding: const EdgeInsets.all(16.0),
-      //   childAspectRatio: 8.0 / 9.0,
-      //   children: _buildGridCards(context),
-      // ),
-      // FIXED: Set resizeToAvoidBottomInset (101)
-      resizeToAvoidBottomInset: false,
-    );
+    return AsymmetricView(
+        products: ProductsRepository.loadProducts(Category.all));
+    // GridView.count(
+    //   crossAxisCount: 2,
+    //   padding: const EdgeInsets.all(16.0),
+    //   childAspectRatio: 8.0 / 9.0,
+    //   children: _buildGridCards(context),
+    // ),
+    // FIXED: Set resizeToAvoidBottomInset (101)
   }
 }
