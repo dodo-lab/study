@@ -26,10 +26,14 @@ class Backdrop extends StatefulWidget {
 
 // FIXED: Add _FrontLayer class (104)
 class _FrontLayer extends StatelessWidget {
-  // TODO: Add on-tap callback (104)
+  // FIXED: Add on-tap callback (104)
+  const _FrontLayer({
+    Key? key,
+    this.onTap,
+    required this.child,
+  }) : super(key: key);
 
-  const _FrontLayer({Key? key, required this.child}) : super(key: key);
-
+  final VoidCallback? onTap;
   final Widget child;
 
   @override
@@ -42,7 +46,15 @@ class _FrontLayer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // TODO: Add a GestureDetector (104)
+          // FIXED: Add a GestureDetector (104)
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: onTap,
+            child: Container(
+              height: 40.0,
+              alignment: AlignmentDirectional.centerStart,
+            ),
+          ),
           Expanded(child: child),
         ],
       ),
@@ -125,7 +137,10 @@ class _BackdropState extends State<Backdrop>
         PositionedTransition(
           rect: layerAnimation,
           // FIXED: Wrap front layer in _FrontLayer (104)
-          child: _FrontLayer(child: widget.frontLayer),
+          child: _FrontLayer(
+            onTap: _toggleBackdropLayerVisibility,
+            child: widget.frontLayer,
+          ),
         ),
       ],
     );
