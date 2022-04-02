@@ -107,7 +107,7 @@ ThemeData _buildShrineTheme() {
   );
 }
 
-// TODO: Build a Shrine Text Theme (103)
+// FIXED: Build a Shrine Text Theme (103)
 TextTheme _buildShrineTextTheme(TextTheme base) {
   return base
       .copyWith(
