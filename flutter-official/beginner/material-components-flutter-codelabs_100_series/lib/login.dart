@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -45,32 +46,34 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 120.0),
-            // TODO: Wrap Username with AccentColorOverride (103)
+            // FIXED: Wrap Username with AccentColorOverride (103)
             // FIXED: Remove filled: true values (103)
-            // TODO: Wrap Password with AccentColorOverride (103)
+            // FIXED: Wrap Password with AccentColorOverride (103)
             // FIXED: Add TextField widgets (101)
             // [Name]
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                labelText: 'Username',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
+            AccentColorOverride(
+              color: kShrineBrown900,
+              child: TextField(
+                controller: _usernameController,
+                cursorColor: kShrineBrown900,
+                decoration: const InputDecoration(
+                  labelText: 'Username',
                 ),
               ),
             ),
             // spacer
             const SizedBox(height: 12.0),
             // [Password]
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
+            AccentColorOverride(
+              color: kShrineBrown900,
+              child: TextField(
+                controller: _passwordController,
+                cursorColor: kShrineBrown900,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
                 ),
+                obscureText: true,
               ),
-              obscureText: true,
             ),
             // FIXED: Add button bar (101)
             ButtonBar(
@@ -121,4 +124,34 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// TODO: Add AccentColorOverride (103)
+// FIXED: Add AccentColorOverride (103)
+class AccentColorOverride extends StatelessWidget {
+  final Color color;
+  final Widget child;
+
+  const AccentColorOverride({
+    Key? key,
+    required this.color,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final base = Theme.of(context);
+
+    return Theme(
+      child: child,
+      data: base.copyWith(
+        colorScheme: base.colorScheme.copyWith(
+          secondary: color,
+        ),
+        inputDecorationTheme: base.inputDecorationTheme.copyWith(
+          labelStyle: TextStyle(
+            color: color,
+          ),
+        ),
+        brightness: Brightness.dark,
+      ),
+    );
+  }
+}
