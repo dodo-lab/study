@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shrine/login.dart';
 import 'package:shrine/model/product.dart';
 
 const double _kFlingVelocity = 2.0;
@@ -244,23 +245,27 @@ class _BackdropState extends State<Backdrop>
         backTitle: widget.backTitle,
       ),
       actions: [
-        // TODO: Add shortcut to login screen from trailing icons (104)
+        // FIXED: Add shortcut to login screen from trailing icons (104)
         IconButton(
           icon: const Icon(
             Icons.search,
-            semanticLabel: 'search',
+            semanticLabel: 'login',
           ),
           onPressed: () {
-            // TODO: Add open login (104)
+            // FIXED: Add open login (104)
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const LoginPage())));
           },
         ),
         IconButton(
           icon: const Icon(
             Icons.tune,
-            semanticLabel: 'filter',
+            semanticLabel: 'login',
           ),
           onPressed: () {
-            // TODO: Add open login (104)
+            // FIXED: Add open login (104)
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginPage()));
           },
         ),
       ],
