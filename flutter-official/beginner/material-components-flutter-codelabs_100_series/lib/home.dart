@@ -20,84 +20,15 @@ import 'package:shrine/model/products_repository.dart';
 import 'package:shrine/supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  // FIXED: Add a variable for Category (104)
+  final Category category;
 
-  // FIXED: Make a collection of cards (102)
-  List<Card> _buildGridCards(BuildContext context) {
-    final products = ProductsRepository.loadProducts(Category.all);
-
-    if (products.isEmpty) {
-      return const <Card>[];
-    }
-
-    final theme = Theme.of(context);
-    final formatter = NumberFormat.simpleCurrency(
-        locale: Localizations.localeOf(context).toString());
-
-    return products.map((product) {
-      return Card(
-        clipBehavior: Clip.antiAlias,
-        // FIXED: Adjust card heights (103)
-        elevation: 0.0,
-        child: Column(
-          // FIXED: Center items on the card (103)
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AspectRatio(
-              aspectRatio: 18.0 / 11.0,
-              child: Image.asset(
-                product.assetName,
-                package: product.assetPackage,
-                // FIXED: Adjust the box size (102)
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                child: Column(
-                  // FIXED: Align labels to the bottom and center (103)
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  // TODO: Change innermost Column (103)
-                  children: [
-                    // FIXED: Handle overflowing labels (103)
-                    Text(
-                      product.name,
-                      style: theme.textTheme.button,
-                      softWrap: false,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text(
-                      formatter.format(product.price),
-                      style: theme.textTheme.caption,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }).toList();
-  }
-
-  // TODO: Add a variable for Category (104)
+  const HomePage({Key? key, this.category = Category.all}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // FIXED: Return an AsymmetricView (104)
-    // TODO: Pass Category variable to AsymmetricView (104)
-    return AsymmetricView(
-        products: ProductsRepository.loadProducts(Category.all));
-    // GridView.count(
-    //   crossAxisCount: 2,
-    //   padding: const EdgeInsets.all(16.0),
-    //   childAspectRatio: 8.0 / 9.0,
-    //   children: _buildGridCards(context),
-    // ),
-    // FIXED: Set resizeToAvoidBottomInset (101)
+    // FIXED: Pass Category variable to AsymmetricView (104)
+    return AsymmetricView(products: ProductsRepository.loadProducts(category));
   }
 }

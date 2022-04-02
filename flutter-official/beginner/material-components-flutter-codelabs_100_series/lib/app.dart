@@ -14,6 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shrine/backdrop.dart';
+import 'package:shrine/category_menu_page.dart';
 import 'package:shrine/colors.dart';
 import 'package:shrine/model/product.dart';
 import 'package:shrine/supplemental/cut_corners_border.dart';
@@ -21,9 +22,22 @@ import 'package:shrine/supplemental/cut_corners_border.dart';
 import 'home.dart';
 import 'login.dart';
 
-// TODO: Convert ShrineApp to stateful widget (104)
-class ShrineApp extends StatelessWidget {
+// FIXED: Convert ShrineApp to stateful widget (104)
+class ShrineApp extends StatefulWidget {
   const ShrineApp({Key? key}) : super(key: key);
+
+  @override
+  State<ShrineApp> createState() => _ShrineAppState();
+}
+
+class _ShrineAppState extends State<ShrineApp> {
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +45,15 @@ class ShrineApp extends StatelessWidget {
       title: 'Shrine',
       // FIXED: Change home: to a Backdrop with a HomePage frontLayer (104)
       home: Backdrop(
-        // TODO: Make currentCategory field take _currentCategory (104)
-        currentCategory: Category.all,
-        // TODO: Pass _currentCategory for frontLayer (104)
-        frontLayer: HomePage(),
-        // TODO: Change backLayer field value to CategoryMenuPage (104)
-        backLayer: Container(color: kShrinePink100),
+        // FIXED: Make currentCategory field take _currentCategory (104)
+        currentCategory: _currentCategory,
+        // FIXED: Pass _currentCategory for frontLayer (104)
+        frontLayer: HomePage(category: _currentCategory),
+        // FIXED: Change backLayer field value to CategoryMenuPage (104)
+        backLayer: CategoryMenuPage(
+          currentCategory: _currentCategory,
+          onCategoryTap: _onCategoryTap,
+        ),
         frontTitle: const Text('SHRINE'),
         backTitle: const Text('MENU'),
       ),
