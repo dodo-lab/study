@@ -94,7 +94,6 @@ ThemeData _buildShrineTheme() {
     textSelectionTheme: const TextSelectionThemeData(
       selectionColor: kShrinePink100,
     ),
-    // TODO: Add the icon themes (103)
     // FIXED: Decorate the inputs (103)
     inputDecorationTheme: const InputDecorationTheme(
       focusedBorder: CutCornersBorder(
