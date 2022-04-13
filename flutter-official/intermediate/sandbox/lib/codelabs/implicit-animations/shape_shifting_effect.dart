@@ -3,11 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 double randomBorderRadius() {
-  return Random().nextDouble() * 64;
+  // easeInOutBackでマイナスの値にならないよう+10を補正.
+  return Random().nextDouble() * 54 + 10;
 }
 
 double randomMargin() {
-  return Random().nextDouble() * 64;
+  // easeInOutBackでマイナスの値にならないよう+10を補正.
+  return Random().nextDouble() * 54 + 10;
 }
 
 Color randomColor() {
@@ -60,6 +62,7 @@ class _ShapeShiftingEffectState extends State<ShapeShiftingEffect> {
                     borderRadius: BorderRadius.circular(borderRadius),
                   ),
                   duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOutBack,
                 ),
               ),
               ElevatedButton(
