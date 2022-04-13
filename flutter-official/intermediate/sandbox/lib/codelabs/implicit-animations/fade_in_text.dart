@@ -11,6 +11,8 @@ class FadeInText extends StatefulWidget {
 }
 
 class _FadeInTextState extends State<FadeInText> {
+  double opacity = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,18 +21,24 @@ class _FadeInTextState extends State<FadeInText> {
         child: Column(children: [
           Image.network(owlUrl),
           TextButton(
-            onPressed: () => {},
+            onPressed: () => setState(() {
+              opacity = 1;
+            }),
             child: const Text(
               'Show Details',
               style: TextStyle(color: Colors.blueAccent),
             ),
           ),
-          Column(
-            children: const [
-              Text('Type: Owl'),
-              Text('Age: 39'),
-              Text('Employment: None'),
-            ],
+          AnimatedOpacity(
+            duration: const Duration(seconds: 2),
+            opacity: opacity,
+            child: Column(
+              children: const [
+                Text('Type: Owl'),
+                Text('Age: 39'),
+                Text('Employment: None'),
+              ],
+            ),
           )
         ]),
       ),
