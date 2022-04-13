@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/implicit-animations/fade_in_text.dart';
+import 'package:sandbox/codelabs/implicit-animations/shape_shifting_effect.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class ImplicitAnimations extends StatelessWidget {
@@ -9,7 +10,10 @@ class ImplicitAnimations extends StatelessWidget {
   Widget build(BuildContext context) {
     return const NavigationMenu(
       title: 'ImplicitAnimations',
-      widgets: [FadeInText()],
+      widgets: [
+        FadeInText(),
+        ShapeShiftingEffect(),
+      ],
     );
   }
 }
