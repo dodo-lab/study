@@ -35,6 +35,14 @@ class _ShapeShiftingEffectState extends State<ShapeShiftingEffect> {
     margin = randomMargin();
   }
 
+  void change() {
+    setState(() {
+      color = randomColor();
+      borderRadius = randomBorderRadius();
+      margin = randomMargin();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,16 +53,17 @@ class _ShapeShiftingEffectState extends State<ShapeShiftingEffect> {
               SizedBox(
                 width: 128,
                 height: 128,
-                child: Container(
+                child: AnimatedContainer(
                   margin: EdgeInsets.all(margin),
                   decoration: BoxDecoration(
                     color: color,
                     borderRadius: BorderRadius.circular(borderRadius),
                   ),
+                  duration: const Duration(milliseconds: 400),
                 ),
               ),
               ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => change(),
                 child: const Text('change'),
               ),
             ],
