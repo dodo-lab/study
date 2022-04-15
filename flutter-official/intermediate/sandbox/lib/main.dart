@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/implicit-animations/implicit-animations.dart';
+import 'package:sandbox/cookbook/cookbook.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 void main() {
@@ -26,8 +27,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const NavigationMenu(
-          title: 'Sandbox', widgets: [ImplicitAnimations()]),
+      home: const NavigationMenu(title: 'Sandbox', widgets: [
+        ImplicitAnimations(),
+        Cookbook(),
+      ]),
     );
   }
 }
