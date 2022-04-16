@@ -81,7 +81,9 @@ class _AnimateWidgetUsingPhysicsSimulationState
         },
         child: Align(
           alignment: _dragAlignment,
-          child: const FlutterLogo(size: 128),
+          child: const Card(
+            child: FlutterLogo(size: 128),
+          ),
         ),
       ),
     );
