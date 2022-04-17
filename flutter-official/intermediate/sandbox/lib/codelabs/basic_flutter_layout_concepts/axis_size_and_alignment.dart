@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/blue_box.dart';
+import 'package:sandbox/widgets/select_only_one_toggle_button.dart';
 
 class AxisSizeAndAlignment extends StatelessWidget {
   const AxisSizeAndAlignment({Key? key}) : super(key: key);
@@ -25,24 +26,11 @@ class MainAxisSizeProperty extends StatefulWidget {
 }
 
 class _MainAxisSizePropertyState extends State<MainAxisSizeProperty> {
-  final _size = [MainAxisSize.min, MainAxisSize.max];
-  final _isSelected = [true, false];
   MainAxisSize _value = MainAxisSize.min;
 
-  void _onRadioSelected(MainAxisSize? value) {
+  void onChanged(MainAxisSize size) {
     setState(() {
-      if (value != null) {
-        _value = value;
-      }
-    });
-  }
-
-  void _onPressed(int index) {
-    setState(() {
-      for (var i = 0; i < _isSelected.length; i++) {
-        _isSelected[i] = index == i;
-      }
-      _value = _size[index];
+      _value = size;
     });
   }
 
@@ -50,13 +38,10 @@ class _MainAxisSizePropertyState extends State<MainAxisSizeProperty> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: ToggleButtons(
-            children: const [Text('min'), Text('max')],
-            isSelected: _isSelected,
-            onPressed: _onPressed,
-          ),
+        SelectOnlyOneToggleButton<MainAxisSize>(
+          buttonValues: const [MainAxisSize.min, MainAxisSize.max],
+          value: _value,
+          onChanged: onChanged,
         ),
         Container(
           color: Colors.grey,
