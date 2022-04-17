@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/codelabs/basic_flutter_layout_concepts/blue_box.dart';
 
 class RowAndColumnClasses extends StatelessWidget {
   const RowAndColumnClasses({Key? key}) : super(key: key);
@@ -11,9 +12,9 @@ class RowAndColumnClasses extends StatelessWidget {
         children: [
           Row(
             children: const [
-              _BlueBox(),
-              _BlueBox(),
-              _BlueBox(),
+              BlueBox(),
+              BlueBox(),
+              BlueBox(),
             ],
           ),
           const SizedBox(height: 10),
@@ -21,29 +22,13 @@ class RowAndColumnClasses extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Column(
               children: const [
-                _BlueBox(),
-                _BlueBox(),
-                _BlueBox(),
+                BlueBox(),
+                BlueBox(),
+                BlueBox(),
               ],
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class _BlueBox extends StatelessWidget {
-  const _BlueBox({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        border: Border.all(),
       ),
     );
   }
