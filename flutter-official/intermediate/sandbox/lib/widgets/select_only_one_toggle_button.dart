@@ -54,14 +54,19 @@ class _SelectOnlyOneToggleButtonState<T>
   Widget build(BuildContext context) {
     final texts = widget.buttonNames != null
         ? widget.buttonNames!.map((name) => Text(name)).toList()
-        : widget.buttonValues.map((value) => Text(value.toString())).toList();
+        : widget.buttonValues
+            .map((value) =>
+                Text(value.toString().replaceAll(RegExp('.*\\.'), '')))
+            .toList();
 
     return Align(
       alignment: Alignment.topLeft,
-      child: ToggleButtons(
-        children: texts,
-        isSelected: _isSelected,
-        onPressed: _onPressed,
+      child: FittedBox(
+        child: ToggleButtons(
+          children: texts,
+          isSelected: _isSelected,
+          onPressed: _onPressed,
+        ),
       ),
     );
   }
