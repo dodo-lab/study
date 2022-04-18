@@ -10,8 +10,9 @@ class AxisSizeAndAlignment extends StatefulWidget {
 }
 
 class _AxisSizeAndAlignmentState extends State<AxisSizeAndAlignment> {
-  MainAxisSize _mainAxisSize = MainAxisSize.min;
-  MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.start;
+  MainAxisSize _mainAxisSize = MainAxisSize.max;
+  MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.spaceAround;
+  CrossAxisAlignment _crossAxisAlignment = CrossAxisAlignment.center;
 
   void _onChangedMainAxisSize(MainAxisSize size) {
     setState(() {
@@ -25,39 +26,73 @@ class _AxisSizeAndAlignmentState extends State<AxisSizeAndAlignment> {
     });
   }
 
+  void _onChangedCrossAxisAlignment(CrossAxisAlignment alignment) {
+    setState(() {
+      _crossAxisAlignment = alignment;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('AxisSizeAndAlignment')),
       body: Column(
         children: [
-          // MainAxisSize
-          const Text('MainAxisSize', style: TextStyle(fontSize: 16)),
-          SelectOnlyOneToggleButton<MainAxisSize>(
-            buttonValues: const [MainAxisSize.min, MainAxisSize.max],
+          buildSettingItem(
+            title: 'MainAxisSize',
+            buttonValues: MainAxisSize.values,
             value: _mainAxisSize,
             onChanged: _onChangedMainAxisSize,
           ),
-          const SizedBox(height: 20),
-          // MainAxisAlignment
-          const Text('MainAxisAlignment', style: TextStyle(fontSize: 16)),
-          SelectOnlyOneToggleButton<MainAxisAlignment>(
+          buildSettingItem(
+            title: 'MainAxisAlignment',
             buttonValues: MainAxisAlignment.values,
             value: _mainAxisAlignment,
             onChanged: _onChangedMainAxisAlignment,
           ),
-          const SizedBox(height: 20),
-          // Box
-          Container(
-            color: Colors.grey,
-            child: Row(
-              mainAxisSize: _mainAxisSize,
-              mainAxisAlignment: _mainAxisAlignment,
-              children: const [BlueBox(), BlueBox(), BlueBox()],
+          buildSettingItem(
+            title: 'CrossAxisAlignment',
+            buttonValues: CrossAxisAlignment.values,
+            value: _crossAxisAlignment,
+            onChanged: _onChangedCrossAxisAlignment,
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.grey,
+              child: Row(
+                mainAxisSize: _mainAxisSize,
+                mainAxisAlignment: _mainAxisAlignment,
+                crossAxisAlignment: _crossAxisAlignment,
+                textBaseline: TextBaseline.alphabetic,
+                children: const [
+                  BlueBox(),
+                  BlueBox(height: 100),
+                  Text('small'),
+                  Text('big', style: TextStyle(fontSize: 30)),
+                ],
+              ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildSettingItem<T>(
+      {required String title,
+      required List<T> buttonValues,
+      required T value,
+      required void Function(T) onChanged}) {
+    return Column(
+      children: [
+        Text(title, style: const TextStyle(fontSize: 16)),
+        SelectOnlyOneToggleButton(
+          buttonValues: buttonValues,
+          value: value,
+          onChanged: onChanged,
+        ),
+        const SizedBox(height: 20),
+      ],
     );
   }
 }
