@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/widgets/blue_box.dart';
-import 'package:sandbox/widgets/select_only_one_toggle_button.dart';
+import 'package:sandbox/widgets/toggle_button_setting_item.dart';
 
 class AxisSizeAndAlignment extends StatefulWidget {
   const AxisSizeAndAlignment({Key? key}) : super(key: key);
@@ -38,19 +38,19 @@ class _AxisSizeAndAlignmentState extends State<AxisSizeAndAlignment> {
       appBar: AppBar(title: const Text('AxisSizeAndAlignment')),
       body: Column(
         children: [
-          buildSettingItem(
+          ToggleButtonSettingItem(
             title: 'MainAxisSize',
             buttonValues: MainAxisSize.values,
             value: _mainAxisSize,
             onChanged: _onChangedMainAxisSize,
           ),
-          buildSettingItem(
+          ToggleButtonSettingItem(
             title: 'MainAxisAlignment',
             buttonValues: MainAxisAlignment.values,
             value: _mainAxisAlignment,
             onChanged: _onChangedMainAxisAlignment,
           ),
-          buildSettingItem(
+          ToggleButtonSettingItem(
             title: 'CrossAxisAlignment',
             buttonValues: CrossAxisAlignment.values,
             value: _crossAxisAlignment,
@@ -75,24 +75,6 @@ class _AxisSizeAndAlignmentState extends State<AxisSizeAndAlignment> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget buildSettingItem<T>(
-      {required String title,
-      required List<T> buttonValues,
-      required T value,
-      required void Function(T) onChanged}) {
-    return Column(
-      children: [
-        Text(title, style: const TextStyle(fontSize: 16)),
-        SelectOnlyOneToggleButton(
-          buttonValues: buttonValues,
-          value: value,
-          onChanged: onChanged,
-        ),
-        const SizedBox(height: 20),
-      ],
     );
   }
 }
