@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/axis_size_and_alignment.dart';
+import 'package:sandbox/codelabs/basic_flutter_layout_concepts/flexible_widget.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/row_and_column_classes.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
@@ -13,6 +14,7 @@ class BasicFlutterLayoutConcepts extends StatelessWidget {
       widgets: [
         RowAndColumnClasses(),
         AxisSizeAndAlignment(),
+        FlexibleWidget(),
       ],
     );
   }
