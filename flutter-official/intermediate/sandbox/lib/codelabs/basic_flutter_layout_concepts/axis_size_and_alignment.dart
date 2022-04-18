@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sandbox/codelabs/basic_flutter_layout_concepts/blue_box.dart';
+import 'package:sandbox/codelabs/basic_flutter_layout_concepts/widgets/blue_box.dart';
 import 'package:sandbox/widgets/select_only_one_toggle_button.dart';
 
 class AxisSizeAndAlignment extends StatefulWidget {
