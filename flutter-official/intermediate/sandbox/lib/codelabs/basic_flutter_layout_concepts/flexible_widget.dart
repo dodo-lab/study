@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/widgets/blue_box.dart';
 import 'package:sandbox/widgets/setting_item_slider.dart';
-import 'package:sandbox/widgets/toggle_button_setting_item.dart';
+import 'package:sandbox/widgets/setting_item_toggle_buttons.dart';
 
 class FlexibleWidget extends StatefulWidget {
   const FlexibleWidget({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _FlexibleWidgetState extends State<FlexibleWidget> {
       appBar: AppBar(title: const Text('FlexibleWidget')),
       body: Column(
         children: [
-          ToggleButtonSettingItem(
+          SettingItemToggleButtons(
             title: 'FlexFit',
             buttonValues: FlexFit.values,
             value: _flexFit,

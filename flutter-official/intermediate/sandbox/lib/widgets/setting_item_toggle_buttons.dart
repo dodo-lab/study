@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sandbox/widgets/select_only_one_toggle_button.dart';
+import 'package:sandbox/widgets/select_only_one_toggle_buttons.dart';
 
-class ToggleButtonSettingItem<T> extends StatelessWidget {
+class SettingItemToggleButtons<T> extends StatelessWidget {
   final String title;
   final List<T> buttonValues;
   final T value;
   final void Function(T) onChanged;
   final double bottomMargin;
 
-  const ToggleButtonSettingItem(
+  const SettingItemToggleButtons(
       {Key? key,
       required this.title,
       required this.buttonValues,
@@ -22,7 +22,7 @@ class ToggleButtonSettingItem<T> extends StatelessWidget {
     return Column(
       children: [
         Text(title, style: const TextStyle(fontSize: 16)),
-        SelectOnlyOneToggleButton(
+        SelectOnlyOneToggleButtons(
           buttonValues: buttonValues,
           value: value,
           onChanged: onChanged,

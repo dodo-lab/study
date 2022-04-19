@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SelectOnlyOneToggleButton<T> extends StatefulWidget {
+class SelectOnlyOneToggleButtons<T> extends StatefulWidget {
   final List<String>? buttonNames;
   final List<T> buttonValues;
   final T value;
   final void Function(T) onChanged;
 
-  const SelectOnlyOneToggleButton(
+  const SelectOnlyOneToggleButtons(
       {Key? key,
       this.buttonNames,
       required this.buttonValues,
@@ -15,12 +15,12 @@ class SelectOnlyOneToggleButton<T> extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SelectOnlyOneToggleButtonState createState() =>
-      _SelectOnlyOneToggleButtonState<T>();
+  _SelectOnlyOneToggleButtonsState createState() =>
+      _SelectOnlyOneToggleButtonsState<T>();
 }
 
-class _SelectOnlyOneToggleButtonState<T>
-    extends State<SelectOnlyOneToggleButton<T>> {
+class _SelectOnlyOneToggleButtonsState<T>
+    extends State<SelectOnlyOneToggleButtons<T>> {
   late List<bool> _isSelected;
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/widgets/blue_box.dart';
-import 'package:sandbox/widgets/toggle_button_setting_item.dart';
+import 'package:sandbox/widgets/setting_item_toggle_buttons.dart';
 
 class AxisSizeAndAlignment extends StatefulWidget {
   const AxisSizeAndAlignment({Key? key}) : super(key: key);
@@ -38,19 +38,19 @@ class _AxisSizeAndAlignmentState extends State<AxisSizeAndAlignment> {
       appBar: AppBar(title: const Text('AxisSizeAndAlignment')),
       body: Column(
         children: [
-          ToggleButtonSettingItem(
+          SettingItemToggleButtons(
             title: 'MainAxisSize',
             buttonValues: MainAxisSize.values,
             value: _mainAxisSize,
             onChanged: _onChangedMainAxisSize,
           ),
-          ToggleButtonSettingItem(
+          SettingItemToggleButtons(
             title: 'MainAxisAlignment',
             buttonValues: MainAxisAlignment.values,
             value: _mainAxisAlignment,
             onChanged: _onChangedMainAxisAlignment,
           ),
-          ToggleButtonSettingItem(
+          SettingItemToggleButtons(
             title: 'CrossAxisAlignment',
             buttonValues: CrossAxisAlignment.values,
             value: _crossAxisAlignment,
