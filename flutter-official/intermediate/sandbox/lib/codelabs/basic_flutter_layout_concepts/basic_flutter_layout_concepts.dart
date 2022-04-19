@@ -4,6 +4,7 @@ import 'package:sandbox/codelabs/basic_flutter_layout_concepts/expanded_widget.d
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/flexible_widget.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/row_and_column_classes.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/sized_box_widget.dart';
+import 'package:sandbox/codelabs/basic_flutter_layout_concepts/spacer_widget.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class BasicFlutterLayoutConcepts extends StatelessWidget {
@@ -19,6 +20,7 @@ class BasicFlutterLayoutConcepts extends StatelessWidget {
         FlexibleWidget(),
         ExpandedWidget(),
         SizedBoxWidget(),
+        SpacerWidget(),
       ],
     );
   }
