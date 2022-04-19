@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/axis_size_and_alignment.dart';
+import 'package:sandbox/codelabs/basic_flutter_layout_concepts/business_card.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/expanded_widget.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/flexible_widget.dart';
 import 'package:sandbox/codelabs/basic_flutter_layout_concepts/row_and_column_classes.dart';
@@ -21,6 +22,7 @@ class BasicFlutterLayoutConcepts extends StatelessWidget {
         ExpandedWidget(),
         SizedBoxWidget(),
         SpacerWidget(),
+        BusinessCard(),
       ],
     );
   }
