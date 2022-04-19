@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/widgets/title_and_widget.dart';
 
 class SettingItemSlider extends StatelessWidget {
   final String title;
@@ -22,19 +23,15 @@ class SettingItemSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final divisions = (max - min) ~/ step;
 
-    return Column(
-      children: [
-        Text('$title : $value', style: const TextStyle(fontSize: 16)),
-        Slider(
-          value: value,
-          min: min,
-          max: max,
-          divisions: divisions,
-          onChanged: onChanged,
-        ),
-        const SizedBox(height: 20),
-      ],
+    return TitleAndWidget(
+      title: '$title : $value',
+      widget: Slider(
+        value: value,
+        min: min,
+        max: max,
+        divisions: divisions,
+        onChanged: onChanged,
+      ),
     );
-    ;
   }
 }

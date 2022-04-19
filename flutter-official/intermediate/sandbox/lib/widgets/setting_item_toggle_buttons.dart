@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/widgets/select_only_one_toggle_buttons.dart';
+import 'package:sandbox/widgets/title_and_widget.dart';
 
 class SettingItemToggleButtons<T> extends StatelessWidget {
   final String title;
@@ -19,16 +20,13 @@ class SettingItemToggleButtons<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(title, style: const TextStyle(fontSize: 16)),
-        SelectOnlyOneToggleButtons(
-          buttonValues: buttonValues,
-          value: value,
-          onChanged: onChanged,
-        ),
-        SizedBox(height: bottomMargin),
-      ],
+    return TitleAndWidget(
+      title: title,
+      widget: SelectOnlyOneToggleButtons(
+        buttonValues: buttonValues,
+        value: value,
+        onChanged: onChanged,
+      ),
     );
   }
 }
