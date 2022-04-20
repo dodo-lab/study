@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/forms/create_and_style_text_field.dart';
+import 'package:sandbox/cookbook/forms/focus_and_text_fields.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class Forms extends StatelessWidget {
@@ -11,6 +12,7 @@ class Forms extends StatelessWidget {
       title: 'Forms',
       widgets: [
         CreateAndStyleTextField(),
+        FocusAndTextFields(),
       ],
     );
   }
