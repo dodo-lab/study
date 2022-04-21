@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/cookbook/forms/build_form_with_validation.dart';
 import 'package:sandbox/cookbook/forms/create_and_style_text_field.dart';
 import 'package:sandbox/cookbook/forms/focus_and_text_fields.dart';
 import 'package:sandbox/cookbook/forms/handle_changes_to_text_field.dart';
@@ -17,6 +18,7 @@ class Forms extends StatelessWidget {
         FocusAndTextFields(),
         HandleChangesToTextField(),
         RetrieveTheValueOfTextField(),
+        BuildFormWithValidation(),
       ],
     );
   }
