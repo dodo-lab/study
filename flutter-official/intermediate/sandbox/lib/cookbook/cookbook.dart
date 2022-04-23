@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/cookbook/animation/animation.dart' as animation;
 import 'package:sandbox/cookbook/forms/forms.dart';
+import 'package:sandbox/cookbook/persistence/persistence.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class Cookbook extends StatelessWidget {
@@ -13,6 +14,7 @@ class Cookbook extends StatelessWidget {
       widgets: [
         animation.Animation(),
         Forms(),
+        Persistence(),
       ],
     );
   }
