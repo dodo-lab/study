@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/cookbook/persistence/read_and_write_files.dart';
 import 'package:sandbox/widgets/navigation_menu.dart';
 
 class Persistence extends StatelessWidget {
@@ -8,7 +9,9 @@ class Persistence extends StatelessWidget {
   Widget build(BuildContext context) {
     return const NavigationMenu(
       title: 'Persistence',
-      widgets: [],
+      widgets: [
+        ReadAndWriteFiles(),
+      ],
     );
   }
 }
