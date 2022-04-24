@@ -1,14 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:sandbox/cookbook/persistence/model/dog.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class AppDatabase {
   late final Database database;
 
-  AppDatabase() {
-    _initDb();
-  }
-
-  void _initDb() async {
+  void initialize() async {
     database = await openDatabase(
       join(await getDatabasesPath(), 'doggie_database.db'),
       onCreate: ((db, version) {
@@ -18,5 +16,50 @@ class AppDatabase {
       }),
       version: 1,
     );
+  }
+
+  Future<void> insertDog(Dog dog) async {
+    await database.insert(
+      'dogs',
+      dog.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+}
+
+class PersistDataWithSqlite extends StatefulWidget {
+  const PersistDataWithSqlite({Key? key}) : super(key: key);
+
+  @override
+  _PersistDataWithSqliteState createState() => _PersistDataWithSqliteState();
+}
+
+class _PersistDataWithSqliteState extends State<PersistDataWithSqlite> {
+  final database = AppDatabase();
+
+  @override
+  void initState() {
+    super.initState();
+    database.initialize();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text('PersistDataWithSqlite')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  const fido = Dog(id: 0, name: 'Fido', age: 35);
+                  database.insertDog(fido);
+                },
+                child: const Text('Insert'),
+              ),
+            ],
+          ),
+        ));
   }
 }
