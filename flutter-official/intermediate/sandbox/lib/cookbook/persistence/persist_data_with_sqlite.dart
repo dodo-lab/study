@@ -25,6 +25,18 @@ class AppDatabase {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  Future<List<Dog>> dogs() async {
+    final List<Map<String, dynamic>> maps = await database.query('dogs');
+
+    return List.generate(maps.length, (index) {
+      return Dog(
+        id: maps[index]['id'],
+        name: maps[index]['name'],
+        age: maps[index]['age'],
+      );
+    });
+  }
 }
 
 class PersistDataWithSqlite extends StatefulWidget {
@@ -57,6 +69,13 @@ class _PersistDataWithSqliteState extends State<PersistDataWithSqlite> {
                   database.insertDog(fido);
                 },
                 child: const Text('Insert'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final dogs = await database.dogs();
+                  print(dogs);
+                },
+                child: const Text('Read'),
               ),
             ],
           ),
