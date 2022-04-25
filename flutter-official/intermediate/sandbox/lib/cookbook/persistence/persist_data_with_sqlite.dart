@@ -46,6 +46,14 @@ class AppDatabase {
       whereArgs: [dog.id],
     );
   }
+
+  Future<void> deleteDog(int id) async {
+    await database.delete(
+      'dogs',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
 
 class PersistDataWithSqlite extends StatefulWidget {
@@ -92,6 +100,12 @@ class _PersistDataWithSqliteState extends State<PersistDataWithSqlite> {
                   await database.updateDog(fido);
                 },
                 child: const Text('Update'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  await database.deleteDog(0);
+                },
+                child: const Text('Delete'),
               ),
             ],
           ),
