@@ -37,6 +37,15 @@ class AppDatabase {
       );
     });
   }
+
+  Future<void> updateDog(Dog dog) async {
+    await database.update(
+      'dogs',
+      dog.toMap(),
+      where: 'id = ?',
+      whereArgs: [dog.id],
+    );
+  }
 }
 
 class PersistDataWithSqlite extends StatefulWidget {
@@ -64,9 +73,9 @@ class _PersistDataWithSqliteState extends State<PersistDataWithSqlite> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   const fido = Dog(id: 0, name: 'Fido', age: 35);
-                  database.insertDog(fido);
+                  await database.insertDog(fido);
                 },
                 child: const Text('Insert'),
               ),
@@ -76,6 +85,13 @@ class _PersistDataWithSqliteState extends State<PersistDataWithSqlite> {
                   print(dogs);
                 },
                 child: const Text('Read'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  const fido = Dog(id: 0, name: 'Fido', age: 42);
+                  await database.updateDog(fido);
+                },
+                child: const Text('Update'),
               ),
             ],
           ),
