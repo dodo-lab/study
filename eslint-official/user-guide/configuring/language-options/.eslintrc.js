@@ -9,6 +9,12 @@ module.exports = {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "globals": {
+        "writableGlobal": "writable",
+        "readonlyGlobal": "readonly",
+        "Promise": "off"
+    },
     "rules": {
+        "no-unused-vars": "off"
     }
 }
