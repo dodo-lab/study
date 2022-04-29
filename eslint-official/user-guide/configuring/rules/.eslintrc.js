@@ -9,6 +9,13 @@ module.exports = {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "rules": {
-    }
+    "overrides": [
+        {
+            "files": ["src/*.js"],
+            "rules": {
+                "quotes": ["error", "single"],
+                "no-unused-vars": "off"
+            },
+        }
+    ],
 }
