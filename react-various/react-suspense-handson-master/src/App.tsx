@@ -1,21 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import './App.css'
-
-function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-const AlwaysSuspend: React.VFC = () => {
-  console.log('AlwaysSuspend is rendered');
-  throw sleep(1000);
-}
-
-const SometimesSuspend: React.VFC = () => {
-  if(Math.random() < 0.5) {
-    throw sleep(1000);
-  }
-  return <p>Hello, world!</p>
-}
+import { SometimesSuspend } from './components/SometimesSuspend';
 
 function App() {
   const [count, setCount] = useState(0);
