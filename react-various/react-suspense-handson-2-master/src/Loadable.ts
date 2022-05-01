@@ -36,6 +36,15 @@ export class Loadable<T> {
     };
   }
 
+  static newAndGetPromise<T>(promise: Promise<T>): [Loadable<T>, Promise<T>] {
+    const result = new Loadable(promise);
+    if (result.#state.status !== 'pending') {
+      throw new Error('Unreachable');
+    }
+
+    return [result, result.#state.promise];
+  }
+
   getOrThrow(): T {
     switch (this.#state.status) {
       case 'pending':
