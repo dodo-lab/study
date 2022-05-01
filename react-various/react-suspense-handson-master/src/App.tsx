@@ -9,7 +9,6 @@ function App() {
   const [data1] = useState(() => new Loadable(fetchData1()));
   const [data2] = useState(() => new Loadable(fetchData1()));
   const [data3] = useState(() => new Loadable(fetchData1()));
-  const [count, setCount] = useState(0);
 
   return (
     <div className="text-center">
