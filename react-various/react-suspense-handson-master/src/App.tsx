@@ -1,7 +1,7 @@
-import { Suspense, useState } from 'react';
-import './App.css'
-import { DataLoader } from './components/DataLoader';
-import { RenderingNotifier } from './components/RenderingNotifier';
+import {Suspense, useState} from 'react';
+import './App.css';
+import {DataLoader} from './components/DataLoader';
+import {RenderingNotifier} from './components/RenderingNotifier';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,12 +13,12 @@ function App() {
       <Suspense fallback={<p>Loading...</p>}>
         <DataLoader />
         <RenderingNotifier name="inside-Suspend" />
-        <button className='border p-1' onClick={() => setCount((c) => c + 1)}>
+        <button className="border p-1" onClick={() => setCount(c => c + 1)}>
           {count}
         </button>
       </Suspense>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,8 +1,8 @@
-import { sleep } from "../utils";
+import {sleep} from '../utils';
 
 export const SometimesSuspend: React.VFC = () => {
-  if(Math.random() < 0.5) {
+  if (Math.random() < 0.5) {
     throw sleep(1000);
   }
-  return <p>Hello, world!</p>
-}
+  return <p>Hello, world!</p>;
+};

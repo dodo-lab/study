@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { fetchData1 } from "../utils";
+import {useState} from 'react';
+import {fetchData1} from '../utils';
 
 export const DataLoader: React.VFC = () => {
   const [loading, setLoading] = useState(false);
