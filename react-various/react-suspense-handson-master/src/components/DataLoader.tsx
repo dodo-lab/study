@@ -1,22 +1,17 @@
+import {useData} from '../data';
+import {Loadable} from '../Loadable';
 import {fetchData1} from '../utils';
 
-let dataMap = new Map<string, unknown>();
+type Props = {
+  data: Loadable<string>;
+};
 
-function useData<T>(cacheKey: string, fetch: () => Promise<T>): T {
-  const cacheData = dataMap.get(cacheKey) as T | undefined;
-  if (cacheData === undefined) {
-    throw fetch().then(d => dataMap.set(cacheKey, d));
-  }
-
-  return cacheData;
-}
-
-export const DataLoader: React.VFC = () => {
-  const data = useData('DataLoader1', fetchData1);
+export const DataLoader: React.VFC<Props> = ({data}) => {
+  const value = data.getOrThrow();
 
   return (
     <>
-      <div>Data is {data}</div>
+      <div>Data is {value}</div>
     </>
   );
 };
