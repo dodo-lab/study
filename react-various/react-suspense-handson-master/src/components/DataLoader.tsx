@@ -1,18 +1,18 @@
 import {fetchData1} from '../utils';
 
-let dataMap = new Map<string, string>();
+let dataMap = new Map<string, unknown>();
 
-function useData1(cacheKey: string): string {
-  const cacheData = dataMap.get(cacheKey);
+function useData<T>(cacheKey: string, fetch: () => Promise<T>): T {
+  const cacheData = dataMap.get(cacheKey) as T | undefined;
   if (cacheData === undefined) {
-    throw fetchData1().then(d => dataMap.set(cacheKey, d));
+    throw fetch().then(d => dataMap.set(cacheKey, d));
   }
 
   return cacheData;
 }
 
 export const DataLoader: React.VFC = () => {
-  const data = useData1('DataLoader1');
+  const data = useData('DataLoader1', fetchData1);
 
   return (
     <>
@@ -22,7 +22,7 @@ export const DataLoader: React.VFC = () => {
 };
 
 export const DataLoader2: React.VFC = () => {
-  const data = useData1('DataLoader2');
+  const data = useData('DataLoader2', fetchData1);
 
   return (
     <>
