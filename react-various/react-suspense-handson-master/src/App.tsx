@@ -1,7 +1,7 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import './App.css'
+import { DataLoader } from './components/DataLoader';
 import { RenderingNotifier } from './components/RenderingNotifier';
-import { SometimesSuspend } from './components/SometimesSuspend';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,7 +11,7 @@ function App() {
       <h1 className="text-2xl">React App!</h1>
       <RenderingNotifier name="outside-Suspend" />
       <Suspense fallback={<p>Loading...</p>}>
-        <SometimesSuspend />
+        <DataLoader />
         <RenderingNotifier name="inside-Suspend" />
         <button className='border p-1' onClick={() => setCount((c) => c + 1)}>
           {count}
