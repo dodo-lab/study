@@ -1,20 +1,21 @@
-import {useState} from 'react';
 import {fetchData1} from '../utils';
 
-export const DataLoader: React.VFC = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<string | null>(null);
+let data: string | undefined;
 
-  if (loading && data === null) {
-    throw fetchData1().then(setData);
+function useData1(): string {
+  if (data === undefined) {
+    throw fetchData1().then(d => (data = d));
   }
+
+  return data;
+}
+
+export const DataLoader: React.VFC = () => {
+  const data = useData1();
 
   return (
     <>
       <div>Data is {data}</div>
-      <button className="border p-1" onClick={() => setLoading(true)}>
-        load
-      </button>
     </>
   );
 };
