@@ -2,7 +2,7 @@
   "name": "basic",
   "version": "1.0.0",
   "description": "Electron message port basic",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
