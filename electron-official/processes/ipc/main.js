@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, dialog} = require('electron');
+const {app, BrowserWindow, ipcMain, dialog, Menu} = require('electron');
 const path = require('path');
 
 async function handleFileOpen() {
@@ -17,10 +17,31 @@ function createWindow() {
     },
   });
 
+  const menu = Menu.buildFromTemplate([
+    {
+      label: app.name,
+      submenu: [
+        {
+          click: () => mainWindow.webContents.send('update-counter', 1),
+          label: 'Increment',
+        },
+        {
+          click: () => mainWindow.webContents.send('update-counter', -1),
+          label: 'Decrement',
+        },
+      ],
+    },
+  ]);
+  Menu.setApplicationMenu(menu);
+
   ipcMain.on('set-title', (event, title) => {
     const webContents = event.sender;
     const win = BrowserWindow.fromWebContents(webContents);
     win.setTitle(title);
+  });
+
+  ipcMain.on('counter-value', (_event, value) => {
+    console.log('counterValue', value);
   });
 
   mainWindow.loadFile('index.html');
