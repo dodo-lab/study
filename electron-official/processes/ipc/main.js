@@ -1,5 +1,14 @@
-const {app, BrowserWindow, ipcMain} = require('electron');
+const {app, BrowserWindow, ipcMain, dialog} = require('electron');
 const path = require('path');
+
+async function handleFileOpen() {
+  const {canceled, filePaths} = await dialog.showOpenDialog();
+  if (!canceled) {
+    return filePaths[0];
+  }
+
+  return undefined;
+}
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -18,6 +27,8 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  ipcMain.handle('dialog:openFile', handleFileOpen);
+
   createWindow();
 
   app.on('activate', () => {
