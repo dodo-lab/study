@@ -14,6 +14,7 @@ const typeDefs = `
     name: String
     avatar: String
     postedPhotos: [Photo!]!
+    inPhotos: [Photo!]!
   }
 
   type Photo {
@@ -23,6 +24,7 @@ const typeDefs = `
     description: String
     category: PhotoCategory
     postedBy: User!
+    taggedUsers: [User!]!
   }
 
   input PostPhotoInput {
@@ -40,6 +42,13 @@ const typeDefs = `
     postPhoto(input: PostPhotoInput!): Photo!
   }
 `;
+
+const tags = [
+  { photoID: '0', userID: 'gPlake' },
+  { photoID: '1', userID: 'sSchmidt' },
+  { photoID: '1', userID: 'mHattrup' },
+  { photoID: '1', userID: 'gPlake' },
+];
 
 const users = [
   { githubLogin: 'mHattrup', name: 'Mike Hattrup' },
@@ -93,11 +102,19 @@ const resolvers = {
     url: (parent) => `http://yoursite.com/img/${parent.id}.jpg`,
     postedBy: (parent) =>
       users.find((u) => u.githubLogin === parent.githubUser),
+    taggedUsers: (parent) =>
+      tags
+        .filter((t) => t.photoID === parent.id)
+        .map((t) => users.find((u) => u.githubLogin === t.userID)),
   },
 
   User: {
     postedPhotos: (parent) =>
       photos.filter((p) => p.githubUser === parent.githubLogin),
+    inPhotos: (parent) =>
+      tags
+        .filter((t) => t.userID === parent.githubLogin)
+        .map((t) => photos.find((p) => p.id === t.photoID)),
   },
 };
 
