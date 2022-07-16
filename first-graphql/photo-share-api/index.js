@@ -1,4 +1,5 @@
 const { ApolloServer } = require('apollo-server');
+const { GraphQLScalarType } = require('graphql');
 
 const typeDefs = `
   enum PhotoCategory {
@@ -17,6 +18,7 @@ const typeDefs = `
     inPhotos: [Photo!]!
   }
 
+  scalar DateTime
   type Photo {
     id: ID!
     url: String!
@@ -25,6 +27,7 @@ const typeDefs = `
     category: PhotoCategory
     postedBy: User!
     taggedUsers: [User!]!
+    created: DateTime!
   }
 
   input PostPhotoInput {
@@ -35,7 +38,7 @@ const typeDefs = `
 
   type Query {
     totalPhotos: Int!
-    allPhotos: [Photo!]!
+    allPhotos(after: DateTime): [Photo!]!
   }
 
   type Mutation {
@@ -63,12 +66,14 @@ const photos = [
     description: 'The heart chute is one of my favorite chutes',
     category: 'ACTION',
     githubUser: 'gPlake',
+    created: '3-28-1977',
   },
   {
     id: '1',
     name: 'Enjoying the sunshine',
     category: 'SELFIE',
     githubUser: 'sSchmidt',
+    created: '1-2-1985',
   },
   {
     id: '2',
@@ -76,15 +81,27 @@ const photos = [
     description: '25 laps on gunbarrel today',
     category: 'LANDSCAPE',
     githubUser: 'sSchmidt',
+    created: '2018-04-15T19:09:57.308Z',
   },
 ];
+
+const compareDateTime = (v1, v2) => {
+  const d1 = new Date(v1);
+  const d2 = new Date(v2);
+  return d1.getTime() > d2.getTime();
+};
 
 let _id = photos.length;
 
 const resolvers = {
   Query: {
     totalPhotos: () => photos.length,
-    allPhotos: () => photos,
+    allPhotos: (parent, args) => {
+      if (args.after) {
+        return photos.filter((p) => compareDateTime(p.created, args.after));
+      }
+      return photos;
+    },
   },
 
   Mutation: {
@@ -92,6 +109,7 @@ const resolvers = {
       const newPhoto = {
         id: _id++,
         ...args.input,
+        created: new Date(),
       };
       photos.push(newPhoto);
       return newPhoto;
@@ -116,6 +134,14 @@ const resolvers = {
         .filter((t) => t.userID === parent.githubLogin)
         .map((t) => photos.find((p) => p.id === t.photoID)),
   },
+
+  DateTime: new GraphQLScalarType({
+    name: 'DateTime',
+    description: 'A valid date time value.',
+    parseValue: (value) => new Date(value),
+    serialize: (value) => new Date(value).toISOString(),
+    parseLiteral: (ast) => ast.value,
+  }),
 };
 
 // サーバーのインスタンスを生成.
