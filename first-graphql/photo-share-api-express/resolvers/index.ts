@@ -1,4 +1,4 @@
-const { GraphQLScalarType } = require('graphql');
+import { GraphQLScalarType } from 'graphql';
 
 const tags = [
   { photoID: '0', userID: 'gPlake' },
@@ -39,7 +39,7 @@ const photos = [
   },
 ];
 
-const compareDateTime = (v1, v2) => {
+const compareDateTime = (v1: string, v2: string) => {
   const d1 = new Date(v1);
   const d2 = new Date(v2);
   return d1.getTime() > d2.getTime();
@@ -47,10 +47,10 @@ const compareDateTime = (v1, v2) => {
 
 let _id = photos.length;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     totalPhotos: () => photos.length,
-    allPhotos: (parent, args) => {
+    allPhotos: (parent: any, args: any) => {
       if (args.after) {
         return photos.filter((p) => compareDateTime(p.created, args.after));
       }
@@ -59,7 +59,7 @@ const resolvers = {
   },
 
   Mutation: {
-    postPhoto(parent, args) {
+    postPhoto(parent: any, args: any) {
       const newPhoto = {
         id: _id++,
         ...args.input,
@@ -71,19 +71,19 @@ const resolvers = {
   },
 
   Photo: {
-    url: (parent) => `http://yoursite.com/img/${parent.id}.jpg`,
-    postedBy: (parent) =>
+    url: (parent: any) => `http://yoursite.com/img/${parent.id}.jpg`,
+    postedBy: (parent: any) =>
       users.find((u) => u.githubLogin === parent.githubUser),
-    taggedUsers: (parent) =>
+    taggedUsers: (parent: any) =>
       tags
         .filter((t) => t.photoID === parent.id)
         .map((t) => users.find((u) => u.githubLogin === t.userID)),
   },
 
   User: {
-    postedPhotos: (parent) =>
+    postedPhotos: (parent: any) =>
       photos.filter((p) => p.githubUser === parent.githubLogin),
-    inPhotos: (parent) =>
+    inPhotos: (parent: any) =>
       tags
         .filter((t) => t.userID === parent.githubLogin)
         .map((t) => photos.find((p) => p.id === t.photoID)),
@@ -92,8 +92,8 @@ const resolvers = {
   DateTime: new GraphQLScalarType({
     name: 'DateTime',
     description: 'A valid date time value.',
-    parseValue: (value) => new Date(value),
-    serialize: (value) => new Date(value).toISOString(),
-    parseLiteral: (ast) => ast.value,
+    parseValue: (value: any) => new Date(value),
+    serialize: (value: any) => new Date(value).toISOString(),
+    parseLiteral: (ast: any) => ast.value,
   }),
 };

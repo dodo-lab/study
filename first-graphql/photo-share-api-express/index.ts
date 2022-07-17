@@ -1,11 +1,10 @@
-const expressPlayground =
-  require('graphql-playground-middleware-express').default;
-const { ApolloServer } = require('apollo-server-express');
-const express = require('express');
-const fs = require('fs');
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import fs from 'fs';
+import expressPlayground from 'graphql-playground-middleware-express';
+import { resolvers } from './resolvers';
 
 const typeDefs = fs.readFileSync('./typeDefs.graphql', 'utf-8');
-const resolvers = require('./resolvers');
 
 async function main() {
   const app = express();
