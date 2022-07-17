@@ -4,7 +4,7 @@ import fs from 'fs';
 import expressPlayground from 'graphql-playground-middleware-express';
 import { resolvers } from './resolvers';
 
-const typeDefs = fs.readFileSync('./typeDefs.graphql', 'utf-8');
+const typeDefs = fs.readFileSync('./graphql/typeDefs.graphql', 'utf-8');
 
 async function main() {
   const app = express();

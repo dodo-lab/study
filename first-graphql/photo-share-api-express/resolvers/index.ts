@@ -1,4 +1,15 @@
 import { GraphQLScalarType } from 'graphql';
+import {
+  MutationPostPhotoArgs,
+  Photo,
+  PhotoCategory,
+  QueryAllPhotosArgs,
+  User,
+} from './../graphql/generated/resolvers';
+
+type CustomPhoto = Partial<Photo> & {
+  githubUser?: string;
+};
 
 const tags = [
   { photoID: '0', userID: 'gPlake' },
@@ -7,25 +18,35 @@ const tags = [
   { photoID: '1', userID: 'gPlake' },
 ];
 
-const users = [
-  { githubLogin: 'mHattrup', name: 'Mike Hattrup' },
-  { githubLogin: 'gPlake', name: 'Glen Plake' },
-  { githubLogin: 'sSchmidt', name: 'Scot Schmidt' },
+const users: User[] = [
+  {
+    githubLogin: 'mHattrup',
+    name: 'Mike Hattrup',
+    inPhotos: [],
+    postedPhotos: [],
+  },
+  { githubLogin: 'gPlake', name: 'Glen Plake', inPhotos: [], postedPhotos: [] },
+  {
+    githubLogin: 'sSchmidt',
+    name: 'Scot Schmidt',
+    inPhotos: [],
+    postedPhotos: [],
+  },
 ];
 
-const photos = [
+const photos: CustomPhoto[] = [
   {
     id: '0',
     name: 'Dropping the Heart Chute',
     description: 'The heart chute is one of my favorite chutes',
-    category: 'ACTION',
+    category: PhotoCategory.Action,
     githubUser: 'gPlake',
     created: '3-28-1977',
   },
   {
     id: '1',
     name: 'Enjoying the sunshine',
-    category: 'SELFIE',
+    category: PhotoCategory.Selfie,
     githubUser: 'sSchmidt',
     created: '1-2-1985',
   },
@@ -33,7 +54,7 @@ const photos = [
     id: '2',
     name: 'Gunbarrel 25',
     description: '25 laps on gunbarrel today',
-    category: 'LANDSCAPE',
+    category: PhotoCategory.Landscape,
     githubUser: 'sSchmidt',
     created: '2018-04-15T19:09:57.308Z',
   },
@@ -50,7 +71,7 @@ let _id = photos.length;
 export const resolvers = {
   Query: {
     totalPhotos: () => photos.length,
-    allPhotos: (parent: any, args: any) => {
+    allPhotos: (parent: {}, args: QueryAllPhotosArgs) => {
       if (args.after) {
         return photos.filter((p) => compareDateTime(p.created, args.after));
       }
@@ -59,9 +80,9 @@ export const resolvers = {
   },
 
   Mutation: {
-    postPhoto(parent: any, args: any) {
-      const newPhoto = {
-        id: _id++,
+    postPhoto(parent: {}, args: MutationPostPhotoArgs) {
+      const newPhoto: CustomPhoto = {
+        id: (_id++).toString(),
         ...args.input,
         created: new Date(),
       };
@@ -71,19 +92,19 @@ export const resolvers = {
   },
 
   Photo: {
-    url: (parent: any) => `http://yoursite.com/img/${parent.id}.jpg`,
-    postedBy: (parent: any) =>
+    url: (parent: CustomPhoto) => `http://yoursite.com/img/${parent.id}.jpg`,
+    postedBy: (parent: CustomPhoto) =>
       users.find((u) => u.githubLogin === parent.githubUser),
-    taggedUsers: (parent: any) =>
+    taggedUsers: (parent: CustomPhoto) =>
       tags
         .filter((t) => t.photoID === parent.id)
         .map((t) => users.find((u) => u.githubLogin === t.userID)),
   },
 
   User: {
-    postedPhotos: (parent: any) =>
+    postedPhotos: (parent: User) =>
       photos.filter((p) => p.githubUser === parent.githubLogin),
-    inPhotos: (parent: any) =>
+    inPhotos: (parent: User) =>
       tags
         .filter((t) => t.userID === parent.githubLogin)
         .map((t) => photos.find((p) => p.id === t.photoID)),
