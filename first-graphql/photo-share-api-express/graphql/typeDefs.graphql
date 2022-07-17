@@ -16,7 +16,7 @@ type User {
 
 scalar DateTime
 type Photo {
-  id: ID!
+  _id: ID!
   url: String!
   name: String!
   description: String
@@ -30,11 +30,14 @@ input PostPhotoInput {
   name: String!
   category: PhotoCategory = PORTRAIT
   description: String
+  githubUser: String!
 }
 
 type Query {
   totalPhotos: Int!
   allPhotos(after: DateTime): [Photo!]!
+  totalUsers: Int!
+  allUsers: [User!]!
 }
 
 type Mutation {

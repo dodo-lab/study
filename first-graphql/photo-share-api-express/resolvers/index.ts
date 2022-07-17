@@ -1,64 +1,15 @@
 import { GraphQLScalarType } from 'graphql';
+import { Db, WithId } from 'mongodb';
+import { DbPhoto, DbUser } from '../mongo-db/types';
 import {
   MutationPostPhotoArgs,
-  Photo,
-  PhotoCategory,
   QueryAllPhotosArgs,
   User,
 } from './../graphql/generated/resolvers';
 
-type CustomPhoto = Partial<Photo> & {
-  githubUser?: string;
+type Context = {
+  db: Db;
 };
-
-const tags = [
-  { photoID: '0', userID: 'gPlake' },
-  { photoID: '1', userID: 'sSchmidt' },
-  { photoID: '1', userID: 'mHattrup' },
-  { photoID: '1', userID: 'gPlake' },
-];
-
-const users: User[] = [
-  {
-    githubLogin: 'mHattrup',
-    name: 'Mike Hattrup',
-    inPhotos: [],
-    postedPhotos: [],
-  },
-  { githubLogin: 'gPlake', name: 'Glen Plake', inPhotos: [], postedPhotos: [] },
-  {
-    githubLogin: 'sSchmidt',
-    name: 'Scot Schmidt',
-    inPhotos: [],
-    postedPhotos: [],
-  },
-];
-
-const photos: CustomPhoto[] = [
-  {
-    id: '0',
-    name: 'Dropping the Heart Chute',
-    description: 'The heart chute is one of my favorite chutes',
-    category: PhotoCategory.Action,
-    githubUser: 'gPlake',
-    created: '3-28-1977',
-  },
-  {
-    id: '1',
-    name: 'Enjoying the sunshine',
-    category: PhotoCategory.Selfie,
-    githubUser: 'sSchmidt',
-    created: '1-2-1985',
-  },
-  {
-    id: '2',
-    name: 'Gunbarrel 25',
-    description: '25 laps on gunbarrel today',
-    category: PhotoCategory.Landscape,
-    githubUser: 'sSchmidt',
-    created: '2018-04-15T19:09:57.308Z',
-  },
-];
 
 const compareDateTime = (v1: string, v2: string) => {
   const d1 = new Date(v1);
@@ -66,48 +17,56 @@ const compareDateTime = (v1: string, v2: string) => {
   return d1.getTime() > d2.getTime();
 };
 
-let _id = photos.length;
-
 export const resolvers = {
   Query: {
-    totalPhotos: () => photos.length,
-    allPhotos: (parent: {}, args: QueryAllPhotosArgs) => {
+    totalPhotos: (parent: {}, args: {}, { db }: Context) =>
+      db.collection('photos').estimatedDocumentCount(),
+    allPhotos: async (
+      parent: {},
+      args: QueryAllPhotosArgs,
+      { db }: Context
+    ): Promise<WithId<DbPhoto>[]> => {
+      const photos = await db.collection<DbPhoto>('photos').find().toArray();
       if (args.after) {
         return photos.filter((p) => compareDateTime(p.created, args.after));
       }
       return photos;
     },
+    totalUsers: (parent: {}, args: {}, { db }: Context) =>
+      db.collection('users').estimatedDocumentCount(),
+    allUsers: async (panret: {}, args: {}, { db }: Context) => {
+      const users = await db.collection<DbUser>('users').find().toArray();
+      return users;
+    },
   },
 
   Mutation: {
-    postPhoto(parent: {}, args: MutationPostPhotoArgs) {
-      const newPhoto: CustomPhoto = {
-        id: (_id++).toString(),
+    postPhoto(parent: {}, args: MutationPostPhotoArgs, { db }: Context) {
+      const newPhoto: DbPhoto = {
         ...args.input,
         created: new Date(),
       };
-      photos.push(newPhoto);
+      db.collection('photos').insertOne(newPhoto);
       return newPhoto;
     },
   },
 
   Photo: {
-    url: (parent: CustomPhoto) => `http://yoursite.com/img/${parent.id}.jpg`,
-    postedBy: (parent: CustomPhoto) =>
-      users.find((u) => u.githubLogin === parent.githubUser),
-    taggedUsers: (parent: CustomPhoto) =>
-      tags
-        .filter((t) => t.photoID === parent.id)
-        .map((t) => users.find((u) => u.githubLogin === t.userID)),
+    url: (parent: WithId<DbPhoto>) =>
+      `http://yoursite.com/img/${parent._id}.jpg`,
+    postedBy: async (parent: WithId<DbPhoto>, args: {}, { db }: Context) => {
+      const users = await db.collection<DbUser>('users').find().toArray();
+      return users.find((u) => u.githubLogin === parent.githubUser);
+    },
+    taggedUsers: (parent: WithId<DbPhoto>) => [],
   },
 
   User: {
-    postedPhotos: (parent: User) =>
-      photos.filter((p) => p.githubUser === parent.githubLogin),
-    inPhotos: (parent: User) =>
-      tags
-        .filter((t) => t.userID === parent.githubLogin)
-        .map((t) => photos.find((p) => p.id === t.photoID)),
+    postedPhotos: async (parent: User, args: {}, { db }: Context) => {
+      const photos = await db.collection<DbPhoto>('photos').find().toArray();
+      return photos.filter((p) => p.githubUser === parent.githubLogin);
+    },
+    inPhotos: (parent: User) => [],
   },
 
   DateTime: new GraphQLScalarType({

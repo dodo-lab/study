@@ -27,10 +27,10 @@ export type MutationPostPhotoArgs = {
 
 export type Photo = {
   __typename?: 'Photo';
+  _id: Scalars['ID'];
   category?: Maybe<PhotoCategory>;
   created: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
   name: Scalars['String'];
   postedBy: User;
   taggedUsers: Array<User>;
@@ -48,13 +48,16 @@ export enum PhotoCategory {
 export type PostPhotoInput = {
   category?: InputMaybe<PhotoCategory>;
   description?: InputMaybe<Scalars['String']>;
+  githubUser: Scalars['String'];
   name: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
   allPhotos: Array<Photo>;
+  allUsers: Array<User>;
   totalPhotos: Scalars['Int'];
+  totalUsers: Scalars['Int'];
 };
 
 
@@ -176,10 +179,10 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type PhotoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Photo'] = ResolversParentTypes['Photo']> = {
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   category?: Resolver<Maybe<ResolversTypes['PhotoCategory']>, ParentType, ContextType>;
   created?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   postedBy?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   taggedUsers?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
@@ -189,7 +192,9 @@ export type PhotoResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   allPhotos?: Resolver<Array<ResolversTypes['Photo']>, ParentType, ContextType, Partial<QueryAllPhotosArgs>>;
+  allUsers?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
   totalPhotos?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  totalUsers?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
