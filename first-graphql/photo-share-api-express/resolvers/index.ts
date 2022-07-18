@@ -1,7 +1,10 @@
 import { GraphQLScalarType } from 'graphql';
 import { Db, WithId } from 'mongodb';
 import { DbPhoto, DbUser } from '../mongo-db/types';
+import { authorizeWithGithub } from '../utils/github';
 import {
+  AuthPayload,
+  MutationGithubAuthArgs,
   MutationPostPhotoArgs,
   QueryAllPhotosArgs,
   User,
@@ -48,6 +51,32 @@ export const resolvers = {
       };
       db.collection('photos').insertOne(newPhoto);
       return newPhoto;
+    },
+    async githubAuth(
+      parent: {},
+      args: MutationGithubAuthArgs
+    ): Promise<AuthPayload> {
+      const { client_id, client_secret, code } = args.input;
+      const authRes = await authorizeWithGithub({
+        client_id,
+        client_secret,
+        code,
+      });
+      const { message, access_token, avatar_url, login, name } = authRes;
+
+      if (message) {
+        throw new Error(message);
+      }
+
+      const latestUserInfo = {
+        name,
+        githubLogin: login,
+        githubToken: access_token,
+        avatar: avatar_url,
+      };
+
+      // @ts-ignore
+      return { user: latestUserInfo, token: access_token };
     },
   },
 
