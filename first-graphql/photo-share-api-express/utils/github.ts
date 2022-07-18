@@ -1,15 +1,10 @@
 import fetch from 'node-fetch';
+import { throwError, toJSON } from './utils';
 
 type Credentials = {
   client_id: string;
   client_secret: string;
   code: string;
-};
-
-const toJSON = (res: any) => res.json();
-
-const throwError = (error: any) => {
-  throw new Error(JSON.stringify(error));
 };
 
 export const requestGithubToken = (credentials: Credentials) =>
