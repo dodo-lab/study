@@ -60,7 +60,6 @@ export enum PhotoCategory {
 export type PostPhotoInput = {
   category?: InputMaybe<PhotoCategory>;
   description?: InputMaybe<Scalars['String']>;
-  githubUser: Scalars['String'];
   name: Scalars['String'];
 };
 

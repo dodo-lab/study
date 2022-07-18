@@ -46,13 +46,23 @@ export const resolvers = {
   },
 
   Mutation: {
-    postPhoto(parent: {}, args: MutationPostPhotoArgs, { db }: Context) {
+    async postPhoto(
+      parent: {},
+      args: MutationPostPhotoArgs,
+      { db, currentUser }: Context
+    ) {
+      if (!currentUser) {
+        throw new Error('only an authorized user can post a photo');
+      }
+
       const newPhoto: DbPhoto = {
         ...args.input,
+        githubUser: currentUser.githubLogin,
         created: new Date(),
       };
-      db.collection('photos').insertOne(newPhoto);
-      return newPhoto;
+      const { insertedId } = await db.collection('photos').insertOne(newPhoto);
+      const photo = { ...newPhoto, id: insertedId };
+      return photo;
     },
     async githubAuth(
       parent: {},
@@ -90,8 +100,11 @@ export const resolvers = {
     url: (parent: WithId<DbPhoto>) =>
       `http://yoursite.com/img/${parent._id}.jpg`,
     postedBy: async (parent: WithId<DbPhoto>, args: {}, { db }: Context) => {
-      const users = await db.collection<DbUser>('users').find().toArray();
-      return users.find((u) => u.githubLogin === parent.githubUser);
+      // const users = await db.collection<DbUser>('users').find().toArray();
+      // return users.find((u) => u.githubLogin === parent.githubUser);
+      return await db
+        .collection<DbUser>('users')
+        .findOne({ githubLogin: parent.githubUser });
     },
     taggedUsers: (parent: WithId<DbPhoto>) => [],
   },
