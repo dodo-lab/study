@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import express from 'express';
 import fs from 'fs';
 import expressPlayground from 'graphql-playground-middleware-express';
-import { MongoClient } from 'mongodb';
+import { Db, MongoClient } from 'mongodb';
 import { PhotoCategory } from './graphql/generated/resolvers';
 import { DbPhoto, DbUser } from './mongo-db/types';
 import { resolvers } from './resolvers';
@@ -12,13 +12,7 @@ config();
 
 const typeDefs = fs.readFileSync('./graphql/typeDefs.graphql', 'utf-8');
 
-async function main() {
-  const app = express();
-
-  const MONGO_DB = process.env.DB_HOST;
-
-  const client = await MongoClient.connect(MONGO_DB!);
-  const db = client.db();
+async function initializeDbData(db: Db) {
   const users = db.collection<DbUser>('users');
   if ((await users.estimatedDocumentCount()) <= 0) {
     await users.insertMany([
@@ -52,6 +46,16 @@ async function main() {
       },
     ]);
   }
+}
+
+async function start() {
+  const app = express();
+
+  const MONGO_DB = process.env.DB_HOST;
+
+  const client = await MongoClient.connect(MONGO_DB!);
+  const db = client.db();
+  await initializeDbData(db);
   const context = { db };
 
   const server = new ApolloServer({
@@ -78,4 +82,4 @@ async function main() {
   });
 }
 
-main();
+start();
