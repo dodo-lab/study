@@ -12,6 +12,7 @@ import {
 
 type Context = {
   db: Db;
+  currentUser: WithId<DbUser> | null;
 };
 
 const compareDateTime = (v1: string, v2: string) => {
@@ -41,6 +42,7 @@ export const resolvers = {
       const users = await db.collection<DbUser>('users').find().toArray();
       return users;
     },
+    me: (parent: {}, args: {}, { currentUser }: Context) => currentUser,
   },
 
   Mutation: {

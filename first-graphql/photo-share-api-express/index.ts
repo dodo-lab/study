@@ -56,12 +56,17 @@ async function start() {
   const client = await MongoClient.connect(MONGO_DB!);
   const db = client.db();
   await initializeDbData(db);
-  const context = { db };
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context,
+    context: async ({ req }) => {
+      const githubToken = req.headers.authorization;
+      const currentUser = await db
+        .collection<DbUser>('users')
+        .findOne({ githubToken });
+      return { db, currentUser };
+    },
   });
   await server.start();
 
