@@ -24,6 +24,7 @@ export type AuthPayload = {
 export type Mutation = {
   __typename?: 'Mutation';
   addFakeUsers?: Maybe<Array<User>>;
+  fakeUserAuth: AuthPayload;
   githubAuth: AuthPayload;
   postPhoto: Photo;
 };
@@ -31,6 +32,11 @@ export type Mutation = {
 
 export type MutationAddFakeUsersArgs = {
   count?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type MutationFakeUserAuthArgs = {
+  githubLogin: Scalars['ID'];
 };
 
 
@@ -203,6 +209,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addFakeUsers?: Resolver<Maybe<Array<ResolversTypes['User']>>, ParentType, ContextType, RequireFields<MutationAddFakeUsersArgs, 'count'>>;
+  fakeUserAuth?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationFakeUserAuthArgs, 'githubLogin'>>;
   githubAuth?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationGithubAuthArgs, 'code'>>;
   postPhoto?: Resolver<ResolversTypes['Photo'], ParentType, ContextType, RequireFields<MutationPostPhotoArgs, 'input'>>;
 };

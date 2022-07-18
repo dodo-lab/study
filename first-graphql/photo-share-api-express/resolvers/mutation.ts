@@ -2,6 +2,7 @@ import fetch from 'node-fetch';
 import {
   AuthPayload,
   MutationAddFakeUsersArgs,
+  MutationFakeUserAuthArgs,
   MutationGithubAuthArgs,
   MutationPostPhotoArgs,
 } from '../graphql/generated/resolvers';
@@ -78,5 +79,21 @@ export const mutation = {
 
     await db.collection('users').insertMany(users);
     return users;
+  },
+  // フェイクユーザー認証.
+  async fakeUserAuth(
+    parent: {},
+    { githubLogin }: MutationFakeUserAuthArgs,
+    { db }: Context
+  ) {
+    const user = await db.collection<DbUser>('users').findOne({ githubLogin });
+    if (!user) {
+      throw new Error(`Cannot find user with githubLogin ${githubLogin}`);
+    }
+
+    return {
+      token: user.githubToken,
+      user,
+    };
   },
 };
