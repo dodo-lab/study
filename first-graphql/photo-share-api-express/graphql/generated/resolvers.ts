@@ -23,8 +23,14 @@ export type AuthPayload = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addFakeUsers?: Maybe<Array<User>>;
   githubAuth: AuthPayload;
   postPhoto: Photo;
+};
+
+
+export type MutationAddFakeUsersArgs = {
+  count?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -81,6 +87,7 @@ export type User = {
   __typename?: 'User';
   avatar?: Maybe<Scalars['String']>;
   githubLogin: Scalars['ID'];
+  githubToken?: Maybe<Scalars['String']>;
   inPhotos: Array<Photo>;
   name?: Maybe<Scalars['String']>;
   postedPhotos: Array<Photo>;
@@ -195,6 +202,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addFakeUsers?: Resolver<Maybe<Array<ResolversTypes['User']>>, ParentType, ContextType, RequireFields<MutationAddFakeUsersArgs, 'count'>>;
   githubAuth?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationGithubAuthArgs, 'code'>>;
   postPhoto?: Resolver<ResolversTypes['Photo'], ParentType, ContextType, RequireFields<MutationPostPhotoArgs, 'input'>>;
 };
@@ -222,6 +230,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   githubLogin?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  githubToken?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   inPhotos?: Resolver<Array<ResolversTypes['Photo']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   postedPhotos?: Resolver<Array<ResolversTypes['Photo']>, ParentType, ContextType>;
