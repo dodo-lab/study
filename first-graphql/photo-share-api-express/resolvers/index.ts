@@ -54,7 +54,8 @@ export const resolvers = {
     },
     async githubAuth(
       parent: {},
-      { code }: MutationGithubAuthArgs
+      { code }: MutationGithubAuthArgs,
+      { db }: Context
     ): Promise<AuthPayload> {
       const authRes = await authorizeWithGithub({
         client_id: process.env.GITHUB_CLIENT_ID ?? '',
@@ -73,6 +74,10 @@ export const resolvers = {
         githubToken: access_token,
         avatar: avatar_url,
       };
+
+      const user = await db
+        .collection<DbUser>('users')
+        .replaceOne({ githubLogin: login }, latestUserInfo, { upsert: true });
 
       // @ts-ignore
       return { user: latestUserInfo, token: access_token };
