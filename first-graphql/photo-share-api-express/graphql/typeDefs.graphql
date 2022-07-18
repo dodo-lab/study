@@ -33,12 +33,6 @@ input PostPhotoInput {
   githubUser: String!
 }
 
-input GithubAuthInput {
-  client_id: String!
-  client_secret: String!
-  code: String!
-}
-
 type AuthPayload {
   user: User!
   token: String!
@@ -53,5 +47,5 @@ type Query {
 
 type Mutation {
   postPhoto(input: PostPhotoInput!): Photo!
-  githubAuth(input: GithubAuthInput!): AuthPayload!
+  githubAuth(code: String!): AuthPayload!
 }

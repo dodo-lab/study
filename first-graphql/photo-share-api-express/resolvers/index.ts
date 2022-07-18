@@ -54,12 +54,11 @@ export const resolvers = {
     },
     async githubAuth(
       parent: {},
-      args: MutationGithubAuthArgs
+      { code }: MutationGithubAuthArgs
     ): Promise<AuthPayload> {
-      const { client_id, client_secret, code } = args.input;
       const authRes = await authorizeWithGithub({
-        client_id,
-        client_secret,
+        client_id: process.env.GITHUB_CLIENT_ID ?? '',
+        client_secret: process.env.GITHUB_CLIENT_SECRET ?? '',
         code,
       });
       const { message, access_token, avatar_url, login, name } = authRes;

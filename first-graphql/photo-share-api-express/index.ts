@@ -72,6 +72,9 @@ async function main() {
       `GraphQL Service running @ http://localhost:4000${server.graphqlPath}`
     );
     console.log(`GraphQL Playground @ http://localhost:4000/playground`);
+    console.log(
+      `Github authorize @ https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
+    );
   });
 }
 

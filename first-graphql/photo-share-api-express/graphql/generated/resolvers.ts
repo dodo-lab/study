@@ -21,12 +21,6 @@ export type AuthPayload = {
   user: User;
 };
 
-export type GithubAuthInput = {
-  client_id: Scalars['String'];
-  client_secret: Scalars['String'];
-  code: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   githubAuth: AuthPayload;
@@ -35,7 +29,7 @@ export type Mutation = {
 
 
 export type MutationGithubAuthArgs = {
-  input: GithubAuthInput;
+  code: Scalars['String'];
 };
 
 
@@ -164,7 +158,6 @@ export type ResolversTypes = {
   AuthPayload: ResolverTypeWrapper<AuthPayload>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
-  GithubAuthInput: GithubAuthInput;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -181,7 +174,6 @@ export type ResolversParentTypes = {
   AuthPayload: AuthPayload;
   Boolean: Scalars['Boolean'];
   DateTime: Scalars['DateTime'];
-  GithubAuthInput: GithubAuthInput;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
   Mutation: {};
@@ -203,7 +195,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  githubAuth?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationGithubAuthArgs, 'input'>>;
+  githubAuth?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationGithubAuthArgs, 'code'>>;
   postPhoto?: Resolver<ResolversTypes['Photo'], ParentType, ContextType, RequireFields<MutationPostPhotoArgs, 'input'>>;
 };
 
