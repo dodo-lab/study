@@ -1,9 +1,9 @@
 import {Button, Container, Typography} from '@mui/material';
+import {GRAPHQL_URL} from 'constants';
 import type {NextPage} from 'next';
 import {useCallback, useState} from 'react';
 
 const query = '{totalPhotos, totalUsers}';
-const url = 'http://localhost:4000/graphql';
 
 type Data = {
   totalPhotos: number;
@@ -14,7 +14,7 @@ const Page: NextPage = () => {
   const [data, setData] = useState<Data>({totalPhotos: 0, totalUsers: 0});
 
   const getData = useCallback(() => {
-    fetch(url, {
+    fetch(GRAPHQL_URL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({query}),
