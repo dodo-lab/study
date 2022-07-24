@@ -34,7 +34,7 @@ const Page: NextPage = () => {
     request(GRAPHQL_URL, query).then(data => setUsers(data.allUsers));
   }, []);
 
-  const populate = useCallback(() => {
+  const addUsers = useCallback(() => {
     const params = {count: 1};
     request(GRAPHQL_URL, mutation, params).then(_ => getUsers());
   }, [getUsers]);
@@ -46,7 +46,7 @@ const Page: NextPage = () => {
           <Button variant="contained" onClick={getUsers}>
             get users
           </Button>
-          <Button variant="contained" onClick={populate}>
+          <Button variant="contained" onClick={addUsers}>
             populate
           </Button>
         </Stack>
