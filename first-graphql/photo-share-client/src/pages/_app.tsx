@@ -21,6 +21,7 @@ const theme = createTheme({
 const linkItems: LinkItem[] = [
   {name: 'Top', link: '/'},
   {name: 'Fetch', link: '/fetch'},
+  {name: 'Graphql Request', link: '/graphql-request'},
 ];
 
 function MyApp({Component, pageProps}: AppProps) {
