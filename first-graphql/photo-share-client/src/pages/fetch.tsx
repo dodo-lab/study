@@ -1,5 +1,5 @@
 import {Button, Container, Typography} from '@mui/material';
-import {GRAPHQL_URL} from 'constants';
+import {GRAPHQL_URL} from 'constants/graphql';
 import type {NextPage} from 'next';
 import {useCallback, useState} from 'react';
 
