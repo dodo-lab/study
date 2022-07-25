@@ -1,5 +1,5 @@
 import {ApolloClient, gql, InMemoryCache} from '@apollo/client';
-import {Button, Container, Typography} from '@mui/material';
+import {Button, Container, Stack, Typography} from '@mui/material';
 import {GRAPHQL_URL} from 'constants/graphql';
 import type {NextPage} from 'next';
 import {useCallback, useState} from 'react';
@@ -28,11 +28,20 @@ const Page: NextPage = () => {
     client.query<Query>({query}).then(result => setData(result.data));
   }, []);
 
+  const outputCacheToLog = useCallback(() => {
+    console.log('cache', client.extract());
+  }, []);
+
   return (
     <Container maxWidth="xl" sx={{py: 1}}>
-      <Button variant="contained" onClick={getData} sx={{mb: 1}}>
-        get
-      </Button>
+      <Stack direction="row" sx={{mb: 1, gap: 1}}>
+        <Button variant="contained" onClick={getData}>
+          get
+        </Button>
+        <Button variant="contained" onClick={outputCacheToLog}>
+          output cache to log
+        </Button>
+      </Stack>
       <Typography>Total users: {data.totalUsers}</Typography>
       <Typography>Total photos: {data.totalPhotos}</Typography>
     </Container>
