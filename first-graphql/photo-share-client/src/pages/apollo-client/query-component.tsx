@@ -1,6 +1,6 @@
 import {gql} from '@apollo/client';
 import {Query} from '@apollo/client/react/components';
-import {Container, Stack, Typography} from '@mui/material';
+import {Button, Container, Stack, Typography} from '@mui/material';
 import type {NextPage} from 'next';
 
 const query = gql`
@@ -27,12 +27,17 @@ const Page: NextPage = () => {
   return (
     <Container maxWidth="xl" sx={{py: 1}}>
       <Query<QueryType> query={query}>
-        {({data, loading}) =>
+        {({data, loading, refetch}) =>
           loading ? (
             <Typography>loading users...</Typography>
           ) : (
             <>
-              <Typography>{data?.totalUsers} Users</Typography>
+              <Stack direction="row" sx={{gap: 1, alignItems: 'center'}}>
+                <Typography>{data?.totalUsers} Users</Typography>
+                <Button variant="contained" onClick={() => refetch()}>
+                  Refetch Users
+                </Button>
+              </Stack>
               <Stack>
                 {data?.allUsers.map((user, index) => (
                   <Stack key={index} sx={{borderBottom: 1, alignItems: 'center', p: 1}} direction="row">
