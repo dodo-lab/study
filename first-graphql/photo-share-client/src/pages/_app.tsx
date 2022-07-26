@@ -24,7 +24,7 @@ const linkItems: LinkItem[] = [
   {name: 'Top', link: '/'},
   {name: 'Fetch', link: '/fetch'},
   {name: 'Graphql Request', link: '/graphql-request'},
-  {name: 'Apollo Client', link: '/apollo-client'},
+  {name: 'Apollo Client', link: '/apollo-client/apollo-client'},
   {name: 'Apollo Client - Query Component', link: '/apollo-client/query-component'},
 ];
 
