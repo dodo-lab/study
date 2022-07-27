@@ -1,6 +1,7 @@
 import {gql} from '@apollo/client';
 import {Mutation} from '@apollo/client/react/components';
-import {Box, Button, Container, Stack, Typography} from '@mui/material';
+import {Box, Button, Container, Typography} from '@mui/material';
+import {User, UserProps} from 'components/User';
 import type {NextPage} from 'next';
 import {useState} from 'react';
 
@@ -14,18 +15,12 @@ const mutation = gql`
   }
 `;
 
-type User = {
-  githubLogin: string;
-  name: string;
-  avatar?: string | null;
-};
-
 type MutationResType = {
-  addFakeUsers: User[];
+  addFakeUsers: UserProps[];
 };
 
 const Page: NextPage = () => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<UserProps>();
 
   return (
     <Container maxWidth="xl" sx={{py: 1}}>
@@ -44,10 +39,7 @@ const Page: NextPage = () => {
       {user && (
         <Box sx={{mt: 2}}>
           <Typography>Fake user successfully added</Typography>
-          <Stack sx={{borderBottom: 1, alignItems: 'center', p: 1, gap: 1}} direction="row">
-            {user.avatar && <img src={user.avatar} width={48} height={48} alt={user.name} />}
-            <Typography>{user.name}</Typography>
-          </Stack>
+          <User {...user} />
         </Box>
       )}
     </Container>

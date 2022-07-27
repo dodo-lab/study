@@ -1,6 +1,7 @@
 import {gql} from '@apollo/client';
 import {Query} from '@apollo/client/react/components';
 import {Button, Container, Stack, Typography} from '@mui/material';
+import {User, UserProps} from 'components/User';
 import type {NextPage} from 'next';
 
 const query = gql`
@@ -16,11 +17,7 @@ const query = gql`
 
 type QueryType = {
   totalUsers: number;
-  allUsers: {
-    githubLogin: string;
-    name: string;
-    avatar: string | null;
-  }[];
+  allUsers: UserProps[];
 };
 
 const Page: NextPage = () => {
@@ -39,11 +36,8 @@ const Page: NextPage = () => {
                 </Button>
               </Stack>
               <Stack>
-                {data?.allUsers.map((user, index) => (
-                  <Stack key={index} sx={{borderBottom: 1, alignItems: 'center', p: 1}} direction="row">
-                    {user.avatar && <img src={user.avatar} width={48} height={48} alt={user.name} />}
-                    <Typography>{user.name}</Typography>
-                  </Stack>
+                {data?.allUsers.map(user => (
+                  <User key={user.name} {...user} />
                 ))}
               </Stack>
             </>
