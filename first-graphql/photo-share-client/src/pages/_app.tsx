@@ -26,6 +26,7 @@ const linkItems: LinkItem[] = [
   {name: 'Graphql Request', link: '/graphql-request'},
   {name: 'Apollo Client', link: '/apollo-client/apollo-client'},
   {name: 'Apollo Client - Query Component', link: '/apollo-client/query-component'},
+  {name: 'Apollo Client - Mutation Component', link: '/apollo-client/mutation-component'},
 ];
 
 const client = new ApolloClient({
