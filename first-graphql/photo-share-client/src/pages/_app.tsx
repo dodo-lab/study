@@ -27,6 +27,7 @@ const linkItems: LinkItem[] = [
   {name: 'Apollo Client', link: '/apollo-client/apollo-client'},
   {name: 'Apollo Client - Query Component', link: '/apollo-client/query-component'},
   {name: 'Apollo Client - Mutation Component', link: '/apollo-client/mutation-component'},
+  {name: 'Apollo Client - OAuth', link: '/apollo-client/oauth'},
 ];
 
 const client = new ApolloClient({
