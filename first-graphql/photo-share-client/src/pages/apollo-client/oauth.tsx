@@ -25,7 +25,14 @@ const Page: NextPage = () => {
     if (!authorized.current && window.location.search.match(/code=/)) {
       authorized.current = true;
       const code = window.location.search.replace('?code=', '');
-      githubAuth({variables: {code}});
+      githubAuth({
+        variables: {code},
+        update: (_, result) => {
+          if (result.data) {
+            localStorage.setItem('token', result.data.githubAuth.token);
+          }
+        },
+      });
     }
   }, [githubAuth]);
 
