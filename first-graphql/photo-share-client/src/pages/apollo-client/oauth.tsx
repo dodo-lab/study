@@ -1,16 +1,33 @@
+import {gql, useMutation} from '@apollo/client';
 import {Button, Container, Typography} from '@mui/material';
 import type {NextPage} from 'next';
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
+
+const GITHUB_AUTH_MUTATION = gql`
+  mutation githubAuth($code: String!) {
+    githubAuth(code: $code) {
+      token
+    }
+  }
+`;
+
+type GithubAuth = {
+  githubAuth: {
+    token: string;
+  };
+};
 
 const Page: NextPage = () => {
-  const [code, setCode] = useState('');
+  const authorized = useRef(false);
+  const [githubAuth, {data}] = useMutation<GithubAuth>(GITHUB_AUTH_MUTATION);
 
   useEffect(() => {
-    if (window.location.search.match(/code=/)) {
+    if (!authorized.current && window.location.search.match(/code=/)) {
+      authorized.current = true;
       const code = window.location.search.replace('?code=', '');
-      setCode(code);
+      githubAuth({variables: {code}});
     }
-  }, []);
+  }, [githubAuth]);
 
   const requestCode = useCallback(() => {
     const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID ?? '';
@@ -22,7 +39,7 @@ const Page: NextPage = () => {
       <Button variant="contained" onClick={requestCode}>
         Sign in with GitHub
       </Button>
-      <Typography>code : {code}</Typography>
+      {data && <Typography>token : ${data.githubAuth.token}</Typography>}
     </Container>
   );
 };
