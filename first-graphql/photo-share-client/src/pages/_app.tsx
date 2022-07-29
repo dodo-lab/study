@@ -1,4 +1,4 @@
-import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
+import {ApolloClient, ApolloLink, ApolloProvider, concat, HttpLink, InMemoryCache} from '@apollo/client';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -30,9 +30,25 @@ const linkItems: LinkItem[] = [
   {name: 'Apollo Client - OAuth', link: '/apollo-client/oauth'},
 ];
 
+const httpLink = new HttpLink({uri: GRAPHQL_URL});
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('token');
+  if (token !== null) {
+    operation.setContext(({headers = {}}) => ({
+      headers: {
+        ...headers,
+        Authorization: token,
+      },
+    }));
+  }
+
+  return forward(operation);
+});
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: GRAPHQL_URL,
+  link: concat(authMiddleware, httpLink),
 });
 
 function MyApp({Component, pageProps}: AppProps) {
