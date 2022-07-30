@@ -1,4 +1,4 @@
-import {gql, useMutation, useQuery} from '@apollo/client';
+import {gql, useApolloClient, useMutation, useQuery} from '@apollo/client';
 import {Button, Container, Stack} from '@mui/material';
 import {User, UserProps} from 'components/User';
 import type {NextPage} from 'next';
@@ -29,11 +29,12 @@ const ME_QUERY = gql`
 `;
 
 type Me = {
-  me: UserProps;
+  me: UserProps | null;
 };
 
 const Page: NextPage = () => {
   const authorized = useRef(false);
+  const client = useApolloClient();
   const [githubAuth] = useMutation<GithubAuth>(GITHUB_AUTH_MUTATION);
   const {data: me, refetch: refetchMe} = useQuery<Me>(ME_QUERY);
 
@@ -60,8 +61,8 @@ const Page: NextPage = () => {
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');
-    refetchMe();
-  }, [refetchMe]);
+    client.cache.writeQuery({query: ME_QUERY, data: {me: null}});
+  }, [client.cache]);
 
   return (
     <Container maxWidth="xl" sx={{py: 1}}>
@@ -73,7 +74,7 @@ const Page: NextPage = () => {
           logout
         </Button>
       </Stack>
-      {me && <User {...me.me} />}
+      {me?.me && <User {...me.me} />}
     </Container>
   );
 };
