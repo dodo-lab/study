@@ -62,9 +62,9 @@ async function start() {
     resolvers,
     context: async ({ req }) => {
       const githubToken = req.headers.authorization;
-      const currentUser = await db
-        .collection<DbUser>('users')
-        .findOne({ githubToken });
+      const currentUser = githubToken
+        ? await db.collection<DbUser>('users').findOne({ githubToken })
+        : null;
       return { db, currentUser };
     },
   });
