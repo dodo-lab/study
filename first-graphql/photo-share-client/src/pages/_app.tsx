@@ -4,9 +4,11 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {Box, createTheme, CssBaseline, ThemeProvider} from '@mui/material';
+import {persistCache} from 'apollo3-cache-persist';
 import {LinkItem, SideBar} from 'components/SideBar';
 import {GRAPHQL_URL} from 'constants/graphql';
 import type {AppProps} from 'next/app';
+import {useEffect, useRef} from 'react';
 
 const theme = createTheme({
   breakpoints: {
@@ -46,12 +48,32 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
+const cache = new InMemoryCache();
+
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache,
   link: concat(authMiddleware, httpLink),
 });
 
 function MyApp({Component, pageProps}: AppProps) {
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
+
+      persistCache({
+        cache,
+        storage: localStorage,
+      });
+
+      const apolloCachePersist = localStorage.getItem('apollo-cache-persist');
+      if (apolloCachePersist !== null) {
+        cache.restore(JSON.parse(apolloCachePersist));
+      }
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
