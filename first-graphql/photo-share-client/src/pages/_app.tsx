@@ -1,12 +1,11 @@
-import {ApolloClient, ApolloLink, ApolloProvider, concat, HttpLink, InMemoryCache} from '@apollo/client';
+import {ApolloProvider} from '@apollo/client';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {Box, createTheme, CssBaseline, ThemeProvider} from '@mui/material';
-import {persistCache} from 'apollo3-cache-persist';
 import {LinkItem, SideBar} from 'components/SideBar';
-import {GRAPHQL_URL} from 'constants/graphql';
+import {client, initializeCache} from 'lib/apollo-client';
 import type {AppProps} from 'next/app';
 import {useEffect, useRef} from 'react';
 
@@ -32,29 +31,6 @@ const linkItems: LinkItem[] = [
   {name: 'Apollo Client - OAuth', link: '/apollo-client/oauth'},
 ];
 
-const httpLink = new HttpLink({uri: GRAPHQL_URL});
-
-const authMiddleware = new ApolloLink((operation, forward) => {
-  const token = localStorage.getItem('token');
-  if (token !== null) {
-    operation.setContext(({headers = {}}) => ({
-      headers: {
-        ...headers,
-        Authorization: token,
-      },
-    }));
-  }
-
-  return forward(operation);
-});
-
-const cache = new InMemoryCache();
-
-const client = new ApolloClient({
-  cache,
-  link: concat(authMiddleware, httpLink),
-});
-
 function MyApp({Component, pageProps}: AppProps) {
   const initialized = useRef(false);
 
@@ -62,15 +38,7 @@ function MyApp({Component, pageProps}: AppProps) {
     if (!initialized.current) {
       initialized.current = true;
 
-      persistCache({
-        cache,
-        storage: localStorage,
-      });
-
-      const apolloCachePersist = localStorage.getItem('apollo-cache-persist');
-      if (apolloCachePersist !== null) {
-        cache.restore(JSON.parse(apolloCachePersist));
-      }
+      initializeCache();
     }
   }, []);
 
