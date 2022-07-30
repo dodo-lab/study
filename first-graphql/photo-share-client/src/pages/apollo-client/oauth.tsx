@@ -1,5 +1,5 @@
 import {gql, useMutation, useQuery} from '@apollo/client';
-import {Button, Container, Typography} from '@mui/material';
+import {Button, Container, Stack} from '@mui/material';
 import {User, UserProps} from 'components/User';
 import type {NextPage} from 'next';
 import {useCallback, useEffect, useRef} from 'react';
@@ -34,8 +34,8 @@ type Me = {
 
 const Page: NextPage = () => {
   const authorized = useRef(false);
-  const [githubAuth, {data: authorize}] = useMutation<GithubAuth>(GITHUB_AUTH_MUTATION);
-  const {data: me} = useQuery<Me>(ME_QUERY);
+  const [githubAuth] = useMutation<GithubAuth>(GITHUB_AUTH_MUTATION);
+  const {data: me, refetch: refetchMe} = useQuery<Me>(ME_QUERY);
 
   useEffect(() => {
     if (!authorized.current && window.location.search.match(/code=/)) {
@@ -46,23 +46,33 @@ const Page: NextPage = () => {
         update: (_, result) => {
           if (result.data) {
             localStorage.setItem('token', result.data.githubAuth.token);
+            refetchMe();
           }
         },
       });
     }
-  }, [githubAuth]);
+  }, [githubAuth, refetchMe]);
 
   const requestCode = useCallback(() => {
     const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID ?? '';
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=user`;
   }, []);
 
+  const logout = useCallback(() => {
+    localStorage.removeItem('token');
+    refetchMe();
+  }, [refetchMe]);
+
   return (
     <Container maxWidth="xl" sx={{py: 1}}>
-      <Button variant="contained" onClick={requestCode}>
-        Sign in with GitHub
-      </Button>
-      {authorize && <Typography>token : ${authorize.githubAuth.token}</Typography>}
+      <Stack direction="row" sx={{gap: 1}}>
+        <Button variant="contained" onClick={requestCode}>
+          Sign in with GitHub
+        </Button>
+        <Button variant="contained" onClick={logout}>
+          logout
+        </Button>
+      </Stack>
       {me && <User {...me.me} />}
     </Container>
   );
