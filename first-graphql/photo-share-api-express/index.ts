@@ -1,9 +1,17 @@
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import {
+  ApolloServerPluginDrainHttpServer,
+  ApolloServerPluginLandingPageLocalDefault,
+} from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
 import { config } from 'dotenv';
 import express from 'express';
 import fs from 'fs';
 import expressPlayground from 'graphql-playground-middleware-express';
+import { useServer } from 'graphql-ws/lib/use/ws';
+import { createServer } from 'http';
 import { Db, MongoClient } from 'mongodb';
+import { WebSocketServer } from 'ws';
 import { PhotoCategory } from './graphql/generated/resolvers';
 import { DbPhoto, DbUser } from './mongo-db/types';
 import { resolvers } from './resolvers';
@@ -57,7 +65,16 @@ async function start() {
   const db = client.db();
   await initializeDbData(db);
 
+  const schema = makeExecutableSchema({ typeDefs, resolvers });
+  const httpServer = createServer(app);
+  const wsServer = new WebSocketServer({
+    server: httpServer,
+    path: '/graphql',
+  });
+  const serverCleanup = useServer({ schema }, wsServer);
+
   const server = new ApolloServer({
+    schema,
     typeDefs,
     resolvers,
     context: async ({ req }) => {
@@ -67,6 +84,22 @@ async function start() {
         : null;
       return { db, currentUser };
     },
+    plugins: [
+      // Proper shutdown for the HTTP server.
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+
+      // Proper shutdown for the WebSocket server.
+      {
+        async serverWillStart() {
+          return {
+            async drainServer() {
+              await serverCleanup.dispose();
+            },
+          };
+        },
+      },
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    ],
   });
   await server.start();
 
@@ -76,11 +109,12 @@ async function start() {
   app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
 
   // Webサーバーを起動
-  app.listen({ port: 4000 }, () => {
+  const PORT = 4000;
+  httpServer.listen(PORT, () => {
     console.log(
-      `GraphQL Service running @ http://localhost:4000${server.graphqlPath}`
+      `GraphQL Service running @ http://localhost:${PORT}${server.graphqlPath}`
     );
-    console.log(`GraphQL Playground @ http://localhost:4000/playground`);
+    console.log(`GraphQL Playground @ http://localhost:${PORT}/playground`);
     console.log(
       `Github authorize @ https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
     );
