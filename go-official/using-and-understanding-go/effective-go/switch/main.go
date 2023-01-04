@@ -28,6 +28,19 @@ func separateSwitch(c byte) {
 	}
 }
 
+func typeSwitch(value interface {}) {
+	switch t := value.(type) {
+	case int:
+		fmt.Printf("t is int : %d\n", t)
+	case string:
+		fmt.Printf("t is string : %s\n", t)
+	case *string:
+		fmt.Printf("t is *string : %s\n", *t)
+	default:
+		fmt.Println("t is unknown type")
+	}
+}
+
 func breakTest(s string) {
 	Loop:
 		for _, c := range s {
@@ -56,6 +69,13 @@ func main() {
 	separateSwitch('b')
 	separateSwitch('2')
 	separateSwitch('G')
+
+	fmt.Println("\n---typeSwitch")
+	str := "pointer"
+	typeSwitch(12)
+	typeSwitch("test")
+	typeSwitch(&str)
+	typeSwitch(false)
 
 	fmt.Println("\n---breakTest")
 	breakTest("ABC1abc0XYZ")
