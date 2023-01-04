@@ -28,6 +28,22 @@ func separateSwitch(c byte) {
 	}
 }
 
+func breakTest(s string) {
+	Loop:
+		for _, c := range s {
+			switch c {
+			case '0':
+				fmt.Printf("c = %c(break Loop)\n", c)
+				break Loop
+			case '1':
+				fmt.Printf("c = %c(break)\n", c)
+				break
+			default:
+				fmt.Printf("c = %c\n", c)
+			}
+		}
+}
+
 func main() {
 	fmt.Println("---normalSwitch")
 	normalSwitch('C')
@@ -40,4 +56,7 @@ func main() {
 	separateSwitch('b')
 	separateSwitch('2')
 	separateSwitch('G')
+
+	fmt.Println("\n---breakTest")
+	breakTest("ABC1abc0XYZ")
 }
