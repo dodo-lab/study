@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+// 'api'のルートパスにマッピングされるコントローラー
+@Controller('api')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
+  // 'hello'パスにマッピングされるGETメソッド
+  @Get('hello')
   getHello(): string {
-    return this.appService.getHello();
+    // 'Hello from NestJS API!'を返す
+    return 'Hello from NestJS API!';
   }
 }
